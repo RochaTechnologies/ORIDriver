@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Wizard_ProfilePicture">
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/UserProfilePicture"
+        android:src="@drawable/ic_emptyuser"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+    <android.support.v7.widget.AppCompatTextView
+        android:text="@string/WizardProfilePicture_SelectPhotoMsg"
+        android:textColor="@color/ORIRoyal_Blue"
+        android:textAlignment="center"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.AppCompatTextView
+        android:text="@string/WizardProfilePicture_Instructions"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/ORILynch_Gray"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.LinearLayoutCompat
+        android:background="@drawable/template_frame_gray"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/UserNickName"
+            android:hint="Nombre público"
+            android:inputType="text"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_marginStart="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:background="#6C7A89"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp" />
+        <android.support.v7.widget.LinearLayoutCompat
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/MaleGender"
+                android:text="@string/WizardProfilePicture_MaleGenderMsg"
+                android:textAllCaps="false"
+                android:textColor="@color/ORISalem_Green"
+                android:background="@drawable/template_genderstyle"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/FemaleGender"
+                android:text="@string/WizardProfilePicture_FemaleGenderMsg"
+                android:textAllCaps="false"
+                android:textColor="@color/ORISalem_Green"
+                android:background="@drawable/template_genderstyle"
+                android:layout_weight="1"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.LinearLayoutCompat>
+        <View
+            android:background="#6C7A89"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp" />
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/UserLastName"
+            android:hint="Apellidos"
+            android:inputType="text"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_marginStart="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:background="#6C7A89"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp" />
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/UserGivenName"
+            android:hint="Nombre(s)"
+            android:inputType="text"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_marginStart="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.LinearLayoutCompat>
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_weight="1"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/ContinuePressed"
+                android:text="@string/ORIGlobal_NextStep"
+                android:textAlignment="textEnd"
+                android:textColor="@color/ORISalem_Green"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.LinearLayoutCompat>
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v7.widget.LinearLayoutCompat>

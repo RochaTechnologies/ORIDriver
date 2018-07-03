@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings_FavRequest">
+    <android.support.v7.widget.AppCompatTextView
+        android:text="Conductor preferido"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.AppCompatTextView
+        android:text="Cuando finalizas un viaje, el pasajero tiene la opción de agregarte a sus conductores preferidos. Al tú aceptar la solicitud, el pasajero puede requerirte un viaje o servicio directamente."
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_weight="0"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatButton
+            android:layout_weight="1"
+            android:id="@+id/displayfragment"
+            android:text="muestrate alv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.AppCompatButton
+            android:layout_weight="1"
+            android:id="@+id/otrodisplayfragment"
+            android:text="muestra el otro alv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.LinearLayoutCompat>
+    <FrameLayout
+        android:id="@+id/FragContent"
+        android:name="com.rochatech.oridriver.Fragment_MainFavContent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--<fragment-->
+            <!--android:id="@+id/FragContent"-->
+            <!--android:name="com.rochatech.oridriver.Fragment_MainFavContent"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+    </FrameLayout>
+
+    <!--<FrameLayout-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginStart="10dp"-->
+        <!--android:layout_marginEnd="10dp"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+    <!--</FrameLayout>-->
+    <!--class ="com.rochatech.oridriver.Fragment_MainFavContent"-->
+</android.support.v7.widget.LinearLayoutCompat>

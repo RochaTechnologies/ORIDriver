@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LoginMainWrapper"
+    android:orientation="vertical"
+    android:background="@color/ORIWhite"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".Wizard_Login">
+    <android.support.v7.widget.LinearLayoutCompat
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- Heaeder -->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/RelativeHeader"
+            android:layout_weight="0"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/ic_ori_blueisotype"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="30dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="¿A dónde vamos hoy?"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <!-- Main Container -->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/RelativeMainContainer"
+            android:layout_weight="0"
+            android:layout_below="@id/RelativeHeader"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/txtUnityEmail"
+                    android:hint="Correo Electrónico"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:inputType="textEmailAddress"
+                    android:background="@drawable/template_frame_gray"
+                    android:padding="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/txtUnityPassword"
+                    android:hint="Contraseña"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:inputType="textPassword"
+                    android:background="@drawable/template_frame_gray"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnLoginPressed"
+                    android:text="Iniciar"
+                    android:textAllCaps="false"
+                    android:textColor="@color/ORIWhite"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:background="@drawable/template_bluebutton"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnAccountPressed"
+                    android:text="Regístrate"
+                    android:textAllCaps="false"
+                    android:textColor="@color/ORIWhite"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:background="@drawable/template_skybluebutton"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <!-- Footer -->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/RelativeFooter"
+            android:layout_weight="1"
+            android:layout_below="@id/RelativeMainContainer"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnPasswordPressed"
+                android:text="Olvidé mi contraseña"
+                android:textAllCaps="false"
+                android:textColor="@color/ORISkyBlue"
+                android:background="@android:color/transparent"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.LinearLayoutCompat>
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.design.widget.CoordinatorLayout>

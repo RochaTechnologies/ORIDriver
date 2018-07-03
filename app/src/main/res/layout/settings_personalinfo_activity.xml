@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MainLinear"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings_PersonalInfo">
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/NewProfilePic"
+        android:src="@drawable/ic_emptyuser"
+        android:tint="@color/ORILynch_Gray"
+        android:layout_marginTop="10dip"
+        android:layout_gravity="center"
+        android:layout_width="100dip"
+        android:layout_height="100dip" />
+    <android.support.v7.widget.AppCompatTextView
+        android:text="Editar Foto"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#4183D7"
+        android:gravity="center_horizontal" />
+    <android.support.v7.widget.AppCompatTextView
+        android:text="@string/SettingsPersonalInfo_InstructionsMsg"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#6C7A89"
+        android:lines="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:layout_marginStart="15dip"
+        android:layout_marginEnd="15dip"
+        android:layout_marginBottom="10dip"/>
+    <android.support.v7.widget.LinearLayoutCompat
+        android:orientation="vertical"
+        android:background="@drawable/template_frame_gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_marginStart="15dip"
+        android:layout_marginEnd="15dip" >
+        <android.support.v7.widget.AppCompatTextView
+            android:text="Nombre Completo"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="3dp" />
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/NewGivenName"
+            android:textSize="16sp"
+            android:text="Default"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginStart="5dip"
+            android:layout_marginTop="5dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#6C7A89"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp" />
+        <android.support.v7.widget.AppCompatTextView
+            android:text="Nombre Público"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="3dp" />
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/NewNickName"
+            android:backgroundTint="@android:color/transparent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dip"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#6C7A89"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp" />
+        <android.support.v7.widget.AppCompatTextView
+            android:text="Celular"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="3dp" />
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/NewMobile"
+            android:backgroundTint="@android:color/transparent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:inputType="phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dip"/>
+    </android.support.v7.widget.LinearLayoutCompat>
+    <android.support.v7.widget.AppCompatTextView
+        android:text="Los datos se actualizarán la próxima vez que inicies el app"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAlignment="center"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.LinearLayoutCompat
+        android:gravity="center_horizontal|center_vertical|bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1">
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/SaveProfileInfo"
+            android:text="Guardar"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:textColor="#fff"
+            android:background="@color/ORIShamrock_Green" />
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v7.widget.LinearLayoutCompat>

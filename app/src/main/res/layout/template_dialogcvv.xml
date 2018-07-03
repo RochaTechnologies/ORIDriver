@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.LinearLayoutCompat
+        android:background="@color/ORIWhite"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatTextView
+            android:text="¿Dónde se encuentra el CVV2?"
+            android:textColor="@color/ORIBlack"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.AppCompatImageView
+            android:src="@drawable/ic_cvv"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="300dp"
+            android:layout_height="150dp" />
+        <android.support.v7.widget.AppCompatTextView
+            android:text="El CVV ó CVV2 se encuentra en la parte trasera de su plástico y esta compuesto por 3 o 4 dígitos"
+            android:textColor="@color/ORIBlack"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v7.widget.LinearLayoutCompat>

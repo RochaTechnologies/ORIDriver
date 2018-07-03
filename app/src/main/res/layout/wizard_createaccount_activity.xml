@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Wizard_CreateAccount">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:background="@drawable/template_frame_gray"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.LinearLayoutCompat
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatImageView
+                android:src="@drawable/ic_marker"
+                android:layout_margin="2dp"
+                android:layout_weight="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Spinner
+                android:id="@+id/AvailableCities"
+                android:prompt="@string/WizardCreateAccount_CitiesHeader"
+                android:spinnerMode="dialog"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></Spinner>
+        </android.support.v7.widget.LinearLayoutCompat>
+        <View
+            android:background="#6C7A89"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp" />
+        <android.support.v7.widget.LinearLayoutCompat
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatImageView
+                android:src="@drawable/ic_mobile"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="2dp"
+                android:layout_weight="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/UserMobile"
+                android:hint="@string/WizardCreateAccount_MobileMsg"
+                android:inputType="phone"
+                android:backgroundTint="@android:color/transparent"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.LinearLayoutCompat>
+        <View
+            android:background="#6C7A89"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp" />
+        <android.support.v7.widget.LinearLayoutCompat
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatImageView
+                android:src="@drawable/ic_emailgray"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="2dp"
+                android:layout_weight="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/UserEmail"
+                android:hint="@string/WizardCreateAccount_EmailMsg"
+                android:inputType="textEmailAddress"
+                android:backgroundTint="@android:color/transparent"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.LinearLayoutCompat>
+        <View
+            android:background="#6C7A89"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp" />
+        <android.support.v7.widget.LinearLayoutCompat
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatImageView
+                android:src="@drawable/ic_lockgray"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="2dp"
+                android:layout_weight="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/UserPassword"
+                android:hint="@string/WizardCreateAccount_PasswordMsg"
+                android:inputType="textPassword"
+                android:backgroundTint="@android:color/transparent"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.LinearLayoutCompat>
+        <View
+            android:background="#6C7A89"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp" />
+        <android.support.v7.widget.LinearLayoutCompat
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatImageView
+                android:src="@drawable/ic_lockgray"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="2dp"
+                android:layout_weight="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/UserConfirmPassword"
+                android:hint="@string/WizardCreateAccount_PasswordMsg"
+                android:inputType="textPassword"
+                android:backgroundTint="@android:color/transparent"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.LinearLayoutCompat>
+    </android.support.v7.widget.LinearLayoutCompat>
+
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatTextView
+            android:hint="@string/WizardCreateAccount_AccepTermsAndConditions"
+            android:textAlignment="textEnd"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/TermsAndConditionsDialog"
+            android:hint="@string/WizardCreateAccount_TermsAndConditions"
+            android:textColorHint="@color/ORIRoyal_Blue"
+            android:textSize="16sp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:background="@android:color/transparent"
+            android:layout_weight="0"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/AcceptedTermsandConditions"
+            android:layout_weight="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/StartCreatingAccountPressed"
+            android:hint="@string/WizardCreateAccount_CreateAccountMsg"
+            android:background="@color/ORIShamrock_Green"
+            android:textColorHint="#FFF"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v7.widget.LinearLayoutCompat>

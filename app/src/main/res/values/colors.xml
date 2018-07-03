@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="ORIThunderbird_Red">#D91E18</color>
+    <color name="ORIShamrock_Green">#00B16A</color>
+    <color name="ORISalem_Green">#1E824C</color>
+    <color name="ORIDodger_Blue">#19B5FE</color>
+    <color name="ORIJacksons_Blue">#1F3A93</color>
+    <color name="ORIRoyal_Blue">#4183D7</color>
+    <color name="ORILynch_Gray">#6C7A89</color>
+    <color name="ORIGray">#DADFE1</color>
+    <color name="ORISilver">#BFBFBF</color>
+    <color name="ORIGold">#F7CA18</color>
+
+    <!-- New design colors -->
+    <color name="ORIWhite">#fff</color>
+    <color name="ORIBlack">#000</color>
+    <color name="ORILightBlack">#060B18</color>
+    <color name="ORIDarkGray">#343434</color>
+    <color name="ORILightGray">#EFEDEF</color>
+    <color name="ORILightYellow">#FAE79D</color>
+    <color name="ORIYellow">#FDE646</color>
+    <color name="ORIDarkYellow">#F1AD36</color>
+    <color name="ORIElectricBlue">#366499</color>
+    <color name="ORISkyBlue">#0C90BC</color>
+    <color name="ORIAqua">#6BC1DC</color>
+    <color name="ORIDarkAqua">#417684</color>
+    <color name="ORIDarkPink">#EB6462</color>
+    <color name="ORILightPink">#F0AC93</color>
+    <color name="ORIWine">#710B51</color>
+    <color name="ORILightGreen">#A6D37A</color>
+
+    <color name="black_overlay">#66000000</color>
+
+</resources>

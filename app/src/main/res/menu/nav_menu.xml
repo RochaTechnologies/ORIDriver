@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/DriverStatus"
+        android:icon="@drawable/ic_ori_whitetransisotype_100"
+        app:actionLayout="@layout/template_navmenu_driverstatus"
+        android:title="En Línea"></item>
+    <item
+        android:id="@+id/DriverMap"
+        android:icon="@drawable/ic_marker"
+        android:title="@string/MapDriver_MapMsg"></item>
+    <item
+        android:id="@+id/DriverRequest"
+        android:icon="@drawable/ic_favdriver"
+        android:title="@string/MapDriver_RequestMsg"></item>
+    <item
+        android:id="@+id/DriverHistory"
+        android:icon="@drawable/ic_history"
+        android:title="@string/MapDriver_HistoryMsg"></item>
+    <item
+        android:id="@+id/DriverSettings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/MapDriver_SettingsMsg"></item>
+    <item
+        android:id="@+id/DriverLogoff"
+        android:icon="@drawable/ic_logoffgray"
+        android:title="@string/MapDriver_LogoffMsg"></item>
+</menu>

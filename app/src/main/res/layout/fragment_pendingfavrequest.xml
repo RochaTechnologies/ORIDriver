@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment_PendingFavRequest">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:text="Nuevas solicitudes"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ORILynch_Gray" />
+
+        <android.support.v7.widget.ListViewCompat
+            android:id="@+id/PassengersRequestList"
+            android:choiceMode="singleChoice"
+            tools:listitem="@layout/template_favdriverpendingrequest"
+            android:dividerHeight="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.ListViewCompat>
+    </android.support.v7.widget.LinearLayoutCompat>
+
+</FrameLayout>

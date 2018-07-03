@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/template_greengradient"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="16dp"
+    android:paddingTop="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_weight="0"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/PassengerProfilePic"
+                android:layout_gravity="center_vertical"
+                android:layout_width="90dp"
+                android:layout_height="85dp"
+                android:layout_marginTop="3dp"
+                app:srcCompat="@drawable/ic_ori_blueisotype" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginStart="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/NavMenu_DriverName"
+                android:text="Default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <RatingBar
+                android:id="@+id/NavMenu_DriverRate"
+                android:isIndicator="true"
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                style="@style/ORIRatingBar"
+                android:stepSize="0.5"/>
+            <!--#25456a-->
+            <!--#1e3957-->
+            <TextView
+                android:text="Calificación"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

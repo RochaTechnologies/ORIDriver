@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    tools:context=".Fragment_Wizard_CreditCard">
+
+    <!-- Wrapper -->
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Header -->
+        <!-- Title & View -->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:orientation="vertical"
+            android:layout_weight="0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatTextView
+                android:text="Agrega un método de pago"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_marginTop="10dp"
+                android:background="@color/ORIDarkGray"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <!-- Main -->
+        <!-- Activity title, Controls -->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:orientation="vertical"
+            android:layout_weight="0"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatTextView
+                android:text="Tarjetas aceptadas"
+                android:textColor="@color/ORIBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAlignment="center"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.LinearLayoutCompat
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatImageView
+                    android:src="@drawable/ic_acceptedcreditcards"
+                    android:layout_marginTop="-16dp"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="Nombre"
+                        android:textColor="#000"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_weight="0"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/txtHolderName"
+                        android:hint="Nombre como aparece en la tarjeta"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </android.support.v7.widget.LinearLayoutCompat>
+                <View
+                    android:background="#6C7A89"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="Número"
+                        android:textColor="#000"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_weight="0"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/txtCardNumber"
+                        android:hint="Número sin espacios"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </android.support.v7.widget.LinearLayoutCompat>
+                <View
+                    android:background="#6C7A89"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <android.support.v7.widget.AppCompatTextView
+                            android:text="Fecha de expiración"
+                            android:textColor="#000"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:layout_marginStart="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </android.support.v7.widget.LinearLayoutCompat>
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <android.support.v7.widget.AppCompatSpinner
+                            android:id="@+id/SprMonth"
+                            android:prompt="@string/promptMonth"
+                            android:spinnerMode="dialog"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <android.support.v7.widget.AppCompatTextView
+                            android:text="/"
+                            android:textColor="#000"
+                            android:layout_weight="0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <android.support.v7.widget.AppCompatSpinner
+                            android:id="@+id/SprYear"
+                            android:prompt="@string/promptYear"
+                            android:spinnerMode="dialog"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </android.support.v7.widget.LinearLayoutCompat>
+                </android.support.v7.widget.LinearLayoutCompat>
+                <View
+                    android:background="#6C7A89"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <android.support.v7.widget.AppCompatTextView
+                            android:text="Código de seguridad"
+                            android:textColor="#000"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:layout_marginStart="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </android.support.v7.widget.LinearLayoutCompat>
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:orientation="horizontal"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/txtCvv"
+                            android:hint="CVV2"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:backgroundTint="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/btnCvvDialogPressed"
+                            android:text="ⓘ"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="@color/ORISkyBlue"
+                            android:background="@android:color/transparent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp" />
+                    </android.support.v7.widget.LinearLayoutCompat>
+                </android.support.v7.widget.LinearLayoutCompat>
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <!-- Footer -->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnSaveCardPressed"
+                android:text="Guardar Tarjeta"
+                android:textAllCaps="false"
+                android:textColor="@color/ORIWhite"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:background="@drawable/template_bluebutton"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_marginTop="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.v7.widget.AppCompatTextView
+                        android:text="@string/ORIGlobal_DataSecurityMsg"
+                        android:textAlignment="viewEnd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </android.support.v7.widget.LinearLayoutCompat>
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_weight="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <android.support.v7.widget.AppCompatImageView
+                        android:src="@drawable/ic_shield"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                </android.support.v7.widget.LinearLayoutCompat>
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v7.widget.LinearLayoutCompat>
+    </android.support.v7.widget.LinearLayoutCompat>
+</FrameLayout>

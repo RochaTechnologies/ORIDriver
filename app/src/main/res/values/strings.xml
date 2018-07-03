@@ -1,0 +1,204 @@
+<resources>
+    <string name="app_name">ORI Driver</string>
+
+    <!-- Global strings -->
+    <string name="ORITravelWithORIMsg">Viaja con ori</string>
+    <string name="ORIGlobal_NextStep">Continuar</string>
+    <string name="ORIGlobal_AnyErrorsTitle">Revisar los siguientes errores:</string>
+    <string name="ORIGlobal_webServiceError">ORI Drive Services</string>
+    <string name="ORIGlobal_DataSecurityMsg">Tus datos se almacenan de forma segura con encriptación de 256 bits</string>
+    <string name="ORIGlobal_SharedPreferences">ORI_Preferences</string>
+    <string name="ORIGlobal_SharedPreferencesFailed_Title">Error al guardar preferencias</string>
+    <string name="ORIGlobal_SharedPreferencesFailed_Msg">Ocurrió un error al tratar de guardar las preferencias del usuario</string>
+    <string name="ORIDrawerOpen">drawer_open</string>
+    <string name="ORIDrawerClose">drawer_close</string>
+
+    <!-- Wizard Login String -->
+    <!-- Labels -->
+    <string name="WizardLogin_WelcomeMsg">¡Bienvenido!</string>
+    <string name="WizardLogin_LogInMsg">Iniciar Sesión</string>
+    <string name="WizardLogin_ForgorPasswordMsg">Olvidé mi contraseña</string>
+    <string name="WizardLogin_CreateUserMsg">¡Crea una cuenta!</string>
+    <!-- Errors -->
+    <string name="WizardLogin_Error_EmptyUnityEmail">El correo electrónico no puede ser vacío</string>
+    <string name="WizardLogin_Error_InvalidUnityEmail">El correo electrónico no es válido</string>
+    <string name="WizardLogin_Error_EmptyUnityPassword">La contraseña no puede ser vacía</string>
+    <string name="WizardLogin_Error_InvalidCredentials">El correo electrónico o la contraseña son incorrectas, recuerde que tras varios intentos su cuenta se bloqueara por motivos de seguridad</string>
+
+
+    <!-- Wizard ForgotPassword String -->
+    <!-- Labels -->
+    <string name="WizardForgotPassword_Instructions">Para crear una nueva contraseña escribe tu correo electrónico y sigue las instrucciones que te enviaremos a tu correo</string>
+    <string name="WizardForgotPassword_SendMsg">Enviar</string>
+    <!-- Errors -->
+    <string name="WizardForgotPassword_EmptyEmail">El correo electrónico no puede ser vació.</string>
+    <string name="WizardForgotPassword_InvalidEmail">El correo electrónico no es válido.</string>
+    <!-- Msg -->
+    <string name="WizardForgotPassword_Msg_EmailSended">El correo ha sido enviado con éxito</string>
+
+    <!-- Wizard Profile Picture String -->
+    <!-- Labels -->
+    <string name="WizardProfilePicture_SelectPhotoMsg">Seleccionar una fotografía</string>
+    <string name="WizardProfilePicture_Instructions">Agrega una foto de perfil (Esta imagen es la que veran tus pasajeros y escribe tu nombre tal cual se encuentran en tu identificación).</string>
+    <string name="WizardProfilePicture_MaleGenderMsg">Hombre</string>
+    <string name="WizardProfilePicture_FemaleGenderMsg">Mujer</string>
+    <!-- Errors -->
+    <string name="WizardProfilePicture_NickNameEmpty">Favor de escribir un nombre público.</string>
+    <string name="WizardProfilePicture_ProfilePictureEmpty">Favor de elegir una foto para su perfil.</string>
+    <string name="WizardProfilePicture_LastNameEmpty">Favor de escribir sus apellidos.</string>
+    <string name="WizardProfilePicture_GivenNameEmpty">Favor de escribir tu nombre</string>
+    <string name="WizardProfilePicture_GenderEmpty">Favor de seleccionar un género.</string>
+
+    <!-- Wizard Create Account String -->
+    <!-- Labels -->
+    <string name="WizardCreateAccount_TermsInfo">Este es un titulo \n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat augue nibh, id hendrerit mauris tristique et. Praesent rhoncus ipsum lacus, quis dictum massa accumsan quis. Duis ut ligula sit amet lectus bibendum porta commodo sed ex. Donec tincidunt sem et ipsum pulvinar feugiat. Donec pretium, mi vulputate venenatis posuere, magna elit finibus enim, ac dictum dolor leo sit amet sem. Vestibulum congue pharetra purus vitae tincidunt. In porttitor leo id risus posuere, a placerat enim congue. Curabitur vitae tempor tellus. Praesent egestas blandit urna et finibus. Proin pulvinar nisi vitae neque rutrum venenatis. Vivamus pulvinar viverra lectus, ac posuere diam cursus venenatis. Phasellus maximus mauris neque, id egestas leo vestibulum quis. Donec velit velit, sagittis nec lobortis vel, viverra ac dolor. Fusce dictum vitae magna nec molestie. Morbi finibus velit eu justo auctor, a pulvinar tortor viverra. Pellentesque vulputate felis nec hendrerit mattis. Mauris id augue eu dui dictum varius a congue lorem. Curabitur fringilla aliquam ipsum, in porta nunc maximus eget. Donec vel tortor a purus laoreet pharetra. Donec tincidunt convallis libero vitae sagittis. Nam placerat malesuada lorem ut ultricies. Donec malesuada rhoncus sem, quis accumsan turpis ultricies vel. Donec vel convallis lectus. Sed hendrerit justo quis ligula feugiat cursus. Vivamus in ornare magna. Sed viverra interdum odio, in fermentum purus volutpat ac. Cras eget lobortis ex, sed vulputate ex. Maecenas vitae malesuada mi, a elementum nisi. Integer eros dui, ullamcorper vel viverra sed, commodo non est. Nulla cursus sed neque ut vehicula. Etiam eu dolor consectetur, fermentum ex lacinia, tempus odio. Aliquam in massa eu tellus mattis consequat. Nullam mauris velit, commodo eget malesuada sit amet, convallis malesuada odio. Integer est tellus, molestie id sagittis in, rhoncus nec tellus. Suspendisse potenti. Nulla nec venenatis felis. Etiam consequat tristique gravida. Ut varius felis non est feugiat, ac hendrerit velit semper. Nulla mattis rutrum neque et congue. In egestas est lacus, vel rutrum justo fringilla id. Nam sit amet dignissim elit. Sed quis ipsum porta justo ultrices facilisis sit amet eget tellus. Phasellus lacinia purus vitae erat ultrices viverra in id purus. Aliquam erat volutpat. Etiam bibendum tincidunt nulla, blandit fermentum nunc rutrum eu. Vestibulum sagittis, ante vitae consectetur blandit, dolor nisl hendrerit erat, ut euismod felis lacus tincidunt erat. Integer nisi turpis, iaculis vel luctus vel, egestas vel augue. Pellentesque placerat varius massa, non molestie lorem consectetur eget. Integer ac hendrerit ante. Phasellus accumsan orci elit, eget lobortis odio pulvinar a. Maecenas posuere, mi vel feugiat iaculis, ex libero laoreet ex, sed vestibulum ipsum leo nec est. In luctus gravida venenatis. Suspendisse potenti. Curabitur ut volutpat nisl. Etiam auctor vestibulum ante. Fusce vel nibh cursus, convallis lectus ac, ornare metus. In hac habitasse platea dictumst. Phasellus lorem nisi, ullamcorper vel rhoncus blandit, dapibus id diam. Pellentesque iaculis, lectus sed euismod vehicula, nulla odio posuere orci, ac consequat tellus tortor non libero. Nullam efficitur, nibh nec volutpat malesuada, elit dui faucibus diam, quis malesuada turpis nibh sed leo. Nam eget turpis sapien. Sed mattis varius augue, cursus sollicitudin nunc laoreet eget. Proin turpis lectus, laoreet non dui in, fringilla egestas mauris. Etiam nibh nunc, mattis eu ornare ac, dapibus id dui. Maecenas lacinia tempus velit, in vehicula enim tincidunt vitae. Duis gravida urna sit amet arcu mollis consequat. Pellentesque non accumsan nunc. Quisque nulla tellus, aliquam mattis egestas vel, sagittis non eros. Duis posuere placerat est in vehicula. Duis eleifend metus quam, sed condimentum nulla viverra tempor. Nulla pulvinar egestas erat quis finibus. Etiam facilisis leo ut ipsum mattis dapibus. Phasellus tempor facilisis molestie. Maecenas ut diam sit amet nibh auctor laoreet. Vestibulum accumsan consequat fringilla. Vivamus id rutrum orci. Nullam et neque vestibulum nulla tincidunt interdum. Donec in ex elit. Proin non vestibulum magna. Sed hendrerit accumsan nisi, pulvinar feugiat mi fermentum non. Quisque mollis elementum velit, sed consequat dui malesuada et. Fusce pharetra laoreet est, ut aliquam mauris lobortis eu. Nulla dolor tortor, maximus sed metus vel, lacinia commodo nunc. Praesent eget condimentum dolor. Etiam aliquet lobortis ex, nec pharetra turpis consequat non. Cras vestibulum dignissim urna, rhoncus rutrum libero gravida non. Vivamus lorem neque, facilisis quis dolor nec, sodales iaculis magna. Vivamus molestie velit at ornare laoreet. Sed tempor aliquet pharetra. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sodales dolor vitae suscipit auctor. Aenean in velit et felis vehicula iaculis. Curabitur vel magna placerat, semper velit quis, dapibus augue. Nunc condimentum tincidunt lorem sed sollicitudin. Donec ut ultrices nisl, quis rhoncus massa. Nam consectetur tortor ac nisl vehicula facilisis. Ut sed vulputate neque. Duis fermentum, metus a semper mollis, eros ligula aliquet eros, nec accumsan mi nisl sit amet sem. Suspendisse in erat tempor purus aliquam commodo congue eget sem. Nunc finibus purus lacus, id ultrices mauris finibus vitae. Cras blandit magna lorem. Duis lobortis luctus neque, et luctus urna. Duis sodales lorem a tellus volutpat lobortis. Aliquam finibus, dui quis sodales euismod, tellus turpis congue quam, eu interdum felis metus rutrum mauris. Vivamus diam tortor, efficitur at volutpat a, suscipit sed est. In ac vulputate ligula, in blandit risus. Vestibulum porta ac ipsum eu imperdiet. Donec faucibus tincidunt metus, at mattis risus tempus eu. Praesent interdum arcu et porttitor semper. Ut posuere tellus neque. Aliquam aliquet eros vel tortor tincidunt tincidunt. Nulla et leo nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec tempor dolor ac diam ornare euismod. Curabitur vestibulum finibus placerat. Quisque molestie malesuada suscipit. Suspendisse volutpat pulvinar semper. Vivamus tempus neque lectus, semper tincidunt erat lacinia vitae. Praesent dictum sodales consequat. Vestibulum ut elit euismod felis viverra sodales. Aenean viverra in quam ac finibus. Maecenas et rhoncus lectus, ut finibus risus. Etiam sagittis nunc nec mauris lacinia venenatis. Cras nec varius nisl, non posuere ligula. Ut porttitor porta sapien nec commodo. Ut vitae ipsum arcu. Suspendisse auctor eu felis sed pellentesque. Pellentesque pretium tincidunt massa at porta. Donec non placerat lectus. Quisque accumsan nunc velit, ut vestibulum libero ultricies sit amet. Sed pulvinar lectus vel orci luctus facilisis. Curabitur bibendum porttitor risus, at blandit enim dictum non. Quisque at odio pretium, aliquet leo eget, posuere justo. Sed malesuada ut justo luctus interdum. Maecenas nec volutpat odio, sed ultricies dolor. Morbi volutpat elementum eleifend. Ut facilisis sapien at ornare efficitur. Aliquam eu vehicula magna, a porta lacus. Donec eget erat ut mi condimentum auctor sed sed diam. Nullam efficitur feugiat porta. Integer eu tortor diam. Proin commodo gravida vulputate. Mauris quis vehicula odio, non euismod lorem. Curabitur rhoncus, odio vel bibendum auctor, purus dolor luctus erat, id lobortis orci sapien quis ante. Fusce et mattis tortor. Nunc elit ex, mattis eget fringilla ut, sagittis id velit. Suspendisse aliquet rhoncus lacinia. Cras rutrum imperdiet sapien sit amet fermentum. Nulla nisl neque, pulvinar sed ipsum vitae, rhoncus accumsan nisl. Morbi dictum vehicula nunc, a tempus purus mattis ac. Aliquam maximus dolor ac odio interdum, ac pretium nibh bibendum. In purus ex, eleifend eu ipsum id, consectetur convallis ipsum. Cras nec faucibus purus. Fusce fermentum eu mi ut viverra. Nulla facilisi. In rhoncus nibh diam, quis vestibulum quam malesuada rhoncus. Duis sed ligula sed velit maximus fringilla. Morbi enim erat, vestibulum in ultrices eget, fermentum quis diam. Cras feugiat risus arcu, sed mattis augue luctus congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae tortor volutpat, malesuada turpis vitae, ultricies mi. Vivamus maximus maximus mollis. Fusce eu leo ac nibh cursus congue sit amet vitae mi. Morbi volutpat efficitur ante, eget fringilla urna consectetur ut. In faucibus et quam nec tristique. Mauris eget porttitor ipsum. Aenean non tempor nibh. Nulla facilisi. Sed eu tincidunt quam. Quisque erat massa, varius in euismod non, dictum consectetur risus. Vestibulum facilisis, arcu ut molestie dictum, tortor leo mollis tortor, in congue augue eros sed mi. Pellentesque id arcu tellus. Vestibulum tempus, ligula a lacinia tempus, sem massa ullamcorper risus, sit amet vehicula risus lectus iaculis leo. Sed gravida quam quis turpis aliquet, sit amet tincidunt mi placerat. Suspendisse semper finibus metus at mattis. Nulla varius ultrices arcu id feugiat. Etiam ac nisl pellentesque, dapibus mauris ut, interdum turpis. Fusce pellentesque velit quis fringilla feugiat. Praesent at elementum quam, scelerisque malesuada nunc. In sit amet tortor quis sem elementum ultrices et eget mauris. Curabitur venenatis tristique lobortis. Nam faucibus, ex eget tempor porta, nulla libero tristique nibh, in pulvinar tellus libero quis enim. Vivamus congue nec sapien in blandit. In hac habitasse platea dictumst. Curabitur ornare rutrum dolor, quis ullamcorper quam congue in. Nullam hendrerit sem mauris, quis laoreet velit porta nec. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pulvinar nulla a erat varius sagittis ac ac odio. Cras tincidunt facilisis diam, sed porttitor urna vestibulum quis. Donec vitae accumsan mi. Praesent condimentum lacus eu vehicula lacinia. Nam mi ligula, placerat in tortor sed, varius vehicula ipsum. Sed at neque tempus, aliquam lorem sed, auctor lacus. Sed vehicula ac diam vitae euismod. Donec sit amet viverra enim. Suspendisse sodales magna eros. Proin malesuada nisl nec enim egestas ultricies. Nullam a placerat sapien, nec mattis ligula. Suspendisse porta imperdiet ante eu viverra. Vestibulum ut lorem accumsan magna interdum blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac urna ex. Curabitur aliquet sodales leo, quis porttitor mi. Sed rutrum id dui non mollis. Pellentesque et ipsum id risus fermentum condimentum. Nulla facilisi. Aliquam blandit porta tellus, vitae porta lorem sodales eget. Sed ut massa nec augue mattis semper sed a risus. Fusce euismod faucibus tellus in viverra. Sed pulvinar lectus id ipsum dictum accumsan. Sed ut orci sit amet orci pellentesque commodo ac id eros. Etiam non quam rhoncus, blandit nunc in, volutpat libero.</string>
+    <string name="WizardCreateAccount_CitiesHeader">Seleccione una ciudad</string>
+    <string name="WizardCreateAccount_MobileMsg">Celular</string>
+    <string name="WizardCreateAccount_EmailMsg">Correo electrónico</string>
+    <string name="WizardCreateAccount_PasswordMsg">Contraseña</string>
+    <string name="WizardCreateAccount_ConfirmPasswordMsg">Confirmar contraseña</string>
+    <string name="WizardCreateAccount_AccepTermsAndConditions">Acepto los </string>
+    <string name="WizardCreateAccount_TermsAndConditions">Términos y condiciones</string>
+    <string name="WizardCreateAccount_CreateAccountMsg">Crear cuenta</string>
+    <!-- Errors -->
+    <string name="WizardCreateAccount_LoadCitiesFailed">Ocurrió un problema al momento de cargar las ciudades disponibles</string>
+    <string name="WizardCreateAccount_MobileEmpty">Favor de escribir su numero telefónico.</string>
+    <string name="WizardCreateAccount_MobileNotValid">Recuerda que la marcación correcta para teléfonos es de 10 dígitos.</string>
+    <string name="WizardCreateAccount_NoCitySelected">Favor de seleccionar una ciudad de la lista disponible.</string>
+    <string name="WizardCreateAccount_EmailEmpty">Favor de escribir un correo electrónico.</string>
+    <string name="WizardCreateAccount_EmailNotValid">Favor de escribir un correo electrónico válido.</string>
+    <string name="WizardCreateAccount_PasswordEmpty">Favor de escribir una contraseña.</string>
+    <string name="WizardCreateAccount_PasswordNotSame">Las contraseñas no coinciden, por favor revise sus contraseñas.</string>
+    <string name="WizardCreateAccount_TermsNotAccepted">Favor de aceptar nuestros términos y condiciones.</string>
+    <!-- Web Service Response -->
+    <string name="WizardCreateAccount_UserAddedTitle">¡Correo enviado!</string>
+    <string name="WizardCreateUserAccount_UserAddedMsg">Se han enviado las instrucciones para activar su cuenta, es necesario que revise su correo electrónico para seguir con el proceso.</string>
+    <string name="WizardCreateAccount_InactiveAccountTitle">Cuenta Inactiva</string>
+    <string name="WizardCreateAccount_InactiveAccountMsg">El correo que estas intentando usar ya existe. Si olvidaste tu contraseña ve a la pantalla principal y presiona "Olvide mi contraseña", si no has activado tu cuenta, revisa tu correo electrónico y abre el correo que se envió para continuar con el proceso de activación.</string>
+    <string name="WizardCreateAccount_ExistTitle">La cuenta ya existe</string>
+    <string name="WizardCreateAccount_ExistMsg">El correo que estas intentando usar ya existe. Si olvidaste tu contraseña ve a la pantalla principal y presiona "Olvide mi contraseña", si no has activado tu cuenta, revisa tu correo electrónico y abre el correo que se envió para continuar con el proceso de activación.</string>
+
+
+    <!-- Wizard Credit Card String -->
+    <!-- Label -->
+    <string name="WizardCreditCard_AcceptedCardsMsg">Tarjetas aceptadas</string>
+    <string name="promptMonth">Mes</string>
+    <string name="promptYear">Año</string>
+    <!-- Errors -->
+    <string name="WizardCreditCard_CardHolderNameEmpty">El nombre del titular no puede ser vació</string>
+    <string name="WizardCreditCard_CardHolderNameLettersOnly">El nombre del titular no puede contener numeros o caracteres especiales</string>
+    <string name="WizardCreditCard_CardNickNameEmpty">El alias de la cuenta no puede ser vació</string>
+    <string name="WizardCreditCard_CardNumberEmpty">El numero de tarjeta no puede ser vació</string>
+    <string name="WizardCreditCard_CardNumberNumbersOnly">El numero de tarjeta no puede contener letras o caracteres especiales</string>
+    <string name="WizardCreditCard_CardNumberInvalid">El numero de tarjeta no cuenta con los 16 digitos</string>
+    <string name="WizardCreditCard_CLABEEmpty">El numero de cuenta CLABE no puede ser vació</string>
+    <string name="WizardCreditCard_CLABEInvalid">El numero de cuenta CLABE es incorrecto, recuerde que son 18 digitos</string>
+    <string name="WizardCreditCard_ExpirationMonthEmpty">El mes de expiración no puede ser vació</string>
+    <string name="WizardCreditCard_ExpirationMonthNumbersOnly">El mes de expiración no puede contener letras o caracteres especiales</string>
+    <string name="WizardCreditCard_ExpirationMonthInvalidMonth">El mes de expiración debe estar en el rango del 1 al 12</string>
+    <string name="WizardCreditCard_ExpirationYearEmpty">El año de expiración no puede ser vació</string>
+    <string name="WizardCreditCard_ExpirationYearNumbersOnly">El año de expiración no puede contener letras o caracteres especiales</string>
+    <string name="WizardCreditCard_ExpirationYearInvalidYear">El año de expiración no debe ser inferior al año en curso</string>
+    <string name="WizardCreditCard_CVVEmpty">El cvv2 no puede ser vació</string>
+    <string name="WizardCreditCard_CVVNumbersOnly">El cvv2 no puede contener letras o caracteres especiales</string>
+
+
+    <!-- Map Driver String -->
+    <!-- Menu options -->
+    <string name="MapDriver_DriverStatusMsg">En Línea</string>
+    <string name="MapDriver_MapMsg">Mapa</string>
+    <string name="MapDriver_RequestMsg">Solicitudes</string>
+    <string name="MapDriver_HistoryMsg">Historial</string>
+    <string name="MapDriver_SettingsMsg">Configuración</string>
+    <string name="MapDriver_LogoffMsg">Cerrar Sesión</string>
+
+    <!-- Settings Main String -->
+    <!-- Label -->
+    <string name="SettingsMain_PersonalInfo">Información personal</string>
+    <string name="SettingsMain_PasswordMsg">Contraseña</string>
+    <string name="SettingsMain_DriversNPaymentsMsg">Tipos de pago y pasajeros</string>
+    <string name="SettingsMain_MembershipStatusMsg">Estatus de membresía</string>
+    <string name="SettingsMain_DepositActMsg">Cuenta de depósito</string>
+    <string name="SettingsMain_WithdrawActMsg">Cuenta de cobro de membresía</string>
+
+    <!-- Settings Personal Info String -->
+    <!-- Labels -->
+    <string name="SettingsPersonalInfo_InstructionsMsg">Agrega una foto de perfil y el nombre con el que te reconocerán tus pasajeros</string>
+    <string name="SettingsPersonalInfo_NoteMsg">Los datos se actualizarán la proxima vez que inicies sesión en el app</string>
+    <!-- Errors -->
+    <string name="SettingsPersonalInfo_NewNickNameEmpty">Por favor escribe un nombre público con el cual tus pasajeros te conoceran.</string>
+    <string name="SettingsPersonalInfo_NewNickNameWithNumbers">Por favor no agregues numeros a tu nombre público.</string>
+    <string name="SettingsPersonalInfo_NewNickNameWithSpecialChars">Por favor no agregues caracteres especiales a tu nombre publico.</string>
+    <string name="SettingsPersonalInfo_NewMobileEmpty">Por favor escribe un número telefónico</string>
+    <string name="SettingsPersonalInfo_NewMobileInvalid">Recuerda que la marcación correcta para teléfonos es de 10 dígitos.</string>
+
+    <!-- Settings Change Password String -->
+    <!-- Labels -->
+    <string name="SettingsChangePassword_InstructionsMsg">Para realizar el cambio de contraseña solo escribe tu contraseña actual y la nueva</string>
+    <string name="SettingsChangePassword_NoteMsg">Recuerda que si tienes una cuenta de pasajero, esta también será actualizada</string>
+    <!-- Errors -->
+    <string name="SettingsChangePassword_CurrentPasswordEmpty">Favor de escribir su actual contraseña.</string>
+    <string name="SettingsChangePassword_NewPasswordEmpty">Favor de escribir una contraseña nueva.</string>
+    <string name="SettingsChangePassword_ConfirmPasswordEmpty">Favor de confirmar su contraseña.</string>
+    <string name="SettingsChangePassword_CurrentPasswordNotSame">Favor de revisar que su contraseña actual coincida con la escrita.</string>
+    <string name="SettingsChanegPassword_PasswordNotSame">Favor de revisar que las contraseñas nuevas coincidan.</string>
+
+
+    <!-- Settings Drivers N Payments String -->
+    <!-- Labels -->
+    <string name="SettingsDriversNPayments_MaleTitle">Hombres</string>
+    <string name="SettingsDriversNPayments_MaleDescription">Aceptar solicitudes solo de usuarios que esten registrados como hombres</string>
+    <string name="SettingsDriversNPayments_FemaleTitle">Mujeres</string>
+    <string name="SettingsDriversNPayments_FemaleDescription">Aceptar solicitudes solo de usuarios que esten registrados como mujeres</string>
+    <string name="SettingsDriversNPayments_BothTitle">Ambos</string>
+    <string name="SettingsDriversNPayments_BothDescription">Aceptar solicitudes tanto de hombres como mujeres</string>
+    <string name="SettingsDriversNPayments_CreditCardTitle">Tarjeta de crédito / débito</string>
+    <string name="SettingsDriversNPayments_CashTitle">Efectivo</string>
+
+    <!-- Settings Deposit Account String -->
+    <!-- Labels -->
+    <string name="SettingsDepositAccount_Title">Cuenta donde se depositan los viajes semanalmente</string>
+
+
+    <!-- Openpay Errors -->
+    <string name="Openpay1000">Ocurrió un error interno en el servidor de Openpay</string>
+    <string name="Openpay1001">Error en la tarjeta, favor de revisar los campos</string>
+    <string name="Openpay1002">La llamada no esta autenticada o la autenticación es incorrecta</string>
+    <string name="Openpay1003">La operación no se pudo completar por que el valor de uno o más de los parametros no es correcto</string>
+    <string name="Openpay1004">Un servicio necesario para el procesamiento de la transacción no se encuentra disponible</string>
+    <string name="Openpay1005">Uno de los recursos requeridos no existe</string>
+    <string name="Openpay1006">Ya existe una transacción con el mismo ID de orden</string>
+    <string name="Openpay1007">La transferencia de fondos entre una cuenta de banco o tarjeta y la cuenta de Openpay no fue aceptada</string>
+    <string name="Openpay1008">Una de las cuentas requeridas en la petición se encuentra desactivada</string>
+    <string name="Openpay1009">El cuerpo de la petición es demasiado grande</string>
+    <string name="Openpay1010">Se esta utilizando la llave pública para hacer una llamada que requiere la llave privada, o bien, se esta usando la llave privada desde JavaScript</string>
+    <string name="Openpay2001">La cuenta de banco con esta CLABE ya se encuentra registrada en el cliente</string>
+    <string name="Openpay2002">La tarjeta con este número ya se encuentra registrada en el cliente</string>
+    <string name="Openpay2003">El cliente con este identificador externo (External ID) ya existe</string>
+    <string name="Openpay2004">El dígito verificador del número de tarjeta es inválido de acuerdo al algoritmo Luhn</string>
+    <string name="Openpay2005">La fecha de expiración de la tarjeta es anterior a la fecha actual</string>
+    <string name="Openpay2006">El código de seguridad de la tarjeta (CVV2) no fue proporcionado</string>
+    <string name="Openpay2007">El número de tarjeta es de prueba, solamente puede usarse en Sandbox</string>
+    <string name="Openpay2008">La tarjeta consultada no es valida para puntos</string>
+    <string name="Openpay2009">El código de seguridad de la tarjeta (CVV2) no no es valido</string>
+    <string name="Openpay3001">La tarjeta fue declinada</string>
+    <string name="Openpay3002">La tarjeta ha expirado</string>
+    <string name="Openpay3003">La tarjeta no tiene fondos suficientes</string>
+    <string name="Openpay3004">La tarjeta ha sido identificada como una tarjeta robada</string>
+    <string name="Openpay3005">La tarjeta ha sido identificada como una tarjeta fraudulenta</string>
+    <string name="Openpay3006">La operación no esta permitida para este cliente o esta transacción</string>
+    <string name="Openpay3008">La tarjeta no es soportada en transacciones en linea</string>
+    <string name="Openpay3009">La tarjeta fue reportada como perdida</string>
+    <string name="Openpay3010">El banco ha restringido la tarjeta</string>
+    <string name="Openpay3011">El banco ha solicitado que la tarjeta sea retenida. Contacte al banco</string>
+    <string name="Openpay3012">Se requiere solicitar al banco autorización para realizar este pago</string>
+    <string name="Openpay4001">La cuenta de Openpay no tiene fondos suficientes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_ori__splash_screen">ORI</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+</resources>
