@@ -149,7 +149,7 @@
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/TermsAndConditionsDialog"
             android:hint="@string/WizardCreateAccount_TermsAndConditions"
-            android:textColorHint="@color/ORIRoyal_Blue"
+            android:textColorHint="@color/ORILightGreen"
             android:textSize="16sp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:background="@android:color/transparent"
@@ -173,7 +173,7 @@
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/StartCreatingAccountPressed"
             android:hint="@string/WizardCreateAccount_CreateAccountMsg"
-            android:background="@color/ORIShamrock_Green"
+            android:background="@color/ORILightGreen"
             android:textColorHint="#FFF"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"

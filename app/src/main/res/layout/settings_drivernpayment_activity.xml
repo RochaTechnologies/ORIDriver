@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/SettingsLinear"
-    android:background="@color/ORIGray"
+    android:background="@color/ORILightGray"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,13 +26,15 @@
         android:id="@+id/maleDriverLayout"
         android:orientation="horizontal"
         android:background="#fff"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_weight="0"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp" android:paddingBottom="10dp" >
+        android:layout_height="wrap_content" >
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/maleDriverIcon"
-            android:src="@drawable/ic_emptyuser"
+            android:src="@drawable/ic_menu_male"
+            android:tint="@color/ORIBlack"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="2dp"
             android:layout_weight="0"
@@ -75,10 +77,11 @@
         android:id="@+id/femaleDriverLayout"
         android:orientation="horizontal"
         android:background="#fff"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_weight="0"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp" android:paddingBottom="10dp" >
+        android:layout_height="wrap_content" >
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/femaleDriverIcon"
             android:src="@drawable/ic_female"
@@ -124,10 +127,11 @@
         android:id="@+id/bothDriverLayout"
         android:orientation="horizontal"
         android:background="#fff"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_weight="0"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp" android:paddingBottom="10dp" >
+        android:layout_height="wrap_content" >
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/bothDriverIcon"
             android:src="@drawable/ic_malefemale"
@@ -189,10 +193,11 @@
         android:id="@+id/creditPaymentLayout"
         android:orientation="horizontal"
         android:background="#fff"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:layout_weight="0"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp" android:paddingBottom="10dp" >
+        android:layout_height="wrap_content" >
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/paymentCreditcardIcon"
             android:src="@drawable/ic_menu_creditcard"
@@ -235,10 +240,11 @@
         android:id="@+id/cashPaymentLayout"
         android:orientation="horizontal"
         android:background="#fff"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:layout_weight="0"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp" android:paddingBottom="10dp"  >
+        android:layout_height="wrap_content" >
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/paymentCashIcon"
             android:src="@drawable/ic_menu_cash"
@@ -281,10 +287,11 @@
         android:id="@+id/bothPaymentLayout"
         android:orientation="horizontal"
         android:background="#fff"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:layout_weight="0"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp" android:paddingBottom="10dp" >
+        android:layout_height="wrap_content" >
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/bothPaymentIcon"
             android:src="@drawable/ic_cashcard"

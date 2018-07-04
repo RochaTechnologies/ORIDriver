@@ -10,6 +10,7 @@
     tools:context=".Settings_DepositAccount">
     <android.support.v7.widget.AppCompatTextView
         android:text="@string/SettingsDepositAccount_Title"
+        android:textColor="@color/ORIBlack"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_marginStart="5dp"
@@ -28,6 +29,7 @@
         android:layout_marginEnd="15dip" >
         <android.support.v7.widget.AppCompatTextView
             android:text="Nombre del titular"
+            android:textColor="@color/ORIBlack"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,11 +47,12 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#6C7A89"
+            android:background="@color/ORIDarkGray"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp" />
         <android.support.v7.widget.AppCompatTextView
             android:text="CLABE"
+            android:textColor="@color/ORIBlack"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,11 +70,12 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#6C7A89"
+            android:background="@color/ORIDarkGray"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp" />
         <android.support.v7.widget.AppCompatTextView
             android:text="Alias de la cuenta"
+            android:textColor="@color/ORIBlack"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,12 +100,12 @@
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/UpdateDepositInfo"
             android:text="Guardar"
-            android:textColor="#fff"
+            android:textColor="@color/ORIWhite"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:background="@drawable/template_bluebutton"
             android:enabled="false"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@color/ORIShamrock_Green"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </android.support.v7.widget.LinearLayoutCompat>
@@ -124,6 +128,7 @@
                 android:layout_height="wrap_content">
                 <android.support.v7.widget.AppCompatTextView
                     android:text="@string/ORIGlobal_DataSecurityMsg"
+                    android:textColor="@color/ORIBlack"
                     android:textAlignment="viewEnd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

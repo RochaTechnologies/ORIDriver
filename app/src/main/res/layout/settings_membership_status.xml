@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/ORIGray"
+    android:background="@color/ORILightGray"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Settings_Membership">
@@ -11,14 +11,14 @@
         android:text="Detalles"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textAllCaps="true"
-        android:textColor="@color/ORILynch_Gray"
+        android:textColor="@color/ORIBlack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dip"
         android:layout_marginTop="20dip"
         android:layout_marginBottom="5dip" />
     <View
-        android:background="#6C7A89"
+        android:background="@color/ORILightGray"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
     <android.support.v7.widget.LinearLayoutCompat
@@ -36,7 +36,8 @@
             <android.support.v7.widget.AppCompatTextView
                 android:text="Estatus"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000"
+                android:textColor="@color/ORIBlack"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
@@ -44,13 +45,15 @@
             <android.support.v7.widget.SwitchCompat
                 android:id="@+id/IsMembershipActive"
                 android:clickable="false"
+                android:theme="@style/ORISwitch"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:layout_marginEnd="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
         <View
-            android:background="@color/ORIGray"
+            android:background="@color/ORILightGray"
             android:layout_marginStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
@@ -66,23 +69,26 @@
             <android.support.v7.widget.AppCompatTextView
                 android:text="Tipo de servicio"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000"
+                android:textColor="@color/ORIBlack"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/ServiceType"
-                android:text="ORI Elite"
+                android:text="ORIService"
+                android:textColor="@color/ORISkyBlue"
                 android:textAlignment="viewEnd"
                 android:textStyle="bold"
+                android:layout_gravity="center_vertical|end"
                 android:layout_weight="1"
                 android:layout_marginEnd="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
         <View
-            android:background="@color/ORIGray"
+            android:background="@color/ORILightGray"
             android:layout_marginStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
@@ -98,23 +104,26 @@
             <android.support.v7.widget.AppCompatTextView
                 android:text="Miembro desde"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000"
+                android:textColor="@color/ORIBlack"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/MemberSince"
-                android:text="27/04/2018"
+                android:text="30/12/2019"
+                android:textColor="@color/ORISkyBlue"
                 android:textAlignment="viewEnd"
                 android:textStyle="bold"
+                android:layout_gravity="center_vertical|end"
                 android:layout_weight="1"
                 android:layout_marginEnd="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
         <View
-            android:background="@color/ORIGray"
+            android:background="@color/ORILightGray"
             android:layout_marginStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
@@ -129,16 +138,18 @@
             <android.support.v7.widget.AppCompatTextView
                 android:text="Vencimiento"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000"
+                android:textColor="@color/ORIBlack"
                 android:layout_weight="1"
                 android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/MembershipLast"
-                android:text="01/09/2018"
+                android:text="30/12/2019"
+                android:textColor="@color/ORISkyBlue"
                 android:textAlignment="viewEnd"
                 android:textStyle="bold"
+                android:layout_gravity="center_vertical|end"
                 android:layout_weight="1"
                 android:layout_marginEnd="15dp"
                 android:layout_width="match_parent"
@@ -146,7 +157,7 @@
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v7.widget.LinearLayoutCompat>
     <View
-        android:background="#6C7A89"
+        android:background="@color/ORILightGray"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
 
@@ -154,14 +165,14 @@
         android:text="Vehiculo"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textAllCaps="true"
-        android:textColor="@color/ORILynch_Gray"
+        android:textColor="@color/ORIBlack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dip"
         android:layout_marginTop="20dip"
         android:layout_marginBottom="5dip" />
     <View
-        android:background="#6C7A89"
+        android:background="@color/ORILightGray"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
 <!---->
@@ -180,7 +191,8 @@
             <android.support.v7.widget.AppCompatTextView
                 android:text="Marca"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000"
+                android:textColor="@color/ORIBlack"
+                android:layout_gravity="center_vertical|end"
                 android:layout_weight="1"
                 android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
@@ -188,17 +200,18 @@
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/VehicleBrand"
                 android:text="Mercedes Benz"
-
+                android:textColor="@color/ORISkyBlue"
                 android:textAllCaps="true"
                 android:textAlignment="viewEnd"
                 android:textStyle="bold"
+                android:layout_gravity="center_vertical|end"
                 android:layout_weight="1"
                 android:layout_marginEnd="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
         <View
-            android:background="@color/ORIGray"
+            android:background="@color/ORILightGray"
             android:layout_marginStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
@@ -214,7 +227,8 @@
             <android.support.v7.widget.AppCompatTextView
                 android:text="Modelo"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000"
+                android:textColor="@color/ORIBlack"
+                android:layout_gravity="center_vertical|end"
                 android:layout_weight="1"
                 android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
@@ -222,15 +236,17 @@
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/VehicleModel"
                 android:text="Clase CLA"
+                android:textColor="@color/ORISkyBlue"
                 android:textAlignment="viewEnd"
                 android:textStyle="bold"
+                android:layout_gravity="center_vertical|end"
                 android:layout_weight="1"
                 android:layout_marginEnd="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
         <View
-            android:background="@color/ORIGray"
+            android:background="@color/ORILightGray"
             android:layout_marginStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
@@ -246,7 +262,8 @@
             <android.support.v7.widget.AppCompatTextView
                 android:text="Color"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000"
+                android:textColor="@color/ORIBlack"
+                android:layout_gravity="center_vertical|end"
                 android:layout_weight="1"
                 android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
@@ -254,15 +271,17 @@
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/VehicleColor"
                 android:text="Negro"
+                android:textColor="@color/ORISkyBlue"
                 android:textAlignment="viewEnd"
                 android:textStyle="bold"
+                android:layout_gravity="center_vertical|end"
                 android:layout_weight="1"
                 android:layout_marginEnd="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
         <View
-            android:background="@color/ORIGray"
+            android:background="@color/ORILightGray"
             android:layout_marginStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
@@ -278,7 +297,8 @@
             <android.support.v7.widget.AppCompatTextView
                 android:text="Año"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000"
+                android:textColor="@color/ORIBlack"
+                android:layout_gravity="center_vertical|end"
                 android:layout_weight="1"
                 android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
@@ -286,15 +306,17 @@
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/VehicleYear"
                 android:text="2019"
+                android:textColor="@color/ORISkyBlue"
                 android:textAlignment="viewEnd"
                 android:textStyle="bold"
+                android:layout_gravity="center_vertical|end"
                 android:layout_weight="1"
                 android:layout_marginEnd="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
         <View
-            android:background="@color/ORIGray"
+            android:background="@color/ORILightGray"
             android:layout_marginStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
@@ -310,16 +332,19 @@
             <android.support.v7.widget.AppCompatTextView
                 android:text="Placas"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000"
+                android:textColor="@color/ORIBlack"
+                android:layout_gravity="center_vertical|end"
                 android:layout_weight="1"
                 android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/VehiclePlates"
-                android:text="XHT2040"
+                android:text="ABC123"
+                android:textColor="@color/ORISkyBlue"
                 android:textAlignment="viewEnd"
                 android:textStyle="bold"
+                android:layout_gravity="center_vertical|end"
                 android:layout_weight="1"
                 android:layout_marginEnd="15dp"
                 android:layout_width="match_parent"
@@ -327,7 +352,8 @@
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v7.widget.LinearLayoutCompat>
     <View
-        android:background="#6C7A89"
+        android:background="@color/ORILightGray"
+        android:layout_marginStart="15dp"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
 </android.support.v7.widget.LinearLayoutCompat>

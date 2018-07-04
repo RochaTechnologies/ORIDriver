@@ -36,6 +36,10 @@
         <item name="android:fontFamily">@font/montserrat_regular</item>
     </style>
 
+    <style name="ORISwitch">
+        <item name="colorControlActivated">@color/ORILightGreen</item>
+    </style>
+
     <style name="CustomCheckbox" parent="Widget.AppCompat.CompoundButton.CheckBox">
         <item name="android:fontFamily">@font/montserrat_regular</item>
     </style>

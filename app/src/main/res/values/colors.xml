@@ -4,20 +4,20 @@
     <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="ORIThunderbird_Red">#D91E18</color>
-    <color name="ORIShamrock_Green">#00B16A</color>
-    <color name="ORISalem_Green">#1E824C</color>
-    <color name="ORIDodger_Blue">#19B5FE</color>
-    <color name="ORIJacksons_Blue">#1F3A93</color>
-    <color name="ORIRoyal_Blue">#4183D7</color>
-    <color name="ORILynch_Gray">#6C7A89</color>
-    <color name="ORIGray">#DADFE1</color>
-    <color name="ORISilver">#BFBFBF</color>
-    <color name="ORIGold">#F7CA18</color>
+    <!--<color name="ORIThunderbird_Red">#D91E18</color>-->
+    <!--<color name="ORIShamrock_Green">#00B16A</color>-->
+    <!--<color name="ORISalem_Green">#1E824C</color>-->
+    <!--<color name="ORIDodger_Blue">#19B5FE</color>-->
+    <!--<color name="ORIJacksons_Blue">#1F3A93</color>-->
+    <!--<color name="ORIRoyal_Blue">#4183D7</color>-->
+    <!--<color name="ORILynch_Gray">#6C7A89</color>-->
+    <!--<color name="ORIGray">#DADFE1</color>-->
+    <!--<color name="ORIGold">#F7CA18</color>-->
 
     <!-- New design colors -->
     <color name="ORIWhite">#fff</color>
     <color name="ORIBlack">#000</color>
+    <color name="ORISilver">#BFBFBF</color>
     <color name="ORILightBlack">#060B18</color>
     <color name="ORIDarkGray">#343434</color>
     <color name="ORILightGray">#EFEDEF</color>

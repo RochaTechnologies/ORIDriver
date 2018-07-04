@@ -26,7 +26,7 @@
             android:id="@+id/DriverTotalEarned"
             android:text="$--"
             android:textSize="50sp"
-            android:textColor="@color/ORIShamrock_Green"
+            android:textColor="@color/ORILightGreen"
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -62,7 +62,7 @@
                     android:id="@+id/DriverGrandTotalEarned"
                     android:text="$--"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/ORIShamrock_Green"
+                    android:textColor="@color/ORILightGreen"
                     android:textAlignment="viewEnd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -94,7 +94,7 @@
                     android:id="@+id/DriverGrandTotalTrip"
                     android:text="--"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/ORIRoyal_Blue"
+                    android:textColor="@color/ORISkyBlue"
                     android:textAlignment="viewStart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -136,7 +136,7 @@
                 android:choiceMode="singleChoice"
                 tools:listitem="@layout/template_historytripdetail"
                 android:dividerHeight="1dp"
-                android:divider="@color/ORIGray"
+                android:divider="@color/ORILightGray"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </android.support.v7.widget.LinearLayoutCompat>

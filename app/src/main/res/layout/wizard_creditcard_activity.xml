@@ -174,7 +174,7 @@
                     android:id="@+id/cvvDialog"
                     android:text="ⓘ"
                     android:backgroundTint="@android:color/transparent"
-                    android:textColor="@color/ORIRoyal_Blue"
+                    android:textColor="@color/ORISkyBlue"
                     android:background="@android:color/transparent"
                     android:layout_gravity="center_vertical"
                     android:layout_width="35dp"
@@ -186,7 +186,8 @@
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/AssignCreditCardPressed"
         android:text="Guardar Tarjeta"
-        android:background="@color/ORIShamrock_Green"
+        android:textAllCaps="false"
+        android:background="@drawable/template_bluebutton"
         android:textColor="#fff"
         android:layout_marginTop="30dp"
         android:layout_marginStart="50dp"
@@ -197,7 +198,7 @@
     <android.support.v7.widget.AppCompatButton
         android:text="Agregar después"
         android:visibility="gone"
-        android:textColor="@color/ORIJacksons_Blue"
+        android:textColor="@color/ORISkyBlue"
         android:textAllCaps="false"
         android:background="@android:color/transparent"
         android:layout_marginTop="15dp"

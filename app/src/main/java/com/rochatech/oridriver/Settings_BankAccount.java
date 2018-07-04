@@ -127,6 +127,7 @@ public class Settings_BankAccount extends AppCompatActivity {
         switch (Status) {
             case "OK":
                 CardButton.setText("Eliminar cuenta");
+                CardButton.setBackgroundColor(getResources().getColor(R.color.ORIDarkPink));
                 CreditCardHolder.setText(_holderName);
                 //region Format card number
                 List<String> strings = new ArrayList<String>();
@@ -155,6 +156,7 @@ public class Settings_BankAccount extends AppCompatActivity {
             case "EMPTY":
                 obj.CloseLoadingScreen();
                 CardButton.setText("Agregar cuenta");
+                CardButton.setBackgroundColor(getResources().getColor(R.color.ORILightGreen));
                 CreditCardNumber.setText("XXXX-XXXX-XXXX-XXXX");
                 break;
         }

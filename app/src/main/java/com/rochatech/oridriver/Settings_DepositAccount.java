@@ -126,12 +126,12 @@ public class Settings_DepositAccount extends AppCompatActivity {
                     ActNickName.setText(actnickname);
                     ActNickName.setEnabled(false);
                     ActionBtnPressed.setText("Eliminar información");
-                    ActionBtnPressed.setBackgroundColor(getResources().getColor(R.color.ORIThunderbird_Red));
+                    ActionBtnPressed.setBackgroundColor(getResources().getColor(R.color.ORIDarkPink));
                     obj.CloseLoadingScreen();
                     break;
                 case "EMPTY":
                     ActionBtnPressed.setText("Guardar información");
-                    ActionBtnPressed.setBackgroundColor(getResources().getColor(R.color.ORIShamrock_Green));
+                    ActionBtnPressed.setBackgroundColor(getResources().getColor(R.color.ORILightGreen));
                     obj.CloseLoadingScreen();
                     break;
             }
@@ -189,7 +189,7 @@ public class Settings_DepositAccount extends AppCompatActivity {
                     switch (status) {
                         case "AccountDeleted":
                             ActionBtnPressed.setText("Guardar información");
-                            ActionBtnPressed.setBackgroundColor(getResources().getColor(R.color.ORIShamrock_Green));
+                            ActionBtnPressed.setBackgroundColor(getResources().getColor(R.color.ORILightGreen));
                             obj.CloseLoadingScreen();
                             Snackbar snackbar = Snackbar.make(DepositLinear,"Cuenta eliminada",Snackbar.LENGTH_SHORT);
                             snackbar.show();

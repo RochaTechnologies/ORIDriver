@@ -17,35 +17,51 @@
         android:layout_marginStart="5dp"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <android.support.v7.widget.AppCompatTextView
+            android:layout_weight="0"
             android:id="@+id/PassengerName"
+            android:text="TestTxt"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <android.support.v7.widget.AppCompatTextView
+            android:layout_weight="0"
+            android:text="TestTxt"
             android:id="@+id/PassengerDateRequest"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <LinearLayout
+            android:layout_weight="1"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/AcceptPassengerRequest"
                 android:text="Aceptar"
-                android:background="@color/ORIShamrock_Green"
-                android:textColor="#fff"
-                android:layout_marginEnd="3dp"
+                android:textAllCaps="false"
+                android:background="@color/ORILightGreen"
+                android:textColor="@color/ORIWhite"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/DeclinePassengerRequest"
                 android:text="Borrar"
-                android:background="@color/ORIThunderbird_Red"
-                android:textColor="#fff"
+                android:textAllCaps="false"
+                android:background="@color/ORIDarkPink"
+                android:textColor="@color/ORIWhite"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
