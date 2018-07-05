@@ -24,7 +24,12 @@ public class Fragment_MainFavContent extends Fragment {
         try {
             Bundle args = getArguments();
             int totalCount = args.getInt("totalapproved");
-            String msg = (totalCount > 1) ? totalCount + " Pasajeros" : totalCount + " Pasajero";
+            String msg = "";
+            if (totalCount == 0) {
+                msg = totalCount + " Pasajeros";
+            } else {
+                msg = (totalCount > 1) ? totalCount + " Pasajeros" : totalCount + " Pasajero";
+            }
             TotalApproved.setText(msg);
         } catch (Exception e) {
 

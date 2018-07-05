@@ -49,7 +49,6 @@ public class Wizard_CreditCard extends AppCompatActivity {
         _svcConnection = new connectToService(Wizard_CreditCard.this, obj.GetSharedPreferencesValue(Wizard_CreditCard.this, "SessionToken"));
         InitAppControls();
         LoadSpinner();
-
         CreditCardPressed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +56,6 @@ public class Wizard_CreditCard extends AppCompatActivity {
                 CreateToken();
             }
         });
-
         cvvDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.ListViewCompat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class Settings_TripHistory extends AppCompatActivity {
 
     TextView driverPeriodTxt, driverTotalEarnedTxt, driverTotalTripTxt, driverGrandTotalEarnedTxt, driverGrandTotalTripTxt;
     ListViewCompat tripHistoryList;
+    LinearLayoutCompat infoContent, noInfoContent;
 
     int UID = 0;
 
@@ -38,6 +40,8 @@ public class Settings_TripHistory extends AppCompatActivity {
         obj = new Common(Settings_TripHistory.this);
         _svcConnection = new connectToService(Settings_TripHistory.this, obj.GetSharedPreferencesValue(Settings_TripHistory.this, "SessionToken"));
         obj.ShowLoadingScreen(Settings_TripHistory.this,"Estamos cargando su información, por favor espere...");
+        infoContent = findViewById(R.id.infoContent);
+        noInfoContent = findViewById(R.id.noInfoContent);
         UID = Integer.parseInt(obj.GetSharedPreferencesValue(Settings_TripHistory.this,"UID"));
         InitAppControls();
         LoadDriverHeaderTotals(UID);
@@ -59,7 +63,15 @@ public class Settings_TripHistory extends AppCompatActivity {
             @Override
             public void onResponseObject(JSONArray jsonResponse) {
                 trips = TripHistory.fromJson(jsonResponse);
-                LoadDriverCurrentPaymentPeriod(UID);
+                if (trips.size() == 0) {
+                    noInfoContent.setVisibility(View.VISIBLE);
+                    infoContent.setVisibility(View.GONE);
+                    obj.CloseLoadingScreen();
+                } else {
+                    noInfoContent.setVisibility(View.GONE);
+                    infoContent.setVisibility(View.VISIBLE);
+                    LoadDriverCurrentPaymentPeriod(UID);
+                }
 //                double TotalEarned = 0;
 //                int TotalTrips = trips.size();
 //                for (int i = 0; i < trips.size(); i++) {

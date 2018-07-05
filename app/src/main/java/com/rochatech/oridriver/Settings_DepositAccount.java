@@ -126,12 +126,12 @@ public class Settings_DepositAccount extends AppCompatActivity {
                     ActNickName.setText(actnickname);
                     ActNickName.setEnabled(false);
                     ActionBtnPressed.setText("Eliminar información");
-                    ActionBtnPressed.setBackgroundColor(getResources().getColor(R.color.ORIDarkPink));
+                    ActionBtnPressed.setBackground(getResources().getDrawable(R.drawable.template_darkpinkbutton));
                     obj.CloseLoadingScreen();
                     break;
                 case "EMPTY":
                     ActionBtnPressed.setText("Guardar información");
-                    ActionBtnPressed.setBackgroundColor(getResources().getColor(R.color.ORILightGreen));
+                    ActionBtnPressed.setBackground(getResources().getDrawable(R.drawable.template_ligthgreenbutton));
                     obj.CloseLoadingScreen();
                     break;
             }
