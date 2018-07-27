@@ -13,6 +13,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -42,6 +44,14 @@ public class Common {
         loading = new ProgressDialog(context);
     }
 
+    public Boolean isInternetConnectionActive(Context context) {
+        Boolean result = false;
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        result = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        return result;
+    }
+
 
     //region OpenPay
     /** Funcion de openpay que regresa el objeto para iniciar con la asignacion / creacion de tarjetas
@@ -52,6 +62,7 @@ public class Common {
         return openpay;
     }
     //endregion
+
 
     //region Invalid TokenSession Logoff
     public static void LogoffByInvalidToken(final Context context) {

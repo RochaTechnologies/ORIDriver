@@ -6,46 +6,85 @@
 
 package com.rochatech.oridriver;
 
+//region rest
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.view.MenuItemCompat;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
+import com.rochatech.library.Support_BottomDialog;
 import com.rochatech.webService.*;
 import com.rochatech.library.Common;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+//endregion
 
-public class Map_Driver extends AppCompatActivity {
+//region Mapbox
+import com.mapbox.mapboxsdk.annotations.Marker;
+import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.geojson.Point;
+import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.Icon;
+import com.mapbox.mapboxsdk.annotations.IconFactory;
+import com.mapbox.mapboxsdk.maps.MapView;
+import com.mapbox.mapboxsdk.maps.MapboxMap;
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
+import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
+import com.mapbox.api.directions.v5.models.DirectionsResponse;
+import com.mapbox.api.directions.v5.models.DirectionsRoute;
+import com.mapbox.mapboxsdk.annotations.MarkerOptions;
+import android.location.Address;
+import android.location.Geocoder;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
+import com.mapbox.api.geocoding.v5.GeocodingCriteria;
+import com.mapbox.services.android.ui.geocoder.GeocoderAutoCompleteView;
+import com.mapbox.services.api.geocoding.v5.models.CarmenFeature;
+import com.mapbox.services.commons.models.Position;
+//endregion
+
+public class Map_Driver extends AppCompatActivity implements LocationListener {
 
     DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle mToogle;
@@ -53,12 +92,70 @@ public class Map_Driver extends AppCompatActivity {
     connectToService _svcConnection;
     Common obj;
 
+    Integer driverUID;
+    Integer _cityId;
+
+    TextView lastUpdate;
+    TextView lastUpdateReqStatus;
+
+    //region Mapbox variables
+    private final String MAPBOX_ACCESSTOKEN = "pk.eyJ1Ijoicm9jaGF0ZWNoIiwiYSI6ImNqZjAwbXZndTBnbDkzMm9kM3ppdWp6aXUifQ.AiF9e0dfxbDyeBQSxGaZwA";
+    private MapView mapView;
+    private MapboxMap map;
+
+    Icon _pickupLocationMarkerIcon;
+    Icon _dropOffLocationMarkerIcon;
+    private Point _pickupLocationPosition;
+    private Point _dropoffLocationPosition;
+    private DirectionsRoute _currentRoute;
+    private static final String TAG = "DirectionsActivity";
+    private NavigationMapRoute _navigationMapRoute;
+    private Marker _pickupLocationMarker;
+    private LatLng _pickupLocationCoord;
+    private Marker _dropOffLocationMarker;
+    private LatLng _dropoffLocationCoord;
+
+    Icon _driverLocationMarkerIcon;
+    private LatLng _driverLocationCoord;
+    private Marker _driverLocationMarker;
+    private Location _driverCurrentLocation;
+    private Location _driverPreviousLocation;
+
+    private double _estimatedFare;
+    private double _estimatedDistante;
+    private double _estimatedTime;
+    //endregion
+
+    //region Progress Dialog
+    ProgressDialog _searchingYourLocation;
+    Boolean isSearchingYourLocationHidden = false;
+    ProgressDialog _loadingTripDetails;
+    //endregion
+
+    //region Bottomsheet Views
+    View _botSheet_AvailableTripRequest;
+    View _botSheet_DriverOnTheWay;
+    View _botSheet_DriverRateDriver;
+    //endregion
+
+    //region Bottomsheet Behavior
+    BottomSheetBehavior _botBehave_AvailableTripRequest;
+    BottomSheetBehavior _botBehave_DriverOnTheWay;
+    BottomSheetBehavior _botBehave_DriverRateDriver;
+    //endregion
+
+    //region Passenger Profile Picture
+    Bitmap _reqByPassengerProfilePic;
+    //endregion
+
     /**/
     String cardBrand, cardNumber;
     int BankAccountId;
 
     /*Preguntar por permisos*/
     private LocationManager locationManager;
+    private LocationListener locationListener = this;
+    private long LOCATION_TIME = 0;
     private static final int PERMISSION_GRANTED = 1;
     private static final int ACTIVATED_GPS = 1;
 
@@ -71,6 +168,16 @@ public class Map_Driver extends AppCompatActivity {
         setContentView(R.layout.map_driver_activity);
         obj = new Common(Map_Driver.this);
         _svcConnection = new connectToService(Map_Driver.this, obj.GetSharedPreferencesValue(Map_Driver.this, "SessionToken"));
+        lastUpdate = findViewById(R.id.lastUpdate);
+        Map_InitMap(savedInstanceState);
+
+
+
+
+
+
+
+
         /*Preguntar por permisos para obtener la ubicacion del usuario*/
         if (IsGPSEnabled()){
             /*Preguntar por los permisos*/
@@ -161,6 +268,225 @@ public class Map_Driver extends AppCompatActivity {
             }
         });
     }
+
+    //region Mapbox Map
+    public void Map_InitMap(Bundle savedInstanceState) {
+        if (obj.isInternetConnectionActive(Map_Driver.this)) {
+            _searchingYourLocation = new ProgressDialog(Map_Driver.this);
+            _searchingYourLocation.setMessage("Buscando tu ubicación");
+            _searchingYourLocation.setCancelable(false);
+            _searchingYourLocation.show();
+            _pickupLocationMarkerIcon = IconFactory.getInstance(Map_Driver.this).fromResource(R.drawable.ic_menu_startmark40);
+            _dropOffLocationMarkerIcon = IconFactory.getInstance(Map_Driver.this).fromResource(R.drawable.ic_menu_endmark100);
+
+            Mapbox.getInstance(this, MAPBOX_ACCESSTOKEN);
+            mapView = findViewById(R.id.mapView);
+            mapView.onCreate(savedInstanceState);
+            mapView.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(MapboxMap mapboxMap) {
+                    Map_Driver.this.map = mapboxMap;
+                    /*  Delete compass  */
+                    map.getUiSettings().setCompassEnabled(false);
+                    Map_ConfigureMap();
+                }
+            });
+
+        } else {
+            Common.DialogStatusAlert(Map_Driver.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+        }
+    }
+    public void Map_ConfigureMap() {
+        LOCATION_TIME = 1000;
+        StartUpdatingLocation(LOCATION_TIME,0);
+    }
+
+    private void SetNMarkDriverLocation() {
+        if (_searchingYourLocation != null && !isSearchingYourLocationHidden) {
+            isSearchingYourLocationHidden = true;
+            _searchingYourLocation.dismiss();
+        }
+        if (_driverLocationMarker != null) {
+            _driverLocationMarker.remove();
+        }
+        _driverCurrentLocation = GetDriverBestLastKnowLocation();
+        _driverLocationCoord = new LatLng(_driverCurrentLocation.getLatitude(),_driverCurrentLocation.getLongitude());
+        _driverLocationMarker = map.addMarker(new MarkerOptions()
+                .position(_driverLocationCoord)
+                .setIcon(_pickupLocationMarkerIcon)
+        );
+        setCameraPosition(_driverCurrentLocation);
+    }
+    private void setCameraPosition(Location location) {
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                new LatLng(location.getLatitude(), location.getLongitude()), 15));
+    }
+    protected Address getLocationData(LatLng loc) {
+        Geocoder geocoder =  new Geocoder(getApplicationContext(), Locale.getDefault());
+        // Get the current location from the input parameter list
+        //Location loc = params[0];
+        // Create a list to contain the result address
+        List<Address> addresses = null;
+        try {
+            /*
+             * Return 1 address.
+             */
+            addresses = geocoder.getFromLocation(loc.getLatitude(),
+                    loc.getLongitude(), 1);
+        } catch (IOException e1) {
+            Log.e("LocationSampleActivity",
+                    "IO Exception in getFromLocation()");
+            e1.printStackTrace();
+            return null;// ("IO Exception trying to get address");
+        } catch (IllegalArgumentException e2) {
+            // Error message to post in the log
+            String errorString = "Illegal arguments " +
+                    Double.toString(loc.getLatitude()) +
+                    " , " +
+                    Double.toString(loc.getLongitude()) +
+                    " passed to address service";
+            Log.e("LocationSampleActivity", errorString);
+            e2.printStackTrace();
+            return null;// errorString;
+        }
+        // If the reverse geocode returned an address
+        if (addresses != null && addresses.size() > 0) {
+            // Get the first address
+            Address address = addresses.get(0);
+            /*
+             * Format the first line of address (if available),
+             * city, and country name.
+             */
+            // Return the text
+            return address;//addressText;
+        } else {
+            return null;//"No address found";
+        }
+    }
+    private void getCityIdFromName(String CityName, String CountryName){
+        _svcConnection.GetCityIdFromName(CityName, CountryName, new WSResponseListener() {
+            @Override
+            public void onError(String message) {
+
+            }
+
+            @Override
+            public void onResponseObject(JSONArray jsonResponse) {
+                try{
+                    _cityId = Integer.parseInt(jsonResponse.getString(0));
+                }catch (JSONException ex){
+
+                }
+            }
+        });
+    }
+    private void getRoute(Point origin, Point destination) {
+        NavigationRoute.builder()
+                .accessToken(Mapbox.getAccessToken())
+                .origin(origin)
+                .destination(destination)
+                .build()
+                .getRoute(new Callback<DirectionsResponse>() {
+                    @Override
+                    public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
+                        // You can get the generic HTTP info about the response
+                        Log.d(TAG, "Response code: " + response.code());
+                        if (response.body() == null) {
+                            Log.e(TAG, "No routes found, make sure you set the right user and access token.");
+                            return;
+                        } else if (response.body().routes().size() < 1) {
+                            Log.e(TAG, "No routes found");
+                            return;
+                        }
+
+                        _currentRoute = response.body().routes().get(0);
+                        _estimatedDistante = (int) Math.ceil(_currentRoute.distance() / 1000);
+                        _estimatedTime = (int) Math.ceil(_currentRoute.duration() / 60);
+
+                        // Draw the route on the map
+                        if (_navigationMapRoute != null) {
+                            _navigationMapRoute.removeRoute();
+                        } else {
+                            _navigationMapRoute = new NavigationMapRoute(null, mapView, map, R.style.NavigationMapRoute);
+                        }
+                        _navigationMapRoute.addRoute(_currentRoute);
+                    }
+
+                    @Override
+                    public void onFailure(Call<DirectionsResponse> call, Throwable throwable) {
+                        Log.e(TAG, "Error: " + throwable.getMessage());
+                    }
+                });
+    }
+    //endregion
+
+
+
+
+
+
+
+
+
+
+    //region Get Driver Best Location
+    private Location GetDriverBestLastKnowLocation() {
+        Location currentLocation = null;
+        List<String> providers = locationManager.getProviders(true);
+        for (String provider : providers) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return null;
+            }
+            Location location = locationManager.getLastKnownLocation(provider);
+            if (location == null) {
+                continue;
+            }
+            if (currentLocation == null || location.getAccuracy() < currentLocation.getAccuracy()) {
+                currentLocation = location;
+            }
+        }
+        return currentLocation;
+    }
+    //endregion
+
+
+    //region Location Init
+
+    //endregion
+
+
+    //region Location Listerner / Searching for Travel Request
+    private void StartUpdatingLocation(long location_time, float location_distance) {
+        locationManager.removeUpdates(locationListener);
+        /*Habilitar lo de best provider*/
+        if (ActivityCompat.checkSelfPermission(Map_Driver.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            SetLocationPermissions();
+            /*Revisar que pasa si no se dan los permisos*/
+//          return;
+        }
+        locationManager.requestLocationUpdates("gps", LOCATION_TIME, 0, locationListener);
+    }
+    private void StopUpdatingLocation() {
+        locationManager.removeUpdates(locationListener);
+        locationManager = null;
+    }
+    //endregion
+
+
+
+
+
+
+
+
+
 
     //region Initialize Toolbar
     private void InitCustomToolbar() {
@@ -407,7 +733,8 @@ public class Map_Driver extends AppCompatActivity {
     }
     //endregion
 
-    /*Triggered when pressed back button*/
+
+    //region onBackPressed
     @Override
     public void onBackPressed() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(Map_Driver.this);
@@ -430,13 +757,52 @@ public class Map_Driver extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.show();
     }
+    //endregion
 
-    /*Triggered when clicked menu icon*/
+
+    //region onOptionItemSelected
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         if (mToogle.onOptionsItemSelected(item)){
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    //endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public void onLocationChanged(Location location) {
+        lastUpdate.setText("Ultima actualizacion: " + Common.getAppStringFullDateFromFullDate(Common.getNow()));
+        SetNMarkDriverLocation();
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }

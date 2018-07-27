@@ -14,6 +14,10 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.rochatech.library.Common;
 import com.rochatech.webService.WSResponseListener;
 import com.rochatech.webService.connectToService;
@@ -22,6 +26,7 @@ public class ORI_SplashScreen extends AppCompatActivity {
 
     connectToService _svcConnection;
     Common obj;
+    String deviceToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,16 @@ public class ORI_SplashScreen extends AppCompatActivity {
 //        setContentView(R.layout.activity_orisplashscreen);
         obj = new Common(ORI_SplashScreen.this);
         _svcConnection = new connectToService(ORI_SplashScreen.this, obj.GetSharedPreferencesValue(ORI_SplashScreen.this, "SessionToken"));
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                deviceToken = instanceIdResult.getToken();
+                SharedPreferences pref = getApplicationContext().getSharedPreferences(getResources().getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = pref.edit();
+                edit.putString("settings_FCMTokenId", deviceToken);
+                edit.apply();
+            }
+        });
         AutoLogin();
     }
 
@@ -59,6 +74,7 @@ public class ORI_SplashScreen extends AppCompatActivity {
                         case "IsValid":
                             result = SaveOnSharedPeferences(uEmail, hashedPassword, UID, gatewayId, sessionTokenId, lastName, givenName, nickName, gender, mobile);
                             if (result) {
+                                UpdateFCMId(deviceToken);
                                 SetAvailablePaymentOnSharedPreferences(context, UID, sessionTokenId);
                             } else {
                                 goToLogin(context, getResources().getString(R.string.ORIGlobal_SharedPreferencesFailed_Msg), getResources().getString(R.string.ORIGlobal_SharedPreferencesFailed_Title));
@@ -229,6 +245,10 @@ public class ORI_SplashScreen extends AppCompatActivity {
                 }
             }
         });
+    }
+    private void UpdateFCMId(String token) {
+        int UID = Integer.parseInt(obj.GetSharedPreferencesValue(ORI_SplashScreen.this,"UID"));
+        _svcConnection.UpdateDeviceFCMId(UID);
     }
     //endregion
 

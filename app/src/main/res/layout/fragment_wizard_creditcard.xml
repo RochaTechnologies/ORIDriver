@@ -190,7 +190,7 @@
                     </android.support.v7.widget.LinearLayoutCompat>
                     <android.support.v7.widget.LinearLayoutCompat
                         android:orientation="horizontal"
-                        android:gravity="end"
+                        android:gravity="end|center_vertical"
                         android:layout_weight="1"
                         android:layout_marginEnd="5dp"
                         android:layout_width="match_parent"
@@ -204,13 +204,13 @@
                             android:layout_height="wrap_content" />
                         <android.support.v7.widget.AppCompatButton
                             android:id="@+id/btnCvvDialogPressed"
-                            android:text="ⓘ"
-                            android:backgroundTint="@android:color/transparent"
-                            android:textColor="@color/ORISkyBlue"
-                            android:background="@android:color/transparent"
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp" />
+                            android:textAllCaps="false"
+                            android:text="i"
+                            android:tint="@color/ORISkyBlue"
+                            android:background="@drawable/template_fullroundbutton"
+                            android:layout_marginStart="5dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
                     </android.support.v7.widget.LinearLayoutCompat>
                 </android.support.v7.widget.LinearLayoutCompat>
             </android.support.v7.widget.LinearLayoutCompat>

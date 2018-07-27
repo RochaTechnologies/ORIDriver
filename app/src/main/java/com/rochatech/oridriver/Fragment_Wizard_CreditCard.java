@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import com.rochatech.library.Common;
 import com.rochatech.webService.*;
@@ -38,7 +39,7 @@ public class Fragment_Wizard_CreditCard extends Fragment {
     View view;
     EditText txtHolderName, txtCardNumber, txtCvv;
     Spinner SprMonth, SprYear;
-    Button btnCvvDialogPressed, btnSaveCardPressed;
+    Button btnSaveCardPressed, btnCvvDialogPressed;
 
     public Fragment_Wizard_CreditCard() {
         // Required empty public constructor
@@ -62,7 +63,7 @@ public class Fragment_Wizard_CreditCard extends Fragment {
         btnCvvDialogPressed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(context,AlertDialog.THEME_HOLO_LIGHT);
                 LayoutInflater inflater = (LayoutInflater) getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.template_dialogcvv,null);
                 dialog.setView(dialogView);

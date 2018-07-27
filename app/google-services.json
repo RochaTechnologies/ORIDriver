@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "475814679742",
+    "firebase_url": "https://oridriverservices.firebaseio.com",
+    "project_id": "oridriverservices",
+    "storage_bucket": "oridriverservices.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475814679742:android:1cdeb583b495aa88",
+        "android_client_info": {
+          "package_name": "com.rochatech.ori"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475814679742-e7b7kr7dl9l96hdmqs6f8a4kit9e4l6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHzSKjPnx0BIpJtQ4Ofn3Gntf3WxyDrVQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475814679742:android:0b13da9649ab7f50",
+        "android_client_info": {
+          "package_name": "com.rochatech.oridriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475814679742-e7b7kr7dl9l96hdmqs6f8a4kit9e4l6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHzSKjPnx0BIpJtQ4Ofn3Gntf3WxyDrVQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,6 @@
 package com.rochatech.oridriver;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,9 +9,13 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.rochatech.library.Support_BottomDialog;
 import com.rochatech.webService.*;
 import com.rochatech.library.Common;
@@ -24,6 +29,7 @@ public class Wizard_Login extends AppCompatActivity {
     Button LoginPressed, ForgotPasswordPressed, CreateAccountPressed;
     connectToService _svcConnection;
     Common obj;
+    String deviceToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +38,28 @@ public class Wizard_Login extends AppCompatActivity {
         obj = new Common(Wizard_Login.this);
         _svcConnection = new connectToService(Wizard_Login.this, obj.GetSharedPreferencesValue(Wizard_Login.this, "SessionToken"));
         InitControls();
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                deviceToken = instanceIdResult.getToken();
+                SharedPreferences pref = getApplicationContext().getSharedPreferences(getResources().getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = pref.edit();
+                edit.putString("settings_FCMTokenId", deviceToken);
+                edit.apply();
+            }
+        });
+
         LoginPressed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) Wizard_Login.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                View view = Wizard_Login.this.getCurrentFocus();
+                if (view == null) {
+                    view = new View(Wizard_Login.this);
+                }
+                imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+
                 String UEmail = UnityEmail.getText().toString();
                 String UPassword = UnityPassword.getText().toString();
                 String Errors = AnyErrors(UEmail, UPassword);
@@ -107,6 +132,7 @@ public class Wizard_Login extends AppCompatActivity {
                         case "IsValid":
                             result = SaveOnSharedPreferences(uEmail, hashedPassword, UID, gatewayId, sessionTokenId, lastName, givenName, nickName, gender, mobile);
                             if (result) {
+                                UpdateFCMId(deviceToken);
                                 SetAvailablePaymentOnSharedPreferences(context, UID, sessionTokenId);
                             } else {
                                 obj.CloseLoadingScreen();
@@ -291,6 +317,10 @@ public class Wizard_Login extends AppCompatActivity {
                 }
             }
         });
+    }
+    private void UpdateFCMId(String token) {
+        int UID = Integer.parseInt(obj.GetSharedPreferencesValue(Wizard_Login.this,"UID"));
+        _svcConnection.UpdateDeviceFCMId(UID);
     }
     //endregion
 

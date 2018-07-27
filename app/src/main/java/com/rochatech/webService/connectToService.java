@@ -51,6 +51,7 @@ public class connectToService {
         this.context = context;
         SharedPreferences preferences = context.getSharedPreferences(context.getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE);
         _sessionTokenId = preferences.getString("SessionToken", null);
+        _deviceFCMId = preferences.getString("settings_FCMTokenId",null);
     }
 
     /*Update SessionToken value*/
@@ -616,6 +617,30 @@ public class connectToService {
             public void onResponseObject(JSONArray jsonResponse) {
                 listener.onResponseObject(jsonResponse);
             }
+        });
+    }
+    public void UpdateDeviceFCMId(int UnityId) {
+        JSONObject paramsObject = new JSONObject();
+        try {
+            paramsObject.put("AccessPointId", _accessPointId);
+            paramsObject.put("Request", "UpdateDriverDeviceFCMId");
+            paramsObject.put("SessionToken", _sessionTokenId);
+            paramsObject.put("UnityServiceId", _unityServiceId);
+            paramsObject.put("UnityId", UnityId);
+            paramsObject.put("DeviceFCMId", _deviceFCMId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        WebServiceCall(paramsObject, _appURL, new WSResponseListener() {
+            @Override
+            public void onError(String message) {
+
+            }
+            @Override
+            public void onResponseObject(JSONArray jsonResponse) {
+
+            }
+
         });
     }
     //endregion

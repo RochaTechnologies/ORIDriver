@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rochatech.oridriver.Fragment_Wizard_CreateAccount;
+import com.rochatech.oridriver.Fragment_Wizard_CreditCard;
 import com.rochatech.oridriver.Fragment_Wizard_ForgotPassword;
 import com.rochatech.oridriver.Fragment_Wizard_ProfilePicture;
 import com.rochatech.oridriver.R;
@@ -42,6 +43,9 @@ public class Support_BottomDialog extends BottomSheetDialogFragment {
                 break;
             case "CreateAccount":
                 fragment = new Fragment_Wizard_CreateAccount();
+                break;
+            case "CreditCard":
+                fragment = new Fragment_Wizard_CreditCard();
                 break;
         }
         transaction.replace(R.id.dialogframecontainer, fragment);

@@ -12,6 +12,19 @@
     <string name="ORIGlobal_SharedPreferencesFailed_Msg">Ocurrió un error al tratar de guardar las preferencias del usuario</string>
     <string name="ORIDrawerOpen">drawer_open</string>
     <string name="ORIDrawerClose">drawer_close</string>
+    <string name="ORI_NoInternetConnection_Title">Sin conexión a internet</string>
+    <string name="ORI_NoInternetConnection_Msg">Detectamos que no cuenta con conexión a internet, es importante que la aplicación este conectada en todo momento para ofrecerle un excelente servicio.</string>
+
+    <!--    Driver Status   -->
+    <string name="ORIDriverStatus_Available">A</string>
+    <string name="ORIDriverStatus_Available_Desc">Disponible</string>
+    <string name="ORIDriverStatus_OnCourseToPickup">P</string>
+    <string name="ORIDriverStatus_OnCourseToPickup_Desc">En camino a recoger pasajero</string>
+    <string name="ORIDriverStatus_Busy">B</string>
+    <string name="ORIDriverStatus_Busy_Desc">En viaje</string>
+    <string name="ORIDriverStatus_Offline">X</string>
+    <string name="ORIDriverStatus_Offline_Desc">Fuera de linea</string>
+
 
     <!-- Wizard Login String -->
     <!-- Labels -->

@@ -6,11 +6,12 @@
     <!-- Profile Pic -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <!-- Emergency contacts - Send sms -->
     <uses-permission android:name="android.permission.SEND_SMS" />
     <!-- User Location -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <!-- Fragments & listview -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -184,6 +185,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Wizard_Login" />
         </activity>
+
+
+        <service
+            android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+
     </application>
 
 </manifest>
