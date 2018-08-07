@@ -104,6 +104,10 @@ public class Settings_DriverNPayment extends AppCompatActivity {
                         obj.CloseLoadingScreen();
                         Common.LogoffByInvalidToken(Settings_DriverNPayment.this);
                         break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Settings_DriverNPayment.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                        break;
                 }
             }
 
@@ -154,6 +158,10 @@ public class Settings_DriverNPayment extends AppCompatActivity {
                     case "Error_InvalidToken":
                         obj.CloseLoadingScreen();
                         Common.LogoffByInvalidToken(Settings_DriverNPayment.this);
+                        break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Settings_DriverNPayment.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
                         break;
                 }
             }
@@ -282,9 +290,9 @@ public class Settings_DriverNPayment extends AppCompatActivity {
                 //Es ambas, por lo tanto tiene una tarjeta agregada
                 creditPayment.setEnabled(true);
                 bothPayment.setEnabled(true);
-                creditCardIcon.setImageResource(R.drawable.ic_menu_creditcard);
+                creditCardIcon.setImageResource(R.drawable.ic_menu_card_blue50);
                 creditCardTitle.setTextColor(getResources().getColor(R.color.ORIBlack));
-                bothPaymentIcon.setImageResource(R.drawable.ic_cash);
+                bothPaymentIcon.setImageResource(R.drawable.ic_menu_cashcard_blue_50);
                 bothPaymentTitle.setTextColor(getResources().getColor(R.color.ORIBlack));
                 break;
         }
@@ -349,6 +357,45 @@ public class Settings_DriverNPayment extends AppCompatActivity {
         creditCardTitle = findViewById(R.id.creditCardTitle);
         cashTitle = findViewById(R.id.cashTitle);
         bothPaymentTitle = findViewById(R.id.bothPaymentTitle);
+        InitOnClickListener();
+    }
+    private void InitOnClickListener() {
+        maleDriver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MaleDriver_Click(v);
+            }
+        });
+        femaleDriver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FemaleDriver_Click(v);
+            }
+        });
+        bothDriver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BothDriver_Click(v);
+            }
+        });
+        cashPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CashPayment_Click(v);
+            }
+        });
+        creditPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreditPayment_Click(v);
+            }
+        });
+        bothPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BothPayment_Click(v);
+            }
+        });
     }
     private Boolean Driver_SaveSharedPreferences(String driverGender) {
         try {

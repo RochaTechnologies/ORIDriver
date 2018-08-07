@@ -12,12 +12,16 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.text.style.StyleSpan;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import static android.app.Activity.RESULT_OK;
@@ -40,6 +44,8 @@ public class Fragment_Wizard_ProfilePicture extends Fragment {
     private boolean IsProfilePicSet;
     private static final int PICK_IMAGE = 100;
     Uri ImageURI;
+    Double _screenSize;
+    DisplayMetrics dm;
 
     public Fragment_Wizard_ProfilePicture() {
         // Required empty public constructor
@@ -160,15 +166,46 @@ public class Fragment_Wizard_ProfilePicture extends Fragment {
         txtUserGivenName = view.findViewById(R.id.txtUserGivenName);
         txtUserLastName = view.findViewById(R.id.txtUserLastName);
         txtUserNickName = view.findViewById(R.id.txtUserNickName);
+        GetScreenInches();
+        SetBtnHeightByScreenInches();
     }
-
     private String AnyErrors(String givenName, String lastName, String nickName, boolean isProfilePicSet) {
         String result = "";
-        result += (!isProfilePicSet) ? getResources().getString(R.string.WizardProfilePicture_ProfilePictureEmpty) + "\n" : "";
-        result += (!givenName.matches("^[ A-Za-z]+$")) ? "Favor de solo utilizar letras en tu nombre" + "\n" : "";
-        result += (!lastName.matches("^[ A-Za-z]+$")) ? "Favor de solo utilizar letras en tu apellido" + "\n" : "";
-        result += (!nickName.matches("^[ A-Za-z]+$")) ? "Favor de solo utilizar letras tu nombre público" + "\n" : "";
+//        result += (!isProfilePicSet) ? getResources().getString(R.string.WizardProfilePicture_ProfilePictureEmpty) + "\n" : "";
+//        result += (!givenName.matches("^[ A-Za-z]+$")) ? "Favor de solo utilizar letras en tu nombre" + "\n" : "";
+//        result += (!lastName.matches("^[ A-Za-z]+$")) ? "Favor de solo utilizar letras en tu apellido" + "\n" : "";
+//        result += (!nickName.matches("^[ A-Za-z]+$")) ? "Favor de solo utilizar letras tu nombre público" + "\n" : "";
         return result;
+    }
+    private void GetScreenInches() {
+        dm = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+        Double x = Math.pow(dm.widthPixels/dm.xdpi,2);
+        Double y = Math.pow(dm.heightPixels/dm.xdpi,2);
+        Double inches = Math.sqrt(x+y);
+        _screenSize = inches;
+    }
+    private void SetBtnHeightByScreenInches() {
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+        int size = 0;
+        if (width == 480 && height == 800) {
+            size = 8;
+        } else if (width < 720 && height < 1184) {
+            size = 8;
+        } else if (width == 720 && height == 1184) {
+            size = 15;
+        } else if ((width > 720 && height > 1184) && (width > 1080 && height > 1920)) {
+            size = 20;
+        }
+        if (size != 0) {
+            txtUserGivenName.setPadding(size,size,size,size);
+            txtUserLastName.setPadding(size,size,size,size);
+            txtUserNickName.setPadding(size,size,size,size);
+        }
+        //size for 4" = 8
+        //size for 4.6" = 15
+        //size for 5" = 20
     }
     //endregion
 }

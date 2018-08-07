@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#000</color>
     <color name="colorPrimaryDark">#000</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#366499</color>
 
     <!--<color name="ORIThunderbird_Red">#D91E18</color>-->
     <!--<color name="ORIShamrock_Green">#00B16A</color>-->
@@ -32,6 +32,10 @@
     <color name="ORILightPink">#F0AC93</color>
     <color name="ORIWine">#710B51</color>
     <color name="ORILightGreen">#A6D37A</color>
+    <color name="ORIGray">#E9E9E9</color>
+    <color name="ORIDisable">#CCC</color>
+    <color name="ORIRed">#A71719</color>
+    <color name="ORIGreen">#26A65B</color>
 
     <color name="black_overlay">#66000000</color>
 

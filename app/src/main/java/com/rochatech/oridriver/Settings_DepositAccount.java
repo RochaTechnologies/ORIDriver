@@ -89,6 +89,10 @@ public class Settings_DepositAccount extends AppCompatActivity {
                     case "Error_InvalidToken":
                         Common.LogoffByInvalidToken(Settings_DepositAccount.this);
                         break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Settings_DepositAccount.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                        break;
                 }
             }
 
@@ -131,7 +135,7 @@ public class Settings_DepositAccount extends AppCompatActivity {
                     break;
                 case "EMPTY":
                     ActionBtnPressed.setText("Guardar información");
-                    ActionBtnPressed.setBackground(getResources().getDrawable(R.drawable.template_ligthgreenbutton));
+                    ActionBtnPressed.setBackground(getResources().getDrawable(R.drawable.template_greenbutton));
                     obj.CloseLoadingScreen();
                     break;
             }
@@ -140,8 +144,15 @@ public class Settings_DepositAccount extends AppCompatActivity {
         _svcConnection.AssignAccountToCostumerInGateway(Integer.parseInt(UID), CLABE, alias, holder, GID, new WSResponseListener() {
             @Override
             public void onError(String message) {
-                obj.CloseLoadingScreen();
-                Common.DialogStatusAlert(Settings_DepositAccount.this, message, getResources().getString(R.string.ORIGlobal_webServiceError),"Error");
+                switch (message) {
+                    case "Error_InvalidToken":
+                        Common.LogoffByInvalidToken(Settings_DepositAccount.this);
+                        break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Settings_DepositAccount.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                        break;
+                }
             }
 
             @Override
@@ -176,6 +187,10 @@ public class Settings_DepositAccount extends AppCompatActivity {
                 switch (message) {
                     case "Error_InvalidToken":
                         Common.LogoffByInvalidToken(Settings_DepositAccount.this);
+                        break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Settings_DepositAccount.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
                         break;
                 }
             }

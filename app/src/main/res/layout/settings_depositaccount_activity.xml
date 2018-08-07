@@ -47,7 +47,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIDarkGray"
+            android:background="@color/ORIGray"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp" />
         <android.support.v7.widget.AppCompatTextView
@@ -70,7 +70,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIDarkGray"
+            android:background="@color/ORIGray"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp" />
         <android.support.v7.widget.AppCompatTextView
@@ -91,54 +91,55 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dip"/>
     </android.support.v7.widget.LinearLayoutCompat>
+
+
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_weight="1"
-        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top">
+        android:layout_height="match_parent">
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/UpdateDepositInfo"
+            android:layout_weight="0"
             android:text="Guardar"
             android:textColor="@color/ORIWhite"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAllCaps="false"
             android:background="@drawable/template_bluebutton"
-            android:enabled="false"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </android.support.v7.widget.LinearLayoutCompat>
     <android.support.v7.widget.LinearLayoutCompat
-        android:orientation="horizontal"
         android:layout_weight="1"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <android.support.v7.widget.LinearLayoutCompat
-            android:layout_gravity="bottom"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.LinearLayoutCompat
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.AppCompatTextView
+                android:text="Tus datos se almacenan de forma segura con encriptación de 256 bits"
+                android:textColor="@color/ORIBlack"
+                android:textAlignment="textEnd"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <android.support.v7.widget.AppCompatTextView
-                    android:text="@string/ORIGlobal_DataSecurityMsg"
-                    android:textColor="@color/ORIBlack"
-                    android:textAlignment="viewEnd"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </android.support.v7.widget.LinearLayoutCompat>
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.LinearLayoutCompat>
+        <android.support.v7.widget.LinearLayoutCompat
+            android:gravity="center_vertical"
+            android:layout_weight="0"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
             <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/ic_shield"
-                android:layout_gravity="center_vertical"
                 android:layout_weight="0"
                 android:layout_width="50dp"
                 android:layout_height="50dp" />
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v7.widget.LinearLayoutCompat>
+
+
 </android.support.v7.widget.LinearLayoutCompat>

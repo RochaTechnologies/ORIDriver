@@ -40,7 +40,12 @@ public class Settings_Membership extends AppCompatActivity {
             public void onError(String message) {
                 switch (message) {
                     case "Error_InvalidToken":
-                        LogoffUser(obj);
+                        obj.CloseLoadingScreen();
+                        Common.LogoffByInvalidToken(Settings_Membership.this);
+                        break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Settings_Membership.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
                         break;
                 }
             }

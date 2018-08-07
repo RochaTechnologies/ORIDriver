@@ -1,334 +1,459 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/SettingsLinear"
-    android:background="@color/ORILightGray"
-    android:orientation="vertical"
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Settings_DriverNPayment">
+    android:layout_height="match_parent">
+    <android.support.v7.widget.LinearLayoutCompat
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/SettingsLinear"
+        android:background="@color/ORIWhite"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Settings_DriverNPayment">
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_marginTop="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/slideDownMsg"
+                android:visibility="gone"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Deslice hacia abajo para ver todas las opciones"
+                android:textColor="@color/ORIBlack"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.LinearLayoutCompat>
+        <android.support.v7.widget.AppCompatTextView
+            android:text="Conductores"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAllCaps="true"
+            android:textColor="@color/ORIBlack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dip"
+            android:layout_marginTop="20dip"
+            android:layout_marginBottom="5dip" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ORIGray" />
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/maleDriverLayout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/maleDriverIcon"
+                android:src="@drawable/ic_menu_male_blue50x2"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dip"
+                android:layout_marginEnd="5dp" />
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/maleDriverTitle"
+                            android:text="@string/SettingsDriversNPayments_MaleTitle"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/ORIBlack"
+                            android:textAllCaps="false"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dip"/>
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/maleDriverDescription"
+                            android:text="@string/SettingsDriversNPayments_MaleDescription"
+                            android:textSize="14sp"
+                            android:textColor="@color/ORIDarkGray"
+                            android:textAllCaps="false"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dip"/>
+                    </android.support.v7.widget.LinearLayoutCompat>
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_weight="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+                        <android.support.v7.widget.AppCompatImageView
+                            android:id="@+id/maledrivercheck"
+                            android:src="@drawable/ic_check"
+                            android:visibility="invisible"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="0"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="3dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+                    </android.support.v7.widget.LinearLayoutCompat>
+                </android.support.v7.widget.LinearLayoutCompat>
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_weight="0"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <View
+                        android:background="@color/ORIGray"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+                </android.support.v7.widget.LinearLayoutCompat>
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v7.widget.LinearLayoutCompat>
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/femaleDriverLayout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/femaleDriverIcon"
+                android:src="@drawable/ic_menu_female_blue50x2"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dip"
+                android:layout_marginEnd="5dp" />
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/femaleDriverTitle"
+                            android:text="@string/SettingsDriversNPayments_FemaleTitle"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/ORIBlack"
+                            android:textAllCaps="false"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dip"/>
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/femaleDriverDescription"
+                            android:text="@string/SettingsDriversNPayments_FemaleDescription"
+                            android:textSize="14sp"
+                            android:textColor="@color/ORIDarkGray"
+                            android:textAllCaps="false"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dip"/>
+                    </android.support.v7.widget.LinearLayoutCompat>
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_weight="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+                        <android.support.v7.widget.AppCompatImageView
+                            android:id="@+id/femaledrivercheck"
+                            android:src="@drawable/ic_check"
+                            android:visibility="invisible"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="0"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="3dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+                    </android.support.v7.widget.LinearLayoutCompat>
+                </android.support.v7.widget.LinearLayoutCompat>
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_weight="0"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <View
+                        android:background="@color/ORIGray"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+                </android.support.v7.widget.LinearLayoutCompat>
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v7.widget.LinearLayoutCompat>
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/bothDriverLayout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/bothDriverIcon"
+                android:src="@drawable/ic_menu_malefemale_blue50x2"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dip"
+                android:layout_marginEnd="5dp" />
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/bothDriverTitle"
+                            android:text="@string/SettingsDriversNPayments_BothTitle"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/ORIBlack"
+                            android:textAllCaps="false"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dip"/>
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/bothDriverDescription"
+                            android:text="@string/SettingsDriversNPayments_BothDescription"
+                            android:textSize="14sp"
+                            android:textColor="@color/ORIDarkGray"
+                            android:textAllCaps="false"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dip"/>
+                    </android.support.v7.widget.LinearLayoutCompat>
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_weight="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+                        <android.support.v7.widget.AppCompatImageView
+                            android:id="@+id/bothdrivercheck"
+                            android:src="@drawable/ic_check"
+                            android:visibility="invisible"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="0"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="3dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+                    </android.support.v7.widget.LinearLayoutCompat>
+                </android.support.v7.widget.LinearLayoutCompat>
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_weight="0"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <!--<View-->
+                    <!--android:background="@color/ORIGray"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp" />-->
+                </android.support.v7.widget.LinearLayoutCompat>
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v7.widget.LinearLayoutCompat>
+        <View
+            android:background="@color/ORIGray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
 
-    <android.support.v7.widget.AppCompatTextView
-        android:text="Conductores"
-        android:textAllCaps="true"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="3dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <View
-        android:background="#6C7A89"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-    <android.support.v7.widget.LinearLayoutCompat
-        android:id="@+id/maleDriverLayout"
-        android:orientation="horizontal"
-        android:background="#fff"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:layout_weight="0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/maleDriverIcon"
-            android:src="@drawable/ic_menu_male"
-            android:tint="@color/ORIBlack"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="2dp"
-            android:layout_weight="0"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/maleDriverTitle"
-                android:text="@string/SettingsDriversNPayments_MaleTitle"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/maleDriverDescription"
-                android:text="@string/SettingsDriversNPayments_MaleDescription"
-                android:textSize="13sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/maledrivercheck"
-            android:src="@drawable/ic_check"
-            android:visibility="invisible"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="3dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp" />
-    </android.support.v7.widget.LinearLayoutCompat>
-    <View
-        android:background="#6C7A89"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-    <android.support.v7.widget.LinearLayoutCompat
-        android:id="@+id/femaleDriverLayout"
-        android:orientation="horizontal"
-        android:background="#fff"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:layout_weight="0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/femaleDriverIcon"
-            android:src="@drawable/ic_female"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="2dp"
-            android:layout_weight="0"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/femaleDriverTitle"
-                android:text="@string/SettingsDriversNPayments_FemaleTitle"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/femaleDriverDescription"
-                android:text="@string/SettingsDriversNPayments_FemaleDescription"
-                android:textSize="13sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/femaledrivercheck"
-            android:src="@drawable/ic_check"
-            android:visibility="invisible"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="3dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp" />
-    </android.support.v7.widget.LinearLayoutCompat>
-    <View
-        android:background="#6C7A89"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-    <android.support.v7.widget.LinearLayoutCompat
-        android:id="@+id/bothDriverLayout"
-        android:orientation="horizontal"
-        android:background="#fff"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:layout_weight="0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/bothDriverIcon"
-            android:src="@drawable/ic_malefemale"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="2dp"
-            android:layout_weight="0"
-            android:padding="4dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/bothDriverTitle"
-                android:text="@string/SettingsDriversNPayments_BothTitle"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.AppCompatTextView
-
-                android:text="@string/SettingsDriversNPayments_BothDescription"
-                android:textSize="13sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/bothdrivercheck"
-            android:src="@drawable/ic_check"
-            android:visibility="invisible"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="3dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp" />
-    </android.support.v7.widget.LinearLayoutCompat>
-    <View
-        android:background="#6C7A89"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
 
 
-    <android.support.v7.widget.AppCompatTextView
-        android:text="Metodo de pago"
-        android:textAllCaps="true"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="3dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <View
-        android:background="#6C7A89"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-    <android.support.v7.widget.LinearLayoutCompat
-        android:id="@+id/creditPaymentLayout"
-        android:orientation="horizontal"
-        android:background="#fff"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_weight="0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/paymentCreditcardIcon"
-            android:src="@drawable/ic_menu_creditcard"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="2dp"
-            android:layout_weight="0"
-            android:padding="4dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
+        <android.support.v7.widget.AppCompatTextView
+            android:text="Conductores"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAllCaps="true"
+            android:textColor="@color/ORIBlack"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/creditCardTitle"
-                android:text="@string/SettingsDriversNPayments_CreditCardTitle"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/creditpaymentcheck"
-            android:src="@drawable/ic_check"
-            android:visibility="invisible"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="3dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp" />
-    </android.support.v7.widget.LinearLayoutCompat>
-    <View
-        android:background="#6C7A89"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-    <android.support.v7.widget.LinearLayoutCompat
-        android:id="@+id/cashPaymentLayout"
-        android:orientation="horizontal"
-        android:background="#fff"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_weight="0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/paymentCashIcon"
-            android:src="@drawable/ic_menu_cash"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="2dp"
-            android:layout_weight="0"
-            android:padding="4dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dip"
+            android:layout_marginTop="20dip"
+            android:layout_marginBottom="5dip" />
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/cashTitle"
-                android:text="@string/SettingsDriversNPayments_CashTitle"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/cashpaymentcheck"
-            android:src="@drawable/ic_check"
-            android:visibility="invisible"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="3dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp" />
-    </android.support.v7.widget.LinearLayoutCompat>
-    <View
-        android:background="#6C7A89"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-    <android.support.v7.widget.LinearLayoutCompat
-        android:id="@+id/bothPaymentLayout"
-        android:orientation="horizontal"
-        android:background="#fff"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_weight="0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/bothPaymentIcon"
-            android:src="@drawable/ic_cashcard"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="2dp"
-            android:layout_weight="0"
-            android:padding="4dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/bothPaymentTitle"
-                android:text="@string/SettingsDriversNPayments_BothTitle"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/bothpaymentcheck"
-            android:src="@drawable/ic_check"
-            android:visibility="invisible"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="3dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp" />
-    </android.support.v7.widget.LinearLayoutCompat>
-    <View
-        android:background="#6C7A89"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
+            android:layout_height="1dp"
+            android:background="@color/ORIGray" />
 
-</android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/creditPaymentLayout"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:layout_weight="0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="CreditPayment_Click">
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/paymentCreditcardIcon"
+                android:src="@drawable/ic_menu_card_blue150"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="2dp"
+                android:layout_weight="0"
+                android:padding="4dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp" />
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/creditCardTitle"
+                    android:text="Tarjeta de crédito / débito"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/ORIBlack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/creditpaymentcheck"
+                android:src="@drawable/ic_check"
+                android:visibility="invisible"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="3dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+        <View
+            android:layout_marginStart="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ORIGray" />
+
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/cashPaymentLayout"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:layout_weight="0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="CashPayment_Click">
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/paymentCashIcon"
+                android:src="@drawable/ic_menu_cash_blue150"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="2dp"
+                android:layout_weight="0"
+                android:padding="4dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp" />
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/cashTitle"
+                    android:text="Efectivo"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/ORIBlack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/cashpaymentcheck"
+                android:src="@drawable/ic_check"
+                android:visibility="invisible"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="3dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+        <View
+            android:layout_marginStart="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ORIGray" />
+
+
+
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/bothPaymentLayout"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:layout_weight="0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="BothPayment_Click">
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/bothPaymentIcon"
+                android:src="@drawable/ic_menu_cashcard_blue150"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="2dp"
+                android:layout_weight="0"
+                android:padding="4dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp" />
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/bothPaymentTitle"
+                    android:text="Ambos"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/ORIBlack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/bothpaymentcheck"
+                android:src="@drawable/ic_check"
+                android:visibility="invisible"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="3dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ORIGray" />
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v4.widget.NestedScrollView>

@@ -34,13 +34,13 @@ public class connectToService {
 
     //region Global
     private Context context;
-    private String _mainURLString = "http://awstest.rochatech.com";
+    private String _mainURLString = "http://testws.rochatech.com";
     private String _serviceName = "RochaTech";
     private String _servicePassword = "Rocha2018";
     private String _loginURL = _mainURLString + "/rtunity/ws/v1/als.php";
     private String _unityURL = _mainURLString + "/rtunity/ws/v1/aus.php";
     private String _appURL = _mainURLString + "/rtorids/ws/v1/aos.php";
-    private String _profilePicURL = "http://testv2.oridriverservices.com/ws/v1/wus.php";
+    private String _profilePicURL = "http://testws.rochatech.com/ws/v1/wus.php";
     private Integer _unityServiceId = 3;
     private String _deviceFCMId = "";
     private int _accessPointId = 3;
@@ -64,7 +64,7 @@ public class connectToService {
         profilePictures task = new profilePictures();
         Bitmap result = null;
         try {
-            result = task.execute("http://testv2.oridriverservices.com/ws/v1/pp.php?d=" + Integer.toString(UnityId)).get();
+            result = task.execute("http://testws.rochatech.com/ws/v1/pp.php?d=" + Integer.toString(UnityId)).get();
         }  catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -840,6 +840,190 @@ public class connectToService {
         });
     }
     //endregion
+
+
+    //region Driver Web Service
+    public void UpdateDriverLocation(Integer UnityId, String Latitude, String Longitude, String Status, Integer TravelRequestId, Integer TravelRequestStep, final WSResponseListener listener) {
+        JSONObject paramsObject = new JSONObject();
+        try {
+            paramsObject.put("AccessPointId", _accessPointId);
+            paramsObject.put("Request", "Driver_UpdateLocation");
+            paramsObject.put("SessionToken", _sessionTokenId);
+            paramsObject.put("UnityServiceId", _unityServiceId);
+            paramsObject.put("Latitud", Latitude);
+            paramsObject.put("Longitud", Longitude);
+            paramsObject.put("Status", Status);
+            paramsObject.put("UnityId", UnityId);
+
+            if (TravelRequestId != null && Status.contains("B")) {
+                paramsObject.put("AccessPointId", _accessPointId);
+                paramsObject.put("Request", "Driver_UpdateLocation_TravelActivity");
+                paramsObject.put("SessionToken", _sessionTokenId);
+                paramsObject.put("UnityServiceId", _unityServiceId);
+                paramsObject.put("TravelRequestId", TravelRequestId);
+                paramsObject.put("Step", TravelRequestStep);
+                paramsObject.put("Latitud", Latitude);
+                paramsObject.put("Longitud", Longitude);
+                paramsObject.put("Status", Status);
+                paramsObject.put("UnityId", UnityId);
+            }
+
+            if (TravelRequestId != null && Status.contains("P")) {
+                paramsObject.put("AccessPointId", _accessPointId);
+                paramsObject.put("Request", "Driver_UpdateLocation");
+                paramsObject.put("SessionToken", _sessionTokenId);
+                paramsObject.put("UnityServiceId", _unityServiceId);
+                paramsObject.put("TravelRequestId", TravelRequestId);
+                paramsObject.put("Step", TravelRequestStep);
+                paramsObject.put("Latitud", Latitude);
+                paramsObject.put("Longitud", Longitude);
+                paramsObject.put("Status", Status);
+                paramsObject.put("UnityId", UnityId);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        WebServiceCall(paramsObject, _appURL, new WSResponseListener() {
+            @Override
+            public void onError(String message) {
+                listener.onError(message);
+            }
+
+            @Override
+            public void onResponseObject(JSONArray jsonResponse) {
+                listener.onResponseObject(jsonResponse);
+            }
+
+        });
+    }
+    public void StartTravelRequest(Integer UnityId, Integer TravelRequestId, final WSResponseListener listener) {
+        JSONObject paramsObject = new JSONObject();
+        try {
+            paramsObject.put("AccessPointId", _accessPointId);
+            paramsObject.put("Request", "Driver_StartTravel");
+            paramsObject.put("SessionToken", _sessionTokenId);
+            paramsObject.put("UnityServiceId", _unityServiceId);
+            paramsObject.put("TravelRequestId", TravelRequestId);
+            paramsObject.put("UnityId", UnityId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        WebServiceCall(paramsObject, _appURL, new WSResponseListener() {
+            @Override
+            public void onError(String message) {
+                listener.onError(message);
+            }
+
+            @Override
+            public void onResponseObject(JSONArray jsonResponse) {
+                listener.onResponseObject(jsonResponse);
+            }
+
+        });
+    }
+    public void EndTravel(String Latitude, String Longitude, Double TotalDistanceMts, Double TotalTimeMins, Integer TravelRequestId, Integer TravelRequestStep, Integer DriverUnityId, Integer PassengerUnityId, Integer PaymentId, String DSID, Double SubTotal, Double BankFee, final WSResponseListener listener) {
+        JSONObject paramsObject = new JSONObject();
+        try {
+            paramsObject.put("AccessPointId", _accessPointId);
+            paramsObject.put("Request", "End_Travel");
+            paramsObject.put("SessionToken", _sessionTokenId);
+            paramsObject.put("UnityServiceId", _unityServiceId);
+            paramsObject.put("TravelRequestId", TravelRequestId);
+            paramsObject.put("UnityId", DriverUnityId);
+            paramsObject.put("PassengerUnityId", PassengerUnityId);
+            paramsObject.put("Latitud", Latitude);
+            paramsObject.put("Longitud", Longitude);
+            paramsObject.put("SubTotal", SubTotal);
+            paramsObject.put("BankFee", BankFee);
+            paramsObject.put("PaymentTypeId", PaymentId);
+            paramsObject.put("TotalDistance", TotalDistanceMts);
+            paramsObject.put("Description", "Tu viaje con ORI");
+            paramsObject.put("TotalTime", TotalTimeMins);
+            paramsObject.put("Step", TravelRequestStep);
+            paramsObject.put("DSID", DSID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        WebServiceCall(paramsObject, _appURL, new WSResponseListener() {
+            @Override
+            public void onError(String message) {
+                listener.onError(message);
+            }
+
+            @Override
+            public void onResponseObject(JSONArray jsonResponse) {
+                listener.onResponseObject(jsonResponse);
+            }
+
+        });
+    }
+    public void RatePassenger(Integer UnityId, Integer TravelRequestId, Integer PassengerUnityId, Double Rate, final WSResponseListener listener) {
+        JSONObject paramsObject = new JSONObject();
+        try {
+            paramsObject.put("AccessPointId", _accessPointId);
+            paramsObject.put("Request", "Rate_Passenger");
+            paramsObject.put("SessionToken", _sessionTokenId);
+            paramsObject.put("UnityServiceId", _unityServiceId);
+            paramsObject.put("TravelRequestId", TravelRequestId);
+            paramsObject.put("PassengerUnityId", PassengerUnityId);
+            paramsObject.put("Rate", Rate);
+            paramsObject.put("UnityId", UnityId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    public void RejectTravelRequest(Integer UnityId, Integer TravelRequestId, final WSResponseListener listener) {
+        JSONObject paramsObject = new JSONObject();
+        try {
+            paramsObject.put("AccessPointId", _accessPointId);
+            paramsObject.put("Request", "Driver_RejectTravelRequest");
+            paramsObject.put("SessionToken", _sessionTokenId);
+            paramsObject.put("UnityServiceId", _unityServiceId);
+            paramsObject.put("TravelRequestId", TravelRequestId);
+            paramsObject.put("UnityId", UnityId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        WebServiceCall(paramsObject, _appURL, new WSResponseListener() {
+            @Override
+            public void onError(String message) {
+                listener.onError(message);
+            }
+
+            @Override
+            public void onResponseObject(JSONArray jsonResponse) {
+                listener.onResponseObject(jsonResponse);
+            }
+
+        });
+    }
+    public void AcceptTravelRequest(Integer UnityId, Integer TravelRequestId, final WSResponseListener listener) {
+        JSONObject paramsObject = new JSONObject();
+        try {
+            paramsObject.put("AccessPointId", _accessPointId);
+            paramsObject.put("Request", "Driver_AcceptTravelRequest");
+            paramsObject.put("SessionToken", _sessionTokenId);
+            paramsObject.put("UnityServiceId", _unityServiceId);
+            paramsObject.put("TravelRequestId", TravelRequestId);
+            paramsObject.put("UnityId", UnityId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        WebServiceCall(paramsObject, _appURL, new WSResponseListener() {
+            @Override
+            public void onError(String message) {
+                listener.onError(message);
+            }
+
+            @Override
+            public void onResponseObject(JSONArray jsonResponse) {
+                listener.onResponseObject(jsonResponse);
+            }
+        });
+    }
+    //endregion
+
 
     //region Membership
     public void GetCurrentMembershipStatus(int UnityId, final WSResponseListener listener){

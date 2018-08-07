@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.rochatech.oridriver.Fragment_LoadingView;
 import com.rochatech.oridriver.Fragment_Wizard_CreateAccount;
 import com.rochatech.oridriver.Fragment_Wizard_CreditCard;
 import com.rochatech.oridriver.Fragment_Wizard_ForgotPassword;
@@ -32,8 +33,8 @@ public class Support_BottomDialog extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.template_bottomdialog_wizard, container, false);
         /*Fragment Setup*/
         Fragment fragment = null;
-        FragmentManager manager = getChildFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
+//        FragmentManager manager = getChildFragmentManager();
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         switch (FragmentName) {
             case "PasswordRecover":
                 fragment = new Fragment_Wizard_ForgotPassword();
@@ -47,9 +48,12 @@ public class Support_BottomDialog extends BottomSheetDialogFragment {
             case "CreditCard":
                 fragment = new Fragment_Wizard_CreditCard();
                 break;
+            case "LoadingView":
+                fragment = new Fragment_LoadingView();
+                break;
         }
-        transaction.replace(R.id.dialogframecontainer, fragment);
-        transaction.commit();
+        transaction.setCustomAnimations(R.animator.anim_slide_inright, R.animator.anim_slide_outleft);
+        transaction.replace(R.id.dialogframecontainer, fragment).commit();
         /*End Fragment Setup*/
         return view;
     }

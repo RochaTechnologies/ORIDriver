@@ -86,7 +86,7 @@
             android:screenOrientation="portrait"
             android:name=".Map_Driver"
             android:label="ORI"
-            android:theme="@style/ORINoActionBar"></activity>
+            android:theme="@style/ORINoActionBar"/>
 
 
         <!-- === NAVIGATION === -->

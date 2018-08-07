@@ -25,6 +25,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -32,6 +33,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -43,8 +45,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.rochatech.Model.TravelRequests;
 import com.rochatech.library.Support_BottomDialog;
 import com.rochatech.webService.*;
 import com.rochatech.library.Common;
@@ -88,15 +94,28 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
 
     DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle mToogle;
+    Boolean mToggleColorFlag = false;
     NavigationView NavView;
     connectToService _svcConnection;
     Common obj;
+    LinearLayout _searchingForRequestLabel;
+    FloatingActionButton BtnCenterMapPressed;
 
-    Integer driverUID;
+    Integer _driverUID;
     Integer _cityId;
 
     TextView lastUpdate;
     TextView lastUpdateReqStatus;
+
+    //region Travel Request variable
+    TravelRequests TReq;
+    //endregion
+
+    //region Setting variable
+    Boolean _firstTimeSettingDriverLocation = false;
+    Integer _updateDriverLocWS = 30;
+    Integer _driverCounter = 0;
+    //endregion
 
     //region Mapbox variables
     private final String MAPBOX_ACCESSTOKEN = "pk.eyJ1Ijoicm9jaGF0ZWNoIiwiYSI6ImNqZjAwbXZndTBnbDkzMm9kM3ppdWp6aXUifQ.AiF9e0dfxbDyeBQSxGaZwA";
@@ -133,15 +152,19 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
     //endregion
 
     //region Bottomsheet Views
-    View _botSheet_AvailableTripRequest;
-    View _botSheet_DriverOnTheWay;
-    View _botSheet_DriverRateDriver;
+    View _botSheet_OnMyWayToDropoff;
+    View _botSheet_OnMyWayToPickup;
+    View _botSheet_RatePassenger;
+    View _botSheet_StartTravel;
+    View _botSheet_TripDetails;
     //endregion
 
     //region Bottomsheet Behavior
-    BottomSheetBehavior _botBehave_AvailableTripRequest;
-    BottomSheetBehavior _botBehave_DriverOnTheWay;
-    BottomSheetBehavior _botBehave_DriverRateDriver;
+    BottomSheetBehavior _botBehave_OnMyWayToDropoff;
+    BottomSheetBehavior _botBehave_OnMyWayToPickup;
+    BottomSheetBehavior _botBehave_RatePassenger;
+    BottomSheetBehavior _botBehave_StartTravel;
+    BottomSheetBehavior _botBehave_TripDetails;
     //endregion
 
     //region Passenger Profile Picture
@@ -169,6 +192,15 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
         obj = new Common(Map_Driver.this);
         _svcConnection = new connectToService(Map_Driver.this, obj.GetSharedPreferencesValue(Map_Driver.this, "SessionToken"));
         lastUpdate = findViewById(R.id.lastUpdate);
+        _searchingForRequestLabel = findViewById(R.id.lookingForRequest);
+        _driverUID = Integer.parseInt(obj.GetSharedPreferencesValue(Map_Driver.this,"UID"));
+        BtnCenterMapPressed = findViewById(R.id.btnCenterMap);
+        BtnCenterMapPressed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCameraPosition(_driverCurrentLocation);
+            }
+        });
         Map_InitMap(savedInstanceState);
 
 
@@ -304,6 +336,7 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
     private void SetNMarkDriverLocation() {
         if (_searchingYourLocation != null && !isSearchingYourLocationHidden) {
             isSearchingYourLocationHidden = true;
+            _searchingForRequestLabel.setVisibility(View.VISIBLE);
             _searchingYourLocation.dismiss();
         }
         if (_driverLocationMarker != null) {
@@ -315,7 +348,12 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
                 .position(_driverLocationCoord)
                 .setIcon(_pickupLocationMarkerIcon)
         );
-        setCameraPosition(_driverCurrentLocation);
+        if (!_firstTimeSettingDriverLocation) {
+            //Camera updates its position
+            setCameraPosition(_driverCurrentLocation);
+            _firstTimeSettingDriverLocation = true;
+        }
+        _driverCounter++;
     }
     private void setCameraPosition(Location location) {
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(
@@ -423,6 +461,224 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
 
 
 
+    //region Init / Show / Dismiss Views
+    public void Init_OnMyWayToDropoff() {
+        Button btnDriverDropoffNavigationPressed = findViewById(R.id.btnDriverDropoffNavigation);
+        TextView passengerDropoffAddress = findViewById(R.id.passengerDropoffAddress);
+        TextView passengerNameDropoff = findViewById(R.id.passengerNameDropoff);
+        ImageView passengerPictureDropoff = findViewById(R.id.passengerPicturePickup);
+        passengerDropoffAddress.setText(TReq.GetDropOffAddress());
+        passengerNameDropoff.setText(TReq.GetReqGivenName());
+        if (_reqByPassengerProfilePic != null) {
+            passengerPictureDropoff.setImageBitmap(_reqByPassengerProfilePic);
+        }
+        btnDriverDropoffNavigationPressed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*      Open google maps or another "map" app       */
+            }
+        });
+    }
+    public void Init_OnMyWayToPickup() {
+        Button btnDriverPickupNavigationPressed = findViewById(R.id.btnDriverPickupNavigation);
+        TextView passengerPickupAddress = findViewById(R.id.passengerPickupAddress);
+        TextView passengerNamePickup = findViewById(R.id.passengerNamePickup);
+        ImageView passengerPicturePickup = findViewById(R.id.passengerPicturePickup);
+        passengerPickupAddress.setText(TReq.GetPickupAddress());
+        passengerNamePickup.setText(TReq.GetReqGivenName());
+        if (_reqByPassengerProfilePic != null) {
+            passengerPicturePickup.setImageBitmap(_reqByPassengerProfilePic);
+        }
+        btnDriverPickupNavigationPressed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*      Open google maps or another "map" app       */
+            }
+        });
+    }
+    public void Init_RatePassenger() {
+        RatingBar passengerRatePassenger = findViewById(R.id.passengerRatePassenger);
+        TextView passengerNamePassenger = findViewById(R.id.passengerNamePassenger);
+        TextView passengerTripDetails = findViewById(R.id.passengerTripDetails);
+        ImageView passengerPaymentIcon = findViewById(R.id.passengerPaymentIcon);
+        TextView passengerGrandTotal = findViewById(R.id.passengerGrandTotal);
+        Button btnRatePassengerPressed = findViewById(R.id.btnRatePassenger);
+        passengerRatePassenger.setRating(Float.parseFloat(TReq.GetPassengerRate().toString()));
+        passengerNamePassenger.setText(TReq.GetReqGivenName());
+        String tripDetails = TReq.GetTotalDistance() + " Km - " + TReq.GetTotalTime() + " mins";
+        passengerTripDetails.setText(tripDetails);
+        if (TReq.GetReqPaymentTypeId() == 1) {
+            passengerPaymentIcon.setImageResource(R.drawable.ic_menu_cash80);
+        } else if (TReq.GetReqPaymentTypeId() == 2) {
+            passengerPaymentIcon.setImageResource(R.drawable.ic_menu_card80);
+        }
+        passengerGrandTotal.setText(TReq.GetTotalFare().toString());
+        btnRatePassengerPressed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+    public void Init_StartTravel() {
+        Button btnStartTravelPressed = findViewById(R.id.btnStartTravel);
+        ImageView passengerPictureStartTravel = findViewById(R.id.passengerPictureStartTravel);
+        TextView passengerNameStartTravel = findViewById(R.id.passengerNameStartTravel);
+        if (_reqByPassengerProfilePic != null) {
+            passengerPictureStartTravel.setImageBitmap(_reqByPassengerProfilePic);
+        }
+        passengerNameStartTravel.setText(TReq.GetReqGivenName());
+        btnStartTravelPressed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+    public void Init_TripDetails() {
+        Button btnAcceptedTravel = findViewById(R.id.bntAcceptedTravel);
+        Button btnRejectTravel = findViewById(R.id.btnRejectTravel);
+        RatingBar passengerRateTripDetails = findViewById(R.id.passengerRateTripDetails);
+        TextView passengerPickupAddressTripDetails = findViewById(R.id.passengerPickupAddressTripDetails);
+        TextView passengerDropoffAddressTripDetails = findViewById(R.id.passengerDropoffAddressTripDetails);
+        TextView passengerEstimatedDistanceTripDetails = findViewById(R.id.passengerEstimatedDistanceTripDetails);
+        TextView passengerEstimatedTimeTripDetails = findViewById(R.id.passengerEstimatedTimeTripDetails);
+        TextView passengerEstimatedFareTripDetails = findViewById(R.id.passengerEstimatedFareTripDetails);
+        passengerRateTripDetails.setRating(Float.parseFloat(TReq.GetPassengerRate().toString()));
+        passengerPickupAddressTripDetails.setText(TReq.GetPickupAddress());
+        passengerDropoffAddressTripDetails.setText(TReq.GetDropOffAddress());
+        passengerEstimatedDistanceTripDetails.setText(TReq.GetEstimatedDistance().toString());
+        passengerEstimatedTimeTripDetails.setText(TReq.GetEstimatedTime().toString());
+        passengerEstimatedFareTripDetails.setText(TReq.GetEstimatedFare().toString());
+        btnAcceptedTravel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        btnRejectTravel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+
+    public void Show_OnMyWayToDropoff() {
+        _botSheet_OnMyWayToDropoff = findViewById(R.id.mapDriverOnMyWayToDropoff);
+        _botBehave_OnMyWayToDropoff = BottomSheetBehavior.from(_botSheet_OnMyWayToDropoff);
+        _botBehave_OnMyWayToDropoff.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
+                    _botBehave_OnMyWayToDropoff.setState(BottomSheetBehavior.STATE_EXPANDED);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
+        Init_OnMyWayToDropoff();
+        _botBehave_OnMyWayToDropoff.setState(BottomSheetBehavior.STATE_EXPANDED);
+    }
+    public void Show_OnMyWayToPickup() {
+        _botSheet_OnMyWayToPickup = findViewById(R.id.mapDriverOnMyWayToPickup);
+        _botBehave_OnMyWayToPickup = BottomSheetBehavior.from(_botSheet_OnMyWayToPickup);
+        _botBehave_OnMyWayToPickup.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
+                    _botBehave_OnMyWayToPickup.setState(BottomSheetBehavior.STATE_EXPANDED);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
+        Init_OnMyWayToPickup();
+        _botBehave_OnMyWayToPickup.setState(BottomSheetBehavior.STATE_EXPANDED);
+    }
+    public void Show_RatePassenger() {
+        _botSheet_RatePassenger = findViewById(R.id.mapDriverRatePassenger);
+        _botBehave_RatePassenger = BottomSheetBehavior.from(_botSheet_RatePassenger);
+        _botBehave_RatePassenger.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
+                    _botBehave_RatePassenger.setState(BottomSheetBehavior.STATE_EXPANDED);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
+        Init_RatePassenger();
+        _botBehave_RatePassenger.setState(BottomSheetBehavior.STATE_EXPANDED);
+    }
+    public void Show_StartTravel() {
+        _botSheet_StartTravel = findViewById(R.id.mapDriverStartTravel);
+        _botBehave_StartTravel = BottomSheetBehavior.from(_botSheet_StartTravel);
+        _botBehave_StartTravel.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
+                    _botBehave_StartTravel.setState(BottomSheetBehavior.STATE_EXPANDED);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
+        Init_StartTravel();
+        _botBehave_StartTravel.setState(BottomSheetBehavior.STATE_EXPANDED);
+    }
+    public void Show_TripDetails() {
+        _botSheet_TripDetails = findViewById(R.id.mapDriverTripDetails);
+        _botBehave_TripDetails = BottomSheetBehavior.from(_botSheet_TripDetails);
+        _botBehave_TripDetails.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
+                    _botBehave_TripDetails.setState(BottomSheetBehavior.STATE_EXPANDED);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
+        Init_TripDetails();
+        _botBehave_TripDetails.setState(BottomSheetBehavior.STATE_EXPANDED);
+    }
+
+
+    public void Dismiss_OnMyWayToDropoff() {
+        _botBehave_OnMyWayToDropoff.setState(BottomSheetBehavior.STATE_COLLAPSED);
+    }
+    public void Dismiss_OnMyWayToPickup() {
+        _botBehave_OnMyWayToPickup.setState(BottomSheetBehavior.STATE_COLLAPSED);
+    }
+    public void Dismiss_RatePassenger() {
+        _botBehave_RatePassenger.setState(BottomSheetBehavior.STATE_COLLAPSED);
+    }
+    public void Dismiss_StartTravel() {
+        _botBehave_StartTravel.setState(BottomSheetBehavior.STATE_COLLAPSED);
+    }
+    public void Dismiss_TripDetails() {
+        _botBehave_TripDetails.setState(BottomSheetBehavior.STATE_COLLAPSED);
+    }
+    //endregion
+
 
 
 
@@ -454,11 +710,6 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
         }
         return currentLocation;
     }
-    //endregion
-
-
-    //region Location Init
-
     //endregion
 
 
@@ -495,7 +746,33 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
         mapToolbar.setBackgroundColor(Color.TRANSPARENT);
         mapToolbar.setTitle("");
         mDrawerLayout = findViewById(R.id.MapDrawer);
-        mToogle = new ActionBarDrawerToggle(Map_Driver.this, mDrawerLayout, R.string.ORIDrawerOpen, R.string.ORIDrawerClose);
+        mToogle = new ActionBarDrawerToggle(Map_Driver.this, mDrawerLayout, R.string.ORIDrawerOpen, R.string.ORIDrawerClose){
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                super.onDrawerStateChanged(newState);
+                if (newState == DrawerLayout.STATE_SETTLING) {
+                    if (mToggleColorFlag) {
+                        mToggleColorFlag = false;
+                        mToogle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.ORIBlack));
+                    } else {
+                        mToggleColorFlag = true;
+                        mToogle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.ORIWhite));
+                    }
+                }
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+//                mToogle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.ORIWhite));
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+//                mToogle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.ORIBlack));
+            }
+        };
         mDrawerLayout.addDrawerListener(mToogle);
         setSupportActionBar(mapToolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -503,6 +780,7 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
         mToogle.syncState();
     }
     //endregion
+
 
     //region Location Permissions
 
@@ -548,13 +826,14 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
 
     //endregion
 
+
     //region MISC
     private void InitDriverHeader() {
         View view = NavView.getHeaderView(0);
-        TextView PassengerName = view.findViewById(R.id.NavMenu_DriverName);
-        ImageView PassengerProfilePicture = view.findViewById(R.id.PassengerProfilePic);
-        PassengerName.setText(obj.GetSharedPreferencesValue(Map_Driver.this,"GivenName"));
-        PassengerProfilePicture.setImageBitmap(_svcConnection.GetProfilePictureFromUID(Integer.parseInt(obj.GetSharedPreferencesValue(Map_Driver.this,"UID"))));
+        TextView DriverName = view.findViewById(R.id.NavMenu_DriverName);
+        ImageView DriverProfilePicture = view.findViewById(R.id.DriverProfilePic);
+        DriverName.setText(obj.GetSharedPreferencesValue(Map_Driver.this,"GivenName"));
+        DriverProfilePicture.setImageBitmap(_svcConnection.GetProfilePictureFromUID(Integer.parseInt(obj.GetSharedPreferencesValue(Map_Driver.this,"UID"))));
     }
     private void InitDriverStatus() {
 //        A=Available, P=OnCourseToPickUp, B=Bussy, X=Offline
@@ -776,6 +1055,60 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
 
 
 
+    //region WebService Calls
+    public void wsUpdateDriverLocation() {
+        /*      Este culero es el que devuelve el objeto Travel Request     */
+        if (TReq != null) {
+
+        } else if (TReq == null) {
+
+        }
+    }
+    public void wsAcceptedTravelRequest() {
+        if (TReq != null) {
+            _svcConnection.AcceptTravelRequest(_driverUID, TReq.GetTravelRequestId(), new WSResponseListener() {
+                @Override
+                public void onError(String message) {
+                    switch (message) {
+                        case "Error_InvalidToken":
+                            Common.LogoffByInvalidToken(Map_Driver.this);
+                            break;
+                        case "NO_CONNECTION":
+                            Common.DialogStatusAlert(Map_Driver.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                            break;
+                    }
+                }
+
+                @Override
+                public void onResponseObject(JSONArray jsonResponse) {
+
+                }
+            });
+        }
+    }
+    public void wsRejectedTravelRequest() {
+        if (TReq != null) {
+            _svcConnection.RejectTravelRequest(_driverUID, TReq.GetTravelRequestId(), new WSResponseListener() {
+                @Override
+                public void onError(String message) {
+                    switch (message) {
+                        case "Error_InvalidToken":
+                            Common.LogoffByInvalidToken(Map_Driver.this);
+                            break;
+                        case "NO_CONNECTION":
+                            Common.DialogStatusAlert(Map_Driver.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                            break;
+                    }
+                }
+
+                @Override
+                public void onResponseObject(JSONArray jsonResponse) {
+
+                }
+            });
+        }
+    }
+    //endregion
 
 
 
@@ -787,6 +1120,11 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         lastUpdate.setText("Ultima actualizacion: " + Common.getAppStringFullDateFromFullDate(Common.getNow()));
+        if (_updateDriverLocWS == _driverCounter) {
+            //llamar al web service
+            wsUpdateDriverLocation();
+            _driverCounter = 0;
+        }
         SetNMarkDriverLocation();
 
     }

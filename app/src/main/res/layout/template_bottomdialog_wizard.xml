@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
     <android.support.v7.widget.LinearLayoutCompat
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.v7.widget.LinearLayoutCompat
             android:background="@color/ORIBlack"
-            android:alpha="0.62"
+            android:alpha="0.6"
+            android:layout_weight="0"
+            android:layout_marginTop="-8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <android.support.v7.widget.AppCompatImageView
-                android:src="@drawable/ic_ori_ticket"
-                android:layout_marginTop="-8dp"
-                android:layout_marginBottom="-8dp"
+                android:src="@drawable/ic_ori_ticket375x3"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
         <android.support.v7.widget.LinearLayoutCompat
-            android:background="@color/ORIWhite"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <FrameLayout
                 android:id="@+id/dialogframecontainer"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"></FrameLayout>
+                android:layout_height="match_parent"></FrameLayout>
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v7.widget.LinearLayoutCompat>
 </android.support.design.widget.CoordinatorLayout>

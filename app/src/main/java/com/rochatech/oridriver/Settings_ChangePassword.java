@@ -78,6 +78,10 @@ public class Settings_ChangePassword extends AppCompatActivity {
                     case "Error_InvalidToken":
                         Common.LogoffByInvalidToken(Settings_ChangePassword.this);
                         break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Settings_ChangePassword.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                        break;
                 }
             }
 

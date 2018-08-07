@@ -20,7 +20,7 @@
             android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORILightGray" />
+            android:background="@color/ORIGray" />
 
         <android.support.v7.widget.ListViewCompat
             android:id="@+id/PassengersRequestList"

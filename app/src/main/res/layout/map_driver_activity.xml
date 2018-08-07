@@ -13,6 +13,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Map_Driver">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -22,14 +23,34 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
             <RelativeLayout
-                android:gravity="right"
-                android:layout_marginEnd="10dp"
+                android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <android.support.v7.widget.AppCompatImageView
-                    android:src="@drawable/ic_ori_blacklogo"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/lookingForRequest"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:background="@color/ORIBlack"
+                    android:alpha="0.60"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <!--<android.support.v7.widget.AppCompatTextView-->
+                        <!--android:text="Buscando solicitudes"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:textAlignment="center"-->
+                        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+                        <!--android:textColor="@color/ORIWhite"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginStart="5dp"-->
+                        <!--android:layout_marginEnd="5dp"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content" />-->
+                    <!--<ProgressBar-->
+                        <!--android:progressTint="@color/ORIWhite"-->
+                        <!--android:layout_weight="0"-->
+                        <!--android:layout_width="30dp"-->
+                        <!--android:layout_height="30dp" />-->
+                </LinearLayout>
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
 
@@ -50,6 +71,8 @@
                     android:layout_height="match_parent"
                     mapbox:mapbox_styleUrl="mapbox://styles/mapbox/streets-v10"
                     mapbox:mapbox_cameraZoom="11" />
+
+
 
                 <android.support.v7.widget.LinearLayoutCompat
                     android:orientation="vertical"
@@ -75,10 +98,24 @@
                         android:layout_height="wrap_content" />
                 </android.support.v7.widget.LinearLayoutCompat>
 
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/btnCenterMap"
+                    android:src="@drawable/ic_menu_card160"
+                    app:backgroundTint="@color/ORIBlack"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
             </RelativeLayout>
 
             <android.support.design.widget.NavigationView
                 android:id="@+id/MapNavMenu"
+                app:itemTextColor="@color/ORIWhite"
+                app:itemIconTint="@color/ORIWhite"
+                android:background="@color/ORIBlack"
                 app:headerLayout="@layout/template_navmenu_driverheader"
                 app:menu="@menu/nav_menu"
                 android:layout_gravity="start"
@@ -88,4 +125,11 @@
 
 
     </RelativeLayout>
+
+    <include layout="@layout/map_driver_onmywaytodropoff" />
+    <include layout="@layout/map_driver_onmywaytopickup" />
+    <include layout="@layout/map_driver_ratepassenger" />
+    <include layout="@layout/map_driver_starttravel" />
+    <include layout="@layout/map_driver_tripdetails" />
+
 </android.support.design.widget.CoordinatorLayout>

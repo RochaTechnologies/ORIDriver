@@ -8,21 +8,23 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class TravelRequests {
+
     public TravelRequests() { super(); }
 
-    int TravelRequestId, ReqByUnityId, PassengerTotalCompleted, ReqPaymentTypeId, ReqServiceTypeId, AcceptedByDrvUnityId, DriverTotalCompleted;
-    String ReqGivenName, ReqLastName, ReqNickName, ReqCellPhone, ReqPhoto, PickUpLocationLatitud, PickUpLocationLongitud, PickupAddress, DropOffLatitud, DropOffLongitud, DropOffAddress, ReqPaymentTypeName, ReqServiceTypeName, DrvGivenName, DrvLastName, DrvNickName, DrvPhoto, DrvCellphone, LicensePlate, AutobileBrand, AutomobileModel, AutomobileColor;
+    Integer TravelRequestId, ReqByUnityId, PassengerTotalCompleted, ReqPaymentTypeId, ReqServiceTypeId, AcceptedByDrvUnityId, DriverTotalCompleted;
+    String ReqGivenName, ReqLastName, ReqNickName, ReqCellPhone, ReqPhoto, PickUpLocationLatitud, PickUpLocationLongitud, PickupAddress, DropOffLatitud, DropOffLongitud, DropOffAddress, ReqPaymentTypeName, ReqServiceTypeName, DrvGivenName, DrvLastName, DrvNickName, DrvPhoto, DrvCellphone, LicensePlate, AutobileBrand, AutomobileModel, AutomobileColor, AutomobileYear;
     Date PassengerSetupDate, CreationDate, DriverSetupDate, AttendedDate, EndedDate;
     Double PassengerRate, DriverRate, EstimatedDistance, EstimatedTime, EstimatedFare, TotalDistance, TotalTime, TotalFare;
+    String ReqStatus;
 
     //region Set
-    public void SetTravelRequestId(int TravelRequestId) {
+    public void SetTravelRequestId(Integer TravelRequestId) {
         this.TravelRequestId = TravelRequestId;
     }
     public void SetReqByUnityId(int ReqByUnityId) {
         this.ReqByUnityId = ReqByUnityId;
     }
-    public void SetPassengerTotalCompleted(int PassengerTotalCompleted) {
+    public void SetPassengerTotalCompleted(Integer PassengerTotalCompleted) {
         this.PassengerTotalCompleted = PassengerTotalCompleted;
     }
     public void SetReqPaymentTypeId(int ReqPaymentTypeId) {
@@ -31,10 +33,10 @@ public class TravelRequests {
     public void SetReqServiceTypeId(int ReqServiceTypeId) {
         this.ReqServiceTypeId = ReqServiceTypeId;
     }
-    public void SetAcceptedByDrvUnityId(int AcceptedByDrvUnityId) {
+    public void SetAcceptedByDrvUnityId(Integer AcceptedByDrvUnityId) {
         this.AcceptedByDrvUnityId = AcceptedByDrvUnityId;
     }
-    public void SetDriverTotalCompleted(int DriverTotalCompleted) {
+    public void SetDriverTotalCompleted(Integer DriverTotalCompleted) {
         this.DriverTotalCompleted = DriverTotalCompleted;
     }
     public void SetReqGivenName(String ReqGivenName) {
@@ -103,6 +105,9 @@ public class TravelRequests {
     public void SetAutomobileColor(String AutomobileColor) {
         this.AutomobileColor = AutomobileColor;
     }
+    public void SetAutomobileYear(String AutomobileYear) {
+        this.AutomobileYear = AutomobileYear;
+    }
     public void SetPassengerSetupDate(Date PassengerSetupDate) {
         this.PassengerSetupDate = PassengerSetupDate;
     }
@@ -142,28 +147,29 @@ public class TravelRequests {
     public void SetTotalFare(Double TotalFare) {
         this.TotalFare = TotalFare;
     }
+    public void SetReqStatus(String ReqStatus) {this.ReqStatus = ReqStatus;}
     //endregion
 
     //region Get
-    public int GetTravelRequestId() {
+    public Integer GetTravelRequestId() {
         return TravelRequestId;
     }
-    public int GetReqByUnityId() {
+    public Integer GetReqByUnityId() {
         return ReqByUnityId;
     }
-    public int GetPassengerTotalCompleted() {
+    public Integer GetPassengerTotalCompleted() {
         return PassengerTotalCompleted;
     }
-    public int GetReqPaymentTypeId() {
+    public Integer GetReqPaymentTypeId() {
         return ReqPaymentTypeId;
     }
-    public int GetReqServiceTypeId() {
+    public Integer GetReqServiceTypeId() {
         return ReqServiceTypeId;
     }
-    public int GetAcceptedByDrvUnityId() {
+    public Integer GetAcceptedByDrvUnityId() {
         return AcceptedByDrvUnityId;
     }
-    public int GetDriverTotalCompleted() {
+    public Integer GetDriverTotalCompleted() {
         return DriverTotalCompleted;
     }
     public String GetReqGivenName() {
@@ -202,6 +208,7 @@ public class TravelRequests {
     public String GetReqPaymentTypeName() {
         return ReqPaymentTypeName;
     }
+    public String GetReqServiceTypeName() {return ReqServiceTypeName;}
     public String GetDrvGivenName() {
         return DrvGivenName;
     }
@@ -229,6 +236,7 @@ public class TravelRequests {
     public String GetAutomobileColor() {
         return AutomobileColor;
     }
+    public String GetAutomobileYear() {return AutomobileYear;}
     public Date GetPassengerSetupDate() {
         return PassengerSetupDate;
     }
@@ -268,67 +276,140 @@ public class TravelRequests {
     public Double GetTotalFare() {
         return TotalFare;
     }
+    public String GetReqStatus() {return ReqStatus;}
     //endregion
+
+    public JSONObject toJSON(){
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("TravelRequestId", GetTravelRequestId());
+            jsonObject.put("ReqByUnityId", GetReqByUnityId());
+            jsonObject.put("ReqGivenName", GetReqGivenName());
+            jsonObject.put("ReqLastName", GetReqLastName());
+            jsonObject.put("ReqNickName", GetReqNickName());
+            jsonObject.put("ReqCellPhone", GetReqCellPhone());
+            jsonObject.put("ReqPhoto", GetReqPhoto());
+            jsonObject.put("PassengerTotalCompleted", GetPassengerTotalCompleted());
+            jsonObject.put("PassengerSetupDate", Common.getAppStringFullDateFromFullDate(GetPassengerSetupDate()));
+            jsonObject.put("PassengerRate", GetPassengerRate());
+            jsonObject.put("FromLatitud", GetPickUpLocationLatitud());
+            jsonObject.put("FromLongitud", GetPickUpLocationLongitud());
+            jsonObject.put("FromAddress", GetPickupAddress());
+            jsonObject.put("ToLatitud", GetDropOffLatitud());
+            jsonObject.put("ToLongitud", GetDropOffLongitud());
+            jsonObject.put("ToAddress", GetDropOffAddress());
+            jsonObject.put("ReqPaymentTypeId", GetReqPaymentTypeId());
+            jsonObject.put("ReqPaymentTypeName", GetReqPaymentTypeName());
+            jsonObject.put("ReqServiceTypeId", GetReqServiceTypeId());
+            jsonObject.put("ReqServiceTypeName", GetReqServiceTypeName());
+            jsonObject.put("CreationDate", Common.getAppStringFullDateFromFullDate(GetCreationDate()));
+            jsonObject.put("ReqStatus", GetReqStatus());
+            jsonObject.put("AcceptedByUnityId", GetAcceptedByDrvUnityId());
+            jsonObject.put("DriverGivenName", GetDrvGivenName());
+            jsonObject.put("DriverLastName", GetDrvLastName());
+            jsonObject.put("DriverNickName", GetDrvNickName());
+            jsonObject.put("DriverPhoto", GetDrvPhoto());
+            jsonObject.put("DriverTotalCompleted", GetDriverTotalCompleted());
+            jsonObject.put("DriverRate", GetDriverRate());
+            jsonObject.put("DriverSetupDate", Common.getAppStringFullDateFromFullDate(GetDriverSetupDate()));
+            jsonObject.put("DriverCellPhone", GetDrvCellphone());
+            jsonObject.put("LicensePlateNumber", GetLicensePlate());
+            jsonObject.put("VehicleMake", GetAutobileBrand());
+            jsonObject.put("VehicleModel", GetAutomobileModel());
+            jsonObject.put("VehicleColor", GetAutomobileColor());
+            jsonObject.put("VehicleYear", GetAutomobileYear());
+            jsonObject.put("AttendedDate", Common.getAppStringFullDateFromFullDate(GetAttendedDate()));
+            jsonObject.put("EndedDate", Common.getAppStringFullDateFromFullDate(GetEndedDate()));
+            jsonObject.put("EstimatedDistance", GetEstimatedDistance());
+            jsonObject.put("EstimatedTime", GetEstimatedTime());
+            jsonObject.put("EstimatedFare", GetEstimatedFare());
+            jsonObject.put("TotalDistance", GetTotalDistance());
+            jsonObject.put("TotalTime", GetTotalTime());
+            jsonObject.put("TotalFare", GetTotalFare());
+            return jsonObject;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 
     public static ArrayList<TravelRequests> fromJson(JSONArray jsonArray) {
         JSONObject jsonObject;
-        ArrayList<TravelRequests> travelRequest = new ArrayList<>(jsonArray.length());
+        ArrayList<TravelRequests> trvlReq = new ArrayList<>(jsonArray.length());
         try {
-            for (int i = 0; i < jsonArray.length(); i++) {
+            for (int i=0; i < jsonArray.length(); i++) {
                 jsonObject = jsonArray.getJSONObject(i);
                 try {
-                    TravelRequests TR = new TravelRequests();
-                    TR.TravelRequestId = jsonObject.getInt("TravelRequestId");
-                    TR.ReqByUnityId = jsonObject.getInt("ReqByUnityId");
-                    TR.ReqGivenName = jsonObject.getString("ReqGivenName");
-                    TR.ReqLastName = jsonObject.getString("ReqLastName");
-                    TR.ReqNickName = jsonObject.getString("ReqNickName");
-                    TR.ReqCellPhone = jsonObject.getString("ReqCellPhone");
-                    TR.ReqPhoto = jsonObject.getString("ReqPhoto");
-                    TR.PassengerTotalCompleted = jsonObject.getInt("PassengerTotalCompleted");
-                    TR.PassengerSetupDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("PassengerSetupDate"));
-                    TR.PassengerRate = jsonObject.getDouble("PassengerRate");
-                    TR.PickUpLocationLatitud = jsonObject.getString("FromLatitud");
-                    TR.PickUpLocationLongitud = jsonObject.getString("FromLongitud");
-                    TR.PickupAddress = jsonObject.getString("FromAddress");
-                    TR.DropOffLatitud = jsonObject.getString("ToLatitud");
-                    TR.DropOffLongitud = jsonObject.getString("ToLongitud");
-                    TR.DropOffAddress = jsonObject.getString("ToAddress");
-                    TR.ReqPaymentTypeId = jsonObject.getInt("ReqPaymentTypeId");
-                    TR.ReqPaymentTypeName = jsonObject.getString("ReqPaymentTypeName");
-                    TR.ReqServiceTypeId = jsonObject.getInt("ReqServiceTypeId");
-                    TR.ReqServiceTypeName = jsonObject.getString("ReqServiceTypeName");
-                    TR.CreationDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("CreationDate"));
-                    TR.AcceptedByDrvUnityId = jsonObject.getInt("AcceptedByUnityId");
-                    TR.DrvGivenName = jsonObject.getString("DriverGivenName");
-                    TR.DrvLastName = jsonObject.getString("DriverLastName");
-                    TR.DrvNickName = jsonObject.getString("DriverNickName");
-                    TR.DrvPhoto = jsonObject.getString("DriverPhoto");
-                    TR.DriverTotalCompleted = jsonObject.getInt("DriverTotalCompleted");
-                    TR.DriverSetupDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("DriverSetupDate"));
-                    TR.DriverRate = jsonObject.getDouble("DriverRate");
-                    TR.DrvCellphone = jsonObject.getString("DriverCellPhone");
-                    TR.LicensePlate = jsonObject.getString("LicensePlateNumber");
-                    TR.AutobileBrand = jsonObject.getString("VehicleMake");
-                    TR.AutomobileModel = jsonObject.getString("VehicleModel");
-                    TR.AutomobileColor = jsonObject.getString("VehicleColor");
-                    TR.AttendedDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("AttendedDate"));
-                    TR.EndedDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("EndedDate"));
-                    TR.EstimatedTime = jsonObject.getDouble("EstimatedTime");
-                    TR.EstimatedDistance = jsonObject.getDouble("EstimatedDistance");
-                    TR.EstimatedFare = jsonObject.getDouble("EstimatedFare");
-                    TR.TotalDistance = jsonObject.getDouble("TotalDistance");
-                    TR.TotalTime = jsonObject.getDouble("TotalTime");
-                    TR.TotalFare = jsonObject.getDouble("TotalFare");
-                    travelRequest.add(TR);
+                    TravelRequests AC = new TravelRequests();
+                    AC.TravelRequestId = jsonObject.getString("TravelRequestId").equals("") ? null : Integer.parseInt(jsonObject.getString("TravelRequestId"));
+                    AC.ReqByUnityId = jsonObject.getString("ReqByUnityId").equals("") ? null : Integer.parseInt(jsonObject.getString("ReqByUnityId"));
+                    AC.ReqGivenName = jsonObject.getString("ReqGivenName");
+                    AC.ReqLastName = jsonObject.getString("ReqLastName");
+                    AC.ReqNickName = jsonObject.getString("ReqNickName");
+                    AC.ReqCellPhone = jsonObject.getString("ReqCellPhone");
+                    AC.ReqPhoto = jsonObject.getString("ReqPhoto");
+                    AC.PassengerTotalCompleted = jsonObject.getString("PassengerTotalCompleted").equals("") ? null : Integer.parseInt(jsonObject.getString("PassengerTotalCompleted"));
+                    AC.PassengerRate = jsonObject.getString("PassengerRate").equals("") ? null : Double.parseDouble(jsonObject.getString("PassengerRate"));
+                    AC.PassengerSetupDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("PassengerSetupDate"));
+                    AC.PickUpLocationLatitud = jsonObject.getString("FromLatitud");
+                    AC.PickUpLocationLongitud = jsonObject.getString("FromLongitud");
+                    AC.PickupAddress = jsonObject.getString("FromAddress");
+                    AC.DropOffLatitud = jsonObject.getString("ToLatitud");
+                    AC.DropOffLongitud = jsonObject.getString("ToLongitud");
+                    AC.DropOffAddress = jsonObject.getString("ToAddress");
+                    AC.ReqPaymentTypeId = jsonObject.getString("ReqPaymentTypeId").equals("") ? null : Integer.parseInt(jsonObject.getString("ReqPaymentTypeId"));
+                    AC.ReqPaymentTypeName = jsonObject.getString("ReqPaymentTypeName");
+                    AC.ReqServiceTypeId = jsonObject.getString("ReqServiceTypeId").equals("") ? null : Integer.parseInt(jsonObject.getString("ReqServiceTypeId"));
+                    AC.ReqServiceTypeName = jsonObject.getString("ReqServiceTypeName");
+                    AC.CreationDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("CreationDate"));
+                    AC.ReqStatus = jsonObject.getString("ReqStatus");
+                    AC.AcceptedByDrvUnityId = jsonObject.getString("AcceptedByUnityId").equals("") ? null : Integer.parseInt(jsonObject.getString("AcceptedByUnityId"));
+                    AC.DrvGivenName = jsonObject.getString("DriverGivenName");
+                    AC.DrvLastName = jsonObject.getString("DriverLastName");
+                    AC.DrvNickName = jsonObject.getString("DriverNickName");
+                    AC.DrvPhoto = jsonObject.getString("DriverPhoto");
+                    AC.DriverTotalCompleted = jsonObject.getString("DriverTotalCompleted").equals("") ? null : Integer.parseInt(jsonObject.getString("DriverTotalCompleted"));
+                    AC.DriverRate = jsonObject.getString("DriverRate").equals("") ? null : Double.parseDouble(jsonObject.getString("DriverRate"));
+                    AC.DriverSetupDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("DriverSetupDate"));
+                    AC.DrvCellphone = jsonObject.getString("DriverCellPhone");
+                    AC.LicensePlate = jsonObject.getString("LicensePlateNumber");
+                    AC.AutobileBrand = jsonObject.getString("VehicleMake");
+                    AC.AutomobileModel = jsonObject.getString("VehicleModel");
+                    AC.AutomobileColor = jsonObject.getString("VehicleColor");
+                    AC.AutomobileYear = jsonObject.getString("VehicleYear");
+                    AC.AttendedDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("AttendedDate"));
+                    AC.EndedDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("EndedDate"));
+                    AC.EstimatedDistance = jsonObject.getString("EstimatedDistance").equals("") ? null : Double.parseDouble(jsonObject.getString("EstimatedDistance"));
+                    AC.EstimatedTime = jsonObject.getString("EstimatedTime").equals("") ? null : Double.parseDouble(jsonObject.getString("EstimatedTime"));
+                    AC.EstimatedFare = jsonObject.getString("EstimatedFare").equals("") ? null : Double.parseDouble(jsonObject.getString("EstimatedFare"));
+                    String algo = jsonObject.getString("TotalDistance");
+                    if (jsonObject.getString("TotalDistance").trim().isEmpty() || jsonObject.getString("TotalDistance").contains("null") || jsonObject.getString("TotalDistance") == null) {
+                        AC.TotalDistance = 0.0;
+                    } else {
+                        AC.TotalDistance = Double.parseDouble(jsonObject.getString("TotalDistance"));
+                    }
+                    if (jsonObject.getString("TotalTime").trim().isEmpty() || jsonObject.getString("TotalTime").contains("null") || jsonObject.getString("TotalTime") == null) {
+                        AC.TotalTime = 0.0;
+                    } else {
+                        AC.TotalTime = Double.parseDouble(jsonObject.getString("TotalTime"));
+                    }
+                    if (jsonObject.getString("TotalFare").trim().isEmpty() || jsonObject.getString("TotalFare").contains("null") || jsonObject.getString("TotalFare") == null) {
+                        AC.TotalFare = 0.0;
+                    } else {
+                        AC.TotalFare = Double.parseDouble(jsonObject.getString("TotalFare"));
+                    }
+                    trvlReq.add(AC);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    continue;
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
         }
-        return travelRequest;
+        // Return new object
+        return trvlReq;
     }
 }

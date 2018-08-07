@@ -5,13 +5,16 @@
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="5dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".Fragment_Wizard_CreateAccount">
 
     <!-- Wrapper -->
     <android.support.v7.widget.LinearLayoutCompat
-        android:layout_margin="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -31,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <View
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/ORIDarkGray"
                 android:layout_width="match_parent"
                 android:layout_height="1dp" />
@@ -48,21 +51,22 @@
             android:layout_height="wrap_content">
             <android.support.v7.widget.AppCompatTextView
                 android:text="Registro de conductores"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/ORIBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.LinearLayoutCompat
                 android:orientation="vertical"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.v7.widget.AppCompatSpinner
+                <Spinner
                     android:id="@+id/sprAvailableCities"
                     android:background="@drawable/template_frame_gray"
                     android:prompt="@string/WizardCreateAccount_CitiesHeader"
                     android:spinnerMode="dialog"
-                    android:padding="16dp"
+                    android:padding="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -114,7 +118,7 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:hint="Acepto los"
                     android:textAlignment="textEnd"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -122,13 +126,13 @@
                     android:id="@+id/btnTermsInfo"
                     android:hint="Términos y condiciones"
                     android:textColorHint="@color/ORISkyBlue"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:background="@android:color/transparent"
                     android:layout_weight="0"
                     android:layout_marginStart="3dp"
                     android:layout_marginEnd="3dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="40dp" />
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/swTermsAcceptedChecked"
                     android:layout_weight="0"
@@ -153,11 +157,11 @@
                 android:textAllCaps="false"
                 android:textColor="@color/ORIWhite"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:background="@drawable/template_bluebutton"
+                android:background="@drawable/template_skybluebutton"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="35dp" />
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v7.widget.LinearLayoutCompat>
 </FrameLayout>

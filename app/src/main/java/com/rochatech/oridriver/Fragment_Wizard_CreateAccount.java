@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.SwitchCompat;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,8 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
     connectToService _svcConnection;
     Common obj;
     View view;
+    Double _screenSize;
+    DisplayMetrics dm;
 
     Spinner sprAvailableCities;
     EditText txtMobile, txtMail, txtPassword, txtConfirmPassword;
@@ -51,9 +54,9 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
     }
 
     public void SetProfilePicture(Bitmap picture) {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        profilePicture = picture;
-        profilePicture.compress(Bitmap.CompressFormat.PNG,100, outputStream);
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//        profilePicture = picture;
+//        profilePicture.compress(Bitmap.CompressFormat.PNG,100, outputStream);
     }
 
     @Override
@@ -63,8 +66,7 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_wizard_createaccount, container, false);
         obj = new Common(context);
         _svcConnection = new connectToService(context, obj.GetSharedPreferencesValue(context, "SessionToken"));
@@ -133,7 +135,11 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
             @Override
             public void onError(String message) {
                 obj.CloseLoadingScreen();
-                Common.DialogStatusAlert(context, message, getResources().getString(R.string.WizardCreateAccount_LoadCitiesFailed), "Error");
+                if (message.contains("NO_CONNECTION")) {
+                    Common.DialogStatusAlert(context,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                } else {
+                    Common.DialogStatusAlert(context, message, getResources().getString(R.string.WizardCreateAccount_LoadCitiesFailed), "Error");
+                }
             }
 
             @Override
@@ -154,9 +160,9 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
                     }
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(context,android.R.layout.simple_spinner_item,list);
-                adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+                adapter.setDropDownViewResource(android.R.layout.select_dialog_item);
                 sprAvailableCities.setAdapter(adapter);
-                sprAvailableCities.setPadding(0,25,0,25);
+                SetPaddingToSpinner();
                 obj.CloseLoadingScreen();
             }
         });
@@ -170,7 +176,22 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
         boolean terms = swTermsAcceptedChecked.isChecked();
         String Errors = AnyErrors(city, mobile, email, password, confirmPassword, terms);
         if (Errors.trim().isEmpty()) {
-            StartCreatingAccount(city, email, mobile, Common.SHA256(password));
+            Bundle bundle = getArguments();
+            String givenname = bundle.getString("ori_givenname");
+            String gender = bundle.getString("ori_genderselected");
+            Fragment fragment;
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            fragment = new Fragment_Wizard_NotificationAlert();
+            bundle = new Bundle();
+            bundle.putString("DisplayOpt","AccountCreated");
+            bundle.putString("ori_createdname", givenname);
+            bundle.putString("ori_createdemail", email);
+            bundle.putString("ori_createdgender", gender);
+            fragment.setArguments(bundle);
+            transaction.setCustomAnimations(R.animator.anim_slide_inright, R.animator.anim_slide_outleft);
+            obj.CloseLoadingScreen();
+            transaction.replace(R.id.dialogframecontainer, fragment, "ori_notificationalert").commit();
+//            StartCreatingAccount(city, email, mobile, Common.SHA256(password));
         } else {
             obj.CloseLoadingScreen();
             Common.DialogStatusAlert(context, Errors, getResources().getString(R.string.ORIGlobal_AnyErrorsTitle), "Error");
@@ -290,18 +311,65 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
         btnTermsInfo = view.findViewById(R.id.btnTermsInfo);
         swTermsAcceptedChecked = view.findViewById(R.id.swTermsAcceptedChecked);
         btnCreateAccountPressed = view.findViewById(R.id.btnCreateAccountPressed);
+        GetScreenInches();
+        SetBtnHeightByScreenInches();
     }
     private String AnyErrors(int city, String mobile, String email, String password, String confirmPassword, boolean terms) {
         String result = "";
-        result += (mobile.trim().isEmpty()) ? getResources().getString(R.string.WizardCreateAccount_MobileEmpty) + "\n" : "";
-        result += (mobile.length() < 10) ? getResources().getString(R.string.WizardCreateAccount_MobileNotValid) + "\n"  : "";
-        result += (city < 1) ? getResources().getString(R.string.WizardCreateAccount_NoCitySelected) + "\n"  : "";
-        result += (email.trim().isEmpty()) ? getResources().getString(R.string.WizardCreateAccount_EmailEmpty) + "\n"  : "";
-        result += (!Common.IsEmail(email)) ? getResources().getString(R.string.WizardCreateAccount_EmailNotValid) + "\n"  : "";
-        result += (password.trim().isEmpty()) ? getResources().getString(R.string.WizardCreateAccount_PasswordEmpty) + "\n"  : "";
-        result += (!password.equals(confirmPassword)) ? getResources().getString(R.string.WizardCreateAccount_PasswordNotSame) + "\n"  : "";
-        result += (!terms) ? getResources().getString(R.string.WizardCreateAccount_TermsNotAccepted) : "";
+//        result += (mobile.trim().isEmpty()) ? getResources().getString(R.string.WizardCreateAccount_MobileEmpty) + "\n" : "";
+//        result += (mobile.length() < 10) ? getResources().getString(R.string.WizardCreateAccount_MobileNotValid) + "\n"  : "";
+//        result += (city < 1) ? getResources().getString(R.string.WizardCreateAccount_NoCitySelected) + "\n"  : "";
+//        result += (email.trim().isEmpty()) ? getResources().getString(R.string.WizardCreateAccount_EmailEmpty) + "\n"  : "";
+//        result += (!Common.IsEmail(email)) ? getResources().getString(R.string.WizardCreateAccount_EmailNotValid) + "\n"  : "";
+//        result += (password.trim().isEmpty()) ? getResources().getString(R.string.WizardCreateAccount_PasswordEmpty) + "\n"  : "";
+//        result += (!password.equals(confirmPassword)) ? getResources().getString(R.string.WizardCreateAccount_PasswordNotSame) + "\n"  : "";
+//        result += (!terms) ? getResources().getString(R.string.WizardCreateAccount_TermsNotAccepted) : "";
         return result;
+    }
+    private void GetScreenInches() {
+        dm = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+        Double x = Math.pow(dm.widthPixels/dm.xdpi,2);
+        Double y = Math.pow(dm.heightPixels/dm.xdpi,2);
+        Double inches = Math.sqrt(x+y);
+        _screenSize = inches;
+    }
+    private void SetBtnHeightByScreenInches() {
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+        int size = 0;
+        if (width == 480 && height == 800) {
+            size = 6;
+        } else if (width < 720 && height < 1184) {
+            size = 8;
+        } else if (width == 720 && height == 1184) {
+            size = 15;
+        } else if ((width > 720 && height > 1184) && (width < 1081 && height < 1920)) {
+            size = 20;
+        }
+        if (size != 0) {
+            txtConfirmPassword.setPadding(size,size,size,size);
+            txtPassword.setPadding(size,size,size,size);
+            txtMail.setPadding(size,size,size,size);
+            txtMobile.setPadding(size,size,size,size);
+        }
+    }
+    private void SetPaddingToSpinner() {
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+        int size = 0;
+        if (width == 480 && height == 800) {
+            size = 5;
+        } else if (width < 720 && height < 1184) {
+            size = 8;
+        } else if (width == 720 && height == 1184) {
+            size = 15;
+        } else if ((width > 720 && height > 1184) && (width < 1081 && height < 1920)) {
+            size = 15;
+        }
+        if (size != 0) {
+            sprAvailableCities.setPadding(size,size,size,size);
+        }
     }
     //endregion
 }

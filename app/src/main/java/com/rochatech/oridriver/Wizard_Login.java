@@ -30,6 +30,7 @@ public class Wizard_Login extends AppCompatActivity {
     connectToService _svcConnection;
     Common obj;
     String deviceToken;
+    Support_BottomDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +75,7 @@ public class Wizard_Login extends AppCompatActivity {
         ForgotPasswordPressed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Support_BottomDialog dialog = new Support_BottomDialog();
+                dialog = new Support_BottomDialog();
                 dialog.Support_BottomDialog("PasswordRecover");
                 dialog.show(getSupportFragmentManager(), "ori_recoverpassword");
             }
@@ -82,9 +83,9 @@ public class Wizard_Login extends AppCompatActivity {
         CreateAccountPressed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Support_BottomDialog dialog = new Support_BottomDialog();
-                dialog.Support_BottomDialog("ProfilePicture");
-                dialog.show(getSupportFragmentManager(), "ori_profilepicture");
+                dialog = new Support_BottomDialog();
+                dialog.Support_BottomDialog("LoadingView");
+                dialog.show(getSupportFragmentManager(), "ori_loadingview");
             }
         });
 
@@ -111,7 +112,14 @@ public class Wizard_Login extends AppCompatActivity {
             @Override
             public void onError(String message) {
                 obj.GetProgressDialogLoadinScreen().dismiss();
-                Common.DialogStatusAlert(context, message, getResources().getString(R.string.ORIGlobal_webServiceError),"Error");
+                if (message.contains("NO_CONNECTION")) {
+                    Common.DialogStatusAlert(Wizard_Login.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                } else if (message.contains("Error_InvalidToken")){
+                    _svcConnection.LogOffUser(Integer.parseInt(obj.GetSharedPreferencesValue(Wizard_Login.this,"UID")));
+                    Common.LogoffByInvalidToken(Wizard_Login.this);
+                } else {
+                    Common.DialogStatusAlert(context, message, getResources().getString(R.string.ORIGlobal_webServiceError),"Error");
+                }
             }
 
             @Override
@@ -207,6 +215,10 @@ public class Wizard_Login extends AppCompatActivity {
                     case "Error_InvalidToken":
                         Common.LogoffByInvalidToken(Wizard_Login.this);
                         break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(context,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                        break;
                 }
             }
 
@@ -240,6 +252,10 @@ public class Wizard_Login extends AppCompatActivity {
                 switch (message) {
                     case "Error_InvalidToken":
                         Common.LogoffByInvalidToken(Wizard_Login.this);
+                        break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(context,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
                         break;
                 }
             }
@@ -276,6 +292,10 @@ public class Wizard_Login extends AppCompatActivity {
                 switch (message) {
                     case "Error_InvalidToken":
                         Common.LogoffByInvalidToken(Wizard_Login.this);
+                        break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(context,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
                         break;
                 }
             }
@@ -361,6 +381,9 @@ public class Wizard_Login extends AppCompatActivity {
         } catch (Exception e) {
             return false;
         }
+    }
+    public void CloseDialogFragment() {
+        dialog.dismiss();
     }
     //endregion
 

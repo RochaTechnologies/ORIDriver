@@ -165,7 +165,14 @@ public class Fragment_Wizard_CreditCard extends Fragment {
             @Override
             public void onError(String message) {
                 obj.CloseLoadingScreen();
-                Common.LogoffByInvalidToken(context);
+                switch (message) {
+                    case "Error_InvalidToken":
+                        Common.LogoffByInvalidToken(context);
+                        break;
+                    case "NO_CONNECTION":
+                        Common.DialogStatusAlert(context,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                        break;
+                }
             }
 
             @Override

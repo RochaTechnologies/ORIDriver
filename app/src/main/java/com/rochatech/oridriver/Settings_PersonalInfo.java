@@ -103,6 +103,10 @@ public class Settings_PersonalInfo extends AppCompatActivity {
                         obj.CloseLoadingScreen();
                         Common.LogoffByInvalidToken(Settings_PersonalInfo.this);
                         break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Settings_PersonalInfo.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                        break;
                 }
             }
 
@@ -132,6 +136,10 @@ public class Settings_PersonalInfo extends AppCompatActivity {
                     case "Error_InvalidToken":
                         obj.CloseLoadingScreen();
                         Common.LogoffByInvalidToken(Settings_PersonalInfo.this);
+                        break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Settings_PersonalInfo.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
                         break;
                 }
             }

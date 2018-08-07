@@ -26,6 +26,9 @@
     <style name="ORIRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/template_orirating</item>
     </style>
+    <style name="ORIPassengerRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/template_oripassengerrating</item>
+    </style>
 
     <style name="Custom.ActionBar" parent="Widget.AppCompat.ActionBar">
         <item name="background">@color/colorPrimary</item>
@@ -43,5 +46,7 @@
     <style name="CustomCheckbox" parent="Widget.AppCompat.CompoundButton.CheckBox">
         <item name="android:fontFamily">@font/montserrat_regular</item>
     </style>
+
+
 
 </resources>

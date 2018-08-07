@@ -96,6 +96,10 @@ public class Settings_BankAccount extends AppCompatActivity {
                     case "Error_InvalidToken":
                         Common.LogoffByInvalidToken(Settings_BankAccount.this);
                         break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Settings_BankAccount.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                        break;
                 }
             }
 
@@ -156,7 +160,7 @@ public class Settings_BankAccount extends AppCompatActivity {
             case "EMPTY":
                 obj.CloseLoadingScreen();
                 CardButton.setText("Agregar cuenta");
-                CardButton.setBackground(getResources().getDrawable(R.drawable.template_ligthgreenbutton));
+                CardButton.setBackground(getResources().getDrawable(R.drawable.template_greenbutton));
                 CreditCardNumber.setText("XXXX-XXXX-XXXX-XXXX");
                 break;
         }
@@ -168,6 +172,10 @@ public class Settings_BankAccount extends AppCompatActivity {
                 switch (message) {
                     case "Error_InvalidToken":
                         Common.LogoffByInvalidToken(Settings_BankAccount.this);
+                        break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Settings_BankAccount.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
                         break;
                 }
             }
@@ -204,6 +212,8 @@ public class Settings_BankAccount extends AppCompatActivity {
                 obj.CloseLoadingScreen();
                 Snackbar snackbar = Snackbar.make(BankAccountLinear,"¡Tarjeta eliminada!",Snackbar.LENGTH_SHORT);
                 snackbar.show();
+
+                UpdatePreferredPaymentType();
             }
         });
     }
@@ -216,6 +226,29 @@ public class Settings_BankAccount extends AppCompatActivity {
         CreditCardNumber = findViewById(R.id.CreditCardNumber);
         CreditCardHolder = findViewById(R.id.CreditCardHolder);
         CardButton = findViewById(R.id.CardButton);
+    }
+    private void UpdatePreferredPaymentType() {
+        int UID = Integer.parseInt(obj.GetSharedPreferencesValue(Settings_BankAccount.this,"UID"));
+        String paymentType = obj.GetSharedPreferencesValue(Settings_BankAccount.this,"settings_Payment");
+        _svcConnection.UpdatePreferredPaymentTypeId(UID, paymentType, new WSResponseListener() {
+            @Override
+            public void onError(String message) {
+                switch (message) {
+                    case "Error_InvalidToken":
+                        Common.LogoffByInvalidToken(Settings_BankAccount.this);
+                        break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Settings_BankAccount.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                        break;
+                }
+            }
+
+            @Override
+            public void onResponseObject(JSONArray jsonResponse) {
+
+            }
+        });
     }
     //endregion
 

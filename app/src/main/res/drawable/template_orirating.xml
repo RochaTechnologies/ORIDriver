@@ -2,14 +2,14 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@android:id/background">
         <bitmap
-            android:src="@drawable/ic_header_ratingempty"/>
+            android:src="@drawable/ic_menu_headerrating_empty48"/>
     </item>
     <item android:id="@android:id/secondaryProgress">
         <bitmap
-            android:src="@drawable/ic_header_ratingempty"/>
+            android:src="@drawable/ic_menu_headerrating_empty48"/>
     </item>
     <item android:id="@android:id/progress">
         <bitmap
-            android:src="@drawable/ic_header_ratingfull" />
+            android:src="@drawable/ic_menu_headerrating48" />
     </item>
 </layer-list>

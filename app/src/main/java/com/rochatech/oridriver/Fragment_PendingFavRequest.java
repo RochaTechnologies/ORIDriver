@@ -53,7 +53,10 @@ public class Fragment_PendingFavRequest extends Fragment {
             public void onError(String message) {
                 switch (message) {
                     case "Error_InvalidToken":
-                        LogoffUser(obj, view);
+                        Common.LogoffByInvalidToken(getContext());
+                        break;
+                    case "NO_CONNECTION":
+                        Common.DialogStatusAlert(getContext(),getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
                         break;
                 }
             }
@@ -126,7 +129,7 @@ public class Fragment_PendingFavRequest extends Fragment {
             }
             TextView passName = v.findViewById(R.id.PassengerName);
             TextView passReqDate = v.findViewById(R.id.PassengerDateRequest);
-            ImageView passPic = v.findViewById(R.id.PassengerProfilePic);
+            ImageView passPic = v.findViewById(R.id.DriverProfilePic);
             passName.setText(favpending.get(position).GetPassengerNickName());
             passReqDate.setText(Common.getAppStringFullDateFromFullDate(favpending.get(position).GetAddedOn()));
             /*passpic*/

@@ -47,7 +47,7 @@ public class Fragment_Wizard_ForgotPassword extends Fragment {
                 email = txtRecoverMail.getText().toString();
                 String Errors = AnyErrors(email);
                 if (Errors.trim().isEmpty()) {
-                    SendRecoverEmail(email);
+//                    SendRecoverEmail(email);
                     Bundle bundle = new Bundle();
                     bundle.putString("DisplayOpt","RecoverPassword");
                     bundle.putString("RecoverEmail",email);

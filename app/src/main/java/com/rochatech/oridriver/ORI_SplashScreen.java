@@ -53,7 +53,15 @@ public class ORI_SplashScreen extends AppCompatActivity {
             @Override
             public void onError(String message) {
 //                obj.GetProgressDialogLoadinScreen().dismiss();
-                goToLogin(ORI_SplashScreen.this,"Lo sentimos, pero ocurrió un error al momento de iniciar sesión.","Ocurrió un error al tratar de iniciar sesión");
+                if (message.contains("NO_CONNECTION")) {
+                    obj.CloseLoadingScreen();
+                    Common.DialogStatusAlert(context,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                } else if (message.contains("Error_InvalidToken")){
+                    _svcConnection.LogOffUser(Integer.parseInt(obj.GetSharedPreferencesValue(ORI_SplashScreen.this,"UID")));
+                    Common.LogoffByInvalidToken(ORI_SplashScreen.this);
+                } else {
+                    Common.DialogStatusAlert(context, message, getResources().getString(R.string.ORIGlobal_webServiceError),"Error");
+                }
             }
 
             @Override
@@ -137,6 +145,10 @@ public class ORI_SplashScreen extends AppCompatActivity {
                         _svcConnection.LogOffUser(Integer.parseInt(obj.GetSharedPreferencesValue(ORI_SplashScreen.this,"UID")));
                         Common.LogoffByInvalidToken(ORI_SplashScreen.this);
                         break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(context,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
+                        break;
                 }
             }
 
@@ -206,6 +218,10 @@ public class ORI_SplashScreen extends AppCompatActivity {
                     case "Error_InvalidToken":
                         _svcConnection.LogOffUser(Integer.parseInt(obj.GetSharedPreferencesValue(ORI_SplashScreen.this,"UID")));
                         Common.LogoffByInvalidToken(ORI_SplashScreen.this);
+                        break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(context,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),"Error");
                         break;
                 }
             }

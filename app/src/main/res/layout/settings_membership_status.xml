@@ -1,359 +1,364 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@color/ORILightGray"
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Settings_Membership">
-    <android.support.v7.widget.AppCompatTextView
-        android:text="Detalles"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textAllCaps="true"
-        android:textColor="@color/ORIBlack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dip"
-        android:layout_marginTop="20dip"
-        android:layout_marginBottom="5dip" />
-    <View
-        android:background="@color/ORILightGray"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
+    android:layout_height="match_parent">
     <android.support.v7.widget.LinearLayoutCompat
-        android:background="#fff"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
+        android:background="@color/ORIWhite"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+        android:layout_height="match_parent"
+        tools:context=".Settings_Membership">
+        <android.support.v7.widget.AppCompatTextView
+            android:text="Detalles"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAllCaps="true"
+            android:textColor="@color/ORIBlack"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:text="Estatus"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/ORIBlack"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:layout_marginStart="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/IsMembershipActive"
-                android:clickable="false"
-                android:theme="@style/ORISwitch"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:layout_marginEnd="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dip"
+            android:layout_marginTop="20dip"
+            android:layout_marginBottom="5dip" />
         <View
-            android:background="@color/ORILightGray"
-            android:layout_marginStart="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="horizontal"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:text="Tipo de servicio"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/ORIBlack"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:layout_marginStart="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/ServiceType"
-                android:text="ORIService"
-                android:textColor="@color/ORISkyBlue"
-                android:textAlignment="viewEnd"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical|end"
-                android:layout_weight="1"
-                android:layout_marginEnd="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <View
-            android:background="@color/ORILightGray"
-            android:layout_marginStart="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="horizontal"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:text="Miembro desde"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/ORIBlack"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:layout_marginStart="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/MemberSince"
-                android:text="30/12/2019"
-                android:textColor="@color/ORISkyBlue"
-                android:textAlignment="viewEnd"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical|end"
-                android:layout_weight="1"
-                android:layout_marginEnd="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <View
-            android:background="@color/ORILightGray"
-            android:layout_marginStart="15dp"
+            android:background="@color/ORIGray"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
         <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="horizontal"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:text="Vencimiento"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/ORIBlack"
-                android:layout_weight="1"
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="Estatus"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/ORIBlack"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/IsMembershipActive"
+                    android:clickable="false"
+                    android:theme="@style/ORISwitch"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <View
+                android:background="@color/ORIGray"
                 android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/MembershipLast"
-                android:text="30/12/2019"
-                android:textColor="@color/ORISkyBlue"
-                android:textAlignment="viewEnd"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical|end"
-                android:layout_weight="1"
-                android:layout_marginEnd="15dp"
+                android:layout_height="1dp" />
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="Tipo de servicio"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/ORIBlack"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/ServiceType"
+                    android:text="ORIService"
+                    android:textColor="@color/ORISkyBlue"
+                    android:textAlignment="viewEnd"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <View
+                android:background="@color/ORIGray"
+                android:layout_marginStart="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="Miembro desde"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/ORIBlack"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/MemberSince"
+                    android:text="30/12/2019"
+                    android:textColor="@color/ORISkyBlue"
+                    android:textAlignment="viewEnd"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <View
+                android:background="@color/ORIGray"
+                android:layout_marginStart="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="Vencimiento"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/ORIBlack"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/MembershipLast"
+                    android:text="30/12/2019"
+                    android:textColor="@color/ORISkyBlue"
+                    android:textAlignment="viewEnd"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
         </android.support.v7.widget.LinearLayoutCompat>
+        <View
+            android:background="@color/ORIGray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:text="Vehiculo"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAllCaps="true"
+            android:textColor="@color/ORIBlack"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dip"
+            android:layout_marginTop="20dip"
+            android:layout_marginBottom="5dip" />
+        <View
+            android:background="@color/ORIGray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <!---->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="Marca"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/ORIBlack"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/VehicleBrand"
+                    android:text="Mercedes Benz"
+                    android:textColor="@color/ORISkyBlue"
+                    android:textAllCaps="true"
+                    android:textAlignment="viewEnd"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <View
+                android:background="@color/ORIGray"
+                android:layout_marginStart="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="Modelo"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/ORIBlack"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/VehicleModel"
+                    android:text="Clase CLA"
+                    android:textColor="@color/ORISkyBlue"
+                    android:textAlignment="viewEnd"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <View
+                android:background="@color/ORIGray"
+                android:layout_marginStart="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="Color"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/ORIBlack"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/VehicleColor"
+                    android:text="Negro"
+                    android:textColor="@color/ORISkyBlue"
+                    android:textAlignment="viewEnd"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <View
+                android:background="@color/ORIGray"
+                android:layout_marginStart="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="Año"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/ORIBlack"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/VehicleYear"
+                    android:text="2019"
+                    android:textColor="@color/ORISkyBlue"
+                    android:textAlignment="viewEnd"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <View
+                android:background="@color/ORIGray"
+                android:layout_marginStart="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:text="Placas"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/ORIBlack"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/VehiclePlates"
+                    android:text="ABC123"
+                    android:textColor="@color/ORISkyBlue"
+                    android:textAlignment="viewEnd"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v7.widget.LinearLayoutCompat>
+        <View
+            android:background="@color/ORIGray"
+            android:layout_marginStart="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
     </android.support.v7.widget.LinearLayoutCompat>
-    <View
-        android:background="@color/ORILightGray"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:text="Vehiculo"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textAllCaps="true"
-        android:textColor="@color/ORIBlack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dip"
-        android:layout_marginTop="20dip"
-        android:layout_marginBottom="5dip" />
-    <View
-        android:background="@color/ORILightGray"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-<!---->
-    <android.support.v7.widget.LinearLayoutCompat
-        android:background="#fff"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:text="Marca"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/ORIBlack"
-                android:layout_gravity="center_vertical|end"
-                android:layout_weight="1"
-                android:layout_marginStart="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/VehicleBrand"
-                android:text="Mercedes Benz"
-                android:textColor="@color/ORISkyBlue"
-                android:textAllCaps="true"
-                android:textAlignment="viewEnd"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical|end"
-                android:layout_weight="1"
-                android:layout_marginEnd="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <View
-            android:background="@color/ORILightGray"
-            android:layout_marginStart="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="horizontal"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:text="Modelo"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/ORIBlack"
-                android:layout_gravity="center_vertical|end"
-                android:layout_weight="1"
-                android:layout_marginStart="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/VehicleModel"
-                android:text="Clase CLA"
-                android:textColor="@color/ORISkyBlue"
-                android:textAlignment="viewEnd"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical|end"
-                android:layout_weight="1"
-                android:layout_marginEnd="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <View
-            android:background="@color/ORILightGray"
-            android:layout_marginStart="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="horizontal"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:text="Color"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/ORIBlack"
-                android:layout_gravity="center_vertical|end"
-                android:layout_weight="1"
-                android:layout_marginStart="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/VehicleColor"
-                android:text="Negro"
-                android:textColor="@color/ORISkyBlue"
-                android:textAlignment="viewEnd"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical|end"
-                android:layout_weight="1"
-                android:layout_marginEnd="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <View
-            android:background="@color/ORILightGray"
-            android:layout_marginStart="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="horizontal"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:text="Año"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/ORIBlack"
-                android:layout_gravity="center_vertical|end"
-                android:layout_weight="1"
-                android:layout_marginStart="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/VehicleYear"
-                android:text="2019"
-                android:textColor="@color/ORISkyBlue"
-                android:textAlignment="viewEnd"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical|end"
-                android:layout_weight="1"
-                android:layout_marginEnd="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <View
-            android:background="@color/ORILightGray"
-            android:layout_marginStart="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-
-        <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="horizontal"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:text="Placas"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/ORIBlack"
-                android:layout_gravity="center_vertical|end"
-                android:layout_weight="1"
-                android:layout_marginStart="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/VehiclePlates"
-                android:text="ABC123"
-                android:textColor="@color/ORISkyBlue"
-                android:textAlignment="viewEnd"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical|end"
-                android:layout_weight="1"
-                android:layout_marginEnd="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
-    </android.support.v7.widget.LinearLayoutCompat>
-    <View
-        android:background="@color/ORILightGray"
-        android:layout_marginStart="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-</android.support.v7.widget.LinearLayoutCompat>
+</android.support.v4.widget.NestedScrollView>
