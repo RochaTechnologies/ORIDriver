@@ -24,7 +24,7 @@
             android:layout_height="wrap_content">
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/dialogLoadingMsg"
-                android:text="DialogLoadingMsg"
+                android:text="@string/ORI_DefaultValueString"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/ORIBlack"
                 android:layout_width="match_parent"

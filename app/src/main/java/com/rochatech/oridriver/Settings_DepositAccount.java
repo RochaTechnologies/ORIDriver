@@ -1,14 +1,19 @@
 package com.rochatech.oridriver;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.rochatech.library.Common;
 import com.rochatech.webService.*;
 import org.json.JSONArray;
@@ -26,6 +31,7 @@ public class Settings_DepositAccount extends AppCompatActivity {
     String GID = "";
     String bankActId = "";
     String GCID = "";
+    Integer _UID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,7 @@ public class Settings_DepositAccount extends AppCompatActivity {
         obj = new Common(Settings_DepositAccount.this);
         _svcConnection = new connectToService(Settings_DepositAccount.this, obj.GetSharedPreferencesValue(Settings_DepositAccount.this, "SessionToken"));
         UID = obj.GetSharedPreferencesValue(Settings_DepositAccount.this, "UID");
+        _UID = Integer.parseInt(UID);
         GID = obj.GetSharedPreferencesValue(Settings_DepositAccount.this, "GID");
         InitAppControls();
         LoadUserPaymentInfo(UID, "1");
@@ -41,9 +48,9 @@ public class Settings_DepositAccount extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String actionbtntext = ActionBtnPressed.getText().toString();
-                obj.ShowLoadingScreen(Settings_DepositAccount.this,"Realizando cambios, por favor espere...");
                 switch (actionbtntext) {
                     case "Guardar información":
+                        obj.ShowLoadingScreen(Settings_DepositAccount.this,"Realizando cambios, por favor espere...");
                         String holder = ActHolderName.getText().toString();
                         String alias = ActNickName.getText().toString();
                         String CLABE = ActCLABE.getText().toString();
@@ -56,26 +63,55 @@ public class Settings_DepositAccount extends AppCompatActivity {
                         }
                         break;
                     case "Eliminar información":
-                        AlertDialog.Builder deleteAcnt = new AlertDialog.Builder(Settings_DepositAccount.this);
-                        deleteAcnt.setIcon(R.drawable.ic_delete);
-                        deleteAcnt.setTitle("¿Desea eliminar este cuenta de depósitos?");
-                        deleteAcnt.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                        android.app.AlertDialog.Builder dialog = new android.app.AlertDialog.Builder(Settings_DepositAccount.this);
+                        LayoutInflater inflater = getLayoutInflater();
+                        View dialogView = inflater.inflate(R.layout.template_dialogstatusalert, null);
+                        TextView dialogTitle = dialogView.findViewById(R.id.alertDialogTitle);
+                        TextView dialogMsg = dialogView.findViewById(R.id.alertDialogMsg);
+                        ImageView dialogIcon = dialogView.findViewById(R.id.alertDialogIcon);
+                        dialogTitle.setText("¿Desea eliminar este cuenta de depósitos?");
+                        dialogMsg.setVisibility(View.GONE);
+                        dialogIcon.setImageResource(R.drawable.ic_error);
+                        dialog.setView(dialogView);
+                        dialog.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                obj.ShowLoadingScreen(Settings_DepositAccount.this,"Realizando cambios, por favor espere...");
                                 DeleteActInfo(Integer.parseInt(UID), Integer.parseInt(bankActId), GCID);
                             }
                         });
-                        deleteAcnt.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        dialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
                             }
                         });
-                        deleteAcnt.show();
+                        dialog.show();
                         break;
                 }
             }
         });
+
+        //region Hide softkeyboard
+        ActHolderName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Common.HideKeyboard(v, Settings_DepositAccount.this);
+            }
+        });
+        ActCLABE.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Common.HideKeyboard(v, Settings_DepositAccount.this);
+            }
+        });
+        ActNickName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Common.HideKeyboard(v, Settings_DepositAccount.this);
+            }
+        });
+        //endregion
     }
 
 
@@ -130,12 +166,12 @@ public class Settings_DepositAccount extends AppCompatActivity {
                     ActNickName.setText(actnickname);
                     ActNickName.setEnabled(false);
                     ActionBtnPressed.setText("Eliminar información");
-                    ActionBtnPressed.setBackground(getResources().getDrawable(R.drawable.template_darkpinkbutton));
+                    ActionBtnPressed.setBackground(getResources().getDrawable(R.drawable.template_redbutton));
                     obj.CloseLoadingScreen();
                     break;
                 case "EMPTY":
                     ActionBtnPressed.setText("Guardar información");
-                    ActionBtnPressed.setBackground(getResources().getDrawable(R.drawable.template_greenbutton));
+                    ActionBtnPressed.setBackground(getResources().getDrawable(R.drawable.template_bluebutton));
                     obj.CloseLoadingScreen();
                     break;
             }
@@ -166,13 +202,14 @@ public class Settings_DepositAccount extends AppCompatActivity {
                                 obj.CloseLoadingScreen();
                                 Snackbar snackbar = Snackbar.make(DepositLinear,"¡Cuenta de depósito agregada!",Snackbar.LENGTH_SHORT);
                                 snackbar.show();
+                                LoadUserPaymentInfo(UID,"1");
                             } catch (Exception e) {
                                 obj.CloseLoadingScreen();
                                 Common.DialogStatusAlert(Settings_DepositAccount.this, e.toString(),getResources().getString(R.string.ORIGlobal_webServiceError),"Error");
                             }
                             break;
                     }
-
+                    obj.CloseLoadingScreen();
                 } catch (JSONException e) {
                     obj.CloseLoadingScreen();
                     Common.DialogStatusAlert(Settings_DepositAccount.this, e.toString(), getResources().getString(R.string.ORIGlobal_webServiceError),"Error");
@@ -197,23 +234,16 @@ public class Settings_DepositAccount extends AppCompatActivity {
 
             @Override
             public void onResponseObject(JSONArray jsonResponse) {
-                try {
-                    /*{"Application":"ApplicationUnityService","Request":"Remove_AccountForService","WSResponse":"OK","Message":"AccountDeleted"}*/
-                    JSONObject response = jsonResponse.getJSONObject(0);
-                    String status = response.getString("Message");
-                    switch (status) {
-                        case "AccountDeleted":
-                            ActionBtnPressed.setText("Guardar información");
-                            ActionBtnPressed.setBackgroundColor(getResources().getColor(R.color.ORILightGreen));
-                            obj.CloseLoadingScreen();
-                            Snackbar snackbar = Snackbar.make(DepositLinear,"Cuenta eliminada",Snackbar.LENGTH_SHORT);
-                            snackbar.show();
-                        break;
-                    }
-                } catch (Exception e) {
-                    obj.CloseLoadingScreen();
-                    Common.DialogStatusAlert(Settings_DepositAccount.this, e.toString(),getResources().getString(R.string.ORIGlobal_webServiceError),"");
-                }
+                ActHolderName.setText("");
+                ActCLABE.setText("");
+                ActNickName.setText("");
+                ActionBtnPressed.setText("Guardar información");
+                ActionBtnPressed.setBackground(getResources().getDrawable(R.drawable.template_bluebutton));
+                obj.CloseLoadingScreen();
+                Snackbar snackbar = Snackbar.make(DepositLinear,"Cuenta eliminada",Snackbar.LENGTH_SHORT);
+                snackbar.show();
+
+                obj.CloseLoadingScreen();
             }
         });
     }
@@ -232,7 +262,7 @@ public class Settings_DepositAccount extends AppCompatActivity {
         String result = "";
         result += (holder.trim().isEmpty()) ? getResources().getString(R.string.WizardCreditCard_CardHolderNameEmpty) + "\n" : "";
         result += (holder.trim().matches(".*\\d+.*")) ? getResources().getString(R.string.WizardCreditCard_CardHolderNameLettersOnly) + "\n" : "";
-        result += (!holder.trim().matches("[a-zA-Z0-9 ]*")) ? getResources().getString(R.string.WizardCreditCard_CardHolderNameLettersOnly) + "\n" : "";
+        result += (!holder.trim().matches("^[ A-Za-zéáíóúñÑüÁÉÍÓÚÜ]+$")) ? getResources().getString(R.string.WizardCreditCard_CardHolderNameLettersOnly) + "\n" : "";
         result += (alias.trim().isEmpty()) ? getResources().getString(R.string.WizardCreditCard_CardNickNameEmpty) + "\n" : "";
         result += (clabe.trim().isEmpty()) ? getResources().getString(R.string.WizardCreditCard_CLABEEmpty) + "\n" : "";
         result += (clabe.trim().length() != 18) ? getResources().getString(R.string.WizardCreditCard_CLABEInvalid) + "\n" : "";

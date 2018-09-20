@@ -1,45 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/ORIWhite"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.support.v7.widget.LinearLayoutCompat
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/SettingsLinear"
-        android:background="@color/ORIWhite"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Settings_DriverNPayment">
-        <android.support.v7.widget.LinearLayoutCompat
-            android:layout_marginTop="3dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/slideDownMsg"
-                android:visibility="gone"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Deslice hacia abajo para ver todas las opciones"
-                android:textColor="@color/ORIBlack"
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.v7.widget.LinearLayoutCompat>
         <android.support.v7.widget.AppCompatTextView
-            android:text="Conductores"
+            android:text="@string/XML_DriversNPayments_DriversTitle"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textAllCaps="true"
             android:textColor="@color/ORIBlack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:layout_marginStart="15dip"
-            android:layout_marginTop="20dip"
             android:layout_marginBottom="5dip" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIGray" />
+            android:background="@color/ORIDisable" />
         <android.support.v7.widget.LinearLayoutCompat
             android:id="@+id/maleDriverLayout"
             android:orientation="horizontal"
@@ -47,10 +34,10 @@
             android:layout_height="wrap_content" >
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/maleDriverIcon"
-                android:src="@drawable/ic_menu_male_blue50x2"
+                android:src="@drawable/ic_menu_male_blue50x3"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dip"
                 android:layout_marginEnd="5dp" />
@@ -115,7 +102,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <View
-                        android:background="@color/ORIGray"
+                        android:background="@color/ORIDisable"
                         android:layout_width="match_parent"
                         android:layout_height="1dp" />
                 </android.support.v7.widget.LinearLayoutCompat>
@@ -128,10 +115,10 @@
             android:layout_height="wrap_content" >
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/femaleDriverIcon"
-                android:src="@drawable/ic_menu_female_blue50x2"
+                android:src="@drawable/ic_menu_female_blue50x3"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dip"
                 android:layout_marginEnd="5dp" />
@@ -196,7 +183,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <View
-                        android:background="@color/ORIGray"
+                        android:background="@color/ORIDisable"
                         android:layout_width="match_parent"
                         android:layout_height="1dp" />
                 </android.support.v7.widget.LinearLayoutCompat>
@@ -209,10 +196,10 @@
             android:layout_height="wrap_content" >
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/bothDriverIcon"
-                android:src="@drawable/ic_menu_malefemale_blue50x2"
+                android:src="@drawable/ic_menu_malefemale_blue50x3"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dip"
                 android:layout_marginEnd="5dp" />
@@ -284,26 +271,23 @@
             </android.support.v7.widget.LinearLayoutCompat>
         </android.support.v7.widget.LinearLayoutCompat>
         <View
-            android:background="@color/ORIGray"
+            android:background="@color/ORIDisable"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
-
-
-
         <android.support.v7.widget.AppCompatTextView
-            android:text="Conductores"
+            android:text="@string/XML_DriversNPayments_PaymentTitle"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textAllCaps="true"
             android:textColor="@color/ORIBlack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dip"
-            android:layout_marginTop="20dip"
+            android:layout_marginTop="25dp"
             android:layout_marginBottom="5dip" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIGray" />
+            android:background="@color/ORIDisable" />
 
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -321,8 +305,8 @@
                 android:layout_marginEnd="2dp"
                 android:layout_weight="0"
                 android:padding="4dp"
-                android:layout_width="45dp"
-                android:layout_height="45dp" />
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
             <android.support.v7.widget.LinearLayoutCompat
                 android:orientation="vertical"
                 android:layout_weight="1"
@@ -331,7 +315,7 @@
                 android:layout_height="wrap_content">
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/creditCardTitle"
-                    android:text="Tarjeta de crédito / débito"
+                    android:text="@string/XML_DriversNPayments_CreditTitle"
                     android:textStyle="bold"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/ORIBlack"
@@ -353,7 +337,7 @@
             android:layout_marginStart="7dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIGray" />
+            android:background="@color/ORIDisable" />
 
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -371,8 +355,8 @@
                 android:layout_marginEnd="2dp"
                 android:layout_weight="0"
                 android:padding="4dp"
-                android:layout_width="45dp"
-                android:layout_height="45dp" />
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
             <android.support.v7.widget.LinearLayoutCompat
                 android:orientation="vertical"
                 android:layout_weight="1"
@@ -381,7 +365,7 @@
                 android:layout_height="wrap_content">
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/cashTitle"
-                    android:text="Efectivo"
+                    android:text="@string/XML_DriversNPayments_CashTitle"
                     android:textStyle="bold"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/ORIBlack"
@@ -403,11 +387,7 @@
             android:layout_marginStart="7dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIGray" />
-
-
-
-
+            android:background="@color/ORIDisable" />
         <android.support.v7.widget.LinearLayoutCompat
             android:id="@+id/bothPaymentLayout"
             android:orientation="horizontal"
@@ -423,8 +403,8 @@
                 android:layout_marginEnd="2dp"
                 android:layout_weight="0"
                 android:padding="4dp"
-                android:layout_width="45dp"
-                android:layout_height="45dp" />
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
             <android.support.v7.widget.LinearLayoutCompat
                 android:orientation="vertical"
                 android:layout_weight="1"
@@ -433,7 +413,7 @@
                 android:layout_height="wrap_content">
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/bothPaymentTitle"
-                    android:text="Ambos"
+                    android:text="@string/XML_DriversNPayments_BothPaymentTitle"
                     android:textStyle="bold"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/ORIBlack"
@@ -454,6 +434,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIGray" />
+            android:background="@color/ORIDisable" />
     </android.support.v7.widget.LinearLayoutCompat>
+
 </android.support.v4.widget.NestedScrollView>

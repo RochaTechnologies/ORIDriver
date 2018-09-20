@@ -121,7 +121,7 @@ public class Fragment_PendingFavRequest extends Fragment {
             if (convertView == null) {
 //                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.template_favdriverpendingrequest, null);
 //                parent.getContext(),----------
-                v = getLayoutInflater().inflate(R.layout.template_favdriverpendingrequest, null);
+                v = getLayoutInflater().inflate(R.layout.template_favdriverpendingrequest, parent,true);
 //                v = getLayoutInflater().inflate(R.layout.template_favdriverpendingrequest, null);
 //                v = inflater.inflate(R.layout.template_favdriverpendingrequest, null);
             } else {

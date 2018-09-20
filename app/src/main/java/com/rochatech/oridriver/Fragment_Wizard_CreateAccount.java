@@ -3,14 +3,13 @@ package com.rochatech.oridriver;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.SwitchCompat;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,17 +28,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 
-
+@SuppressWarnings({"WeakerAccess","unused","FieldCanBeLocal"})
 public class Fragment_Wizard_CreateAccount extends Fragment {
 
     Context context;
     connectToService _svcConnection;
     Common obj;
     View view;
-    Double _screenSize;
-    DisplayMetrics dm;
 
     Spinner sprAvailableCities;
     EditText txtMobile, txtMail, txtPassword, txtConfirmPassword;
@@ -55,8 +51,7 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
 
     public void SetProfilePicture(Bitmap picture) {
 //        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//        profilePicture = picture;
-//        profilePicture.compress(Bitmap.CompressFormat.PNG,100, outputStream);
+        profilePicture = picture;
     }
 
     @Override
@@ -66,7 +61,7 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_wizard_createaccount, container, false);
         obj = new Common(context);
         _svcConnection = new connectToService(context, obj.GetSharedPreferencesValue(context, "SessionToken"));
@@ -78,8 +73,7 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-                LayoutInflater inflater = (LayoutInflater) getLayoutInflater();
-                View dialogView = inflater.inflate(R.layout.template_dialogtermsinfo,null);
+                View dialogView = LayoutInflater.from(context).inflate(R.layout.template_dialogtermsinfo, container, false);
                 dialog.setView(dialogView);
                 dialog.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
@@ -147,22 +141,23 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
                 ArrayList<AvailableCities> city = AvailableCities.fromJson(jsonResponse);
                 ArrayList<String> list = new ArrayList<>();
                 int i = 0;
-                for (Iterator<AvailableCities> item = city.iterator(); item.hasNext();){
-                    try {
-                        AvailableCities _tmp = item.next();
-                        CountryName = _tmp.getCountryName();
-                        String _fullname = _tmp.getCityName() + " ," + _tmp.getStateName();
-                        list.add(i, _fullname);
-                        CID.add(i, _tmp.getCityId());
-                        i++;
-                    } catch (Exception e) {
-                        Log.d("ERROR", "onResponseObject: " + e.toString());
+                if (city != null) {
+                    for (AvailableCities item: city) {
+                        try {
+                            CountryName = item.getCountryName();
+                            String _fullName = item.getCityName() + " ," + item.getStateName();
+                            list.add(i, _fullName);
+                            CID.add(i, item.getCityId());
+                            i++;
+                        } catch (Exception e) {
+                            Log.d("ERROR", "onResponseObject: " + e.toString());
+                        }
                     }
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(context,android.R.layout.simple_spinner_item,list);
-                adapter.setDropDownViewResource(android.R.layout.select_dialog_item);
+                adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
                 sprAvailableCities.setAdapter(adapter);
-                SetPaddingToSpinner();
+                sprAvailableCities.setPadding(0,25,0,25);
                 obj.CloseLoadingScreen();
             }
         });
@@ -176,22 +171,7 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
         boolean terms = swTermsAcceptedChecked.isChecked();
         String Errors = AnyErrors(city, mobile, email, password, confirmPassword, terms);
         if (Errors.trim().isEmpty()) {
-            Bundle bundle = getArguments();
-            String givenname = bundle.getString("ori_givenname");
-            String gender = bundle.getString("ori_genderselected");
-            Fragment fragment;
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            fragment = new Fragment_Wizard_NotificationAlert();
-            bundle = new Bundle();
-            bundle.putString("DisplayOpt","AccountCreated");
-            bundle.putString("ori_createdname", givenname);
-            bundle.putString("ori_createdemail", email);
-            bundle.putString("ori_createdgender", gender);
-            fragment.setArguments(bundle);
-            transaction.setCustomAnimations(R.animator.anim_slide_inright, R.animator.anim_slide_outleft);
-            obj.CloseLoadingScreen();
-            transaction.replace(R.id.dialogframecontainer, fragment, "ori_notificationalert").commit();
-//            StartCreatingAccount(city, email, mobile, Common.SHA256(password));
+            StartCreatingAccount(city, email, mobile, Common.SHA256(password));
         } else {
             obj.CloseLoadingScreen();
             Common.DialogStatusAlert(context, Errors, getResources().getString(R.string.ORIGlobal_AnyErrorsTitle), "Error");
@@ -199,105 +179,119 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
     }
     private void StartCreatingAccount(int city, final String email, String mobile, String password) {
         Bundle bundle = getArguments();
-        final String givenname = bundle.getString("ori_givenname");
-        String lastname = bundle.getString("ori_lastname");
-        String nickname = bundle.getString("ori_nickname");
-        final String gender = bundle.getString("ori_genderselected");
-        _svcConnection.CreateNewAccount(email, password, mobile, city, nickname, lastname, givenname, gender, profilePicture, new WSResponseListener() {
-            @Override
-            public void onError(String message) {
-                obj.CloseLoadingScreen();
-                Common.DialogStatusAlert(context, message, getResources().getString(R.string.ORIGlobal_webServiceError), "Error");
+        if (bundle != null) {
+            final String givenname = bundle.getString("ori_givenname");
+            String lastname = bundle.getString("ori_lastname");
+            String nickname = bundle.getString("ori_nickname");
+            final String gender = bundle.getString("ori_genderselected");
+            Bitmap b = profilePicture;
+            int origWidth = b.getWidth();
+            int origHeight = b.getHeight();
+            final int destWidth = 100;
+            int destHeight = origHeight/( origWidth / destWidth ) ;
+            Bitmap finalPic = Bitmap.createScaledBitmap(b, destWidth, destHeight, false);
+            if(origWidth > destWidth){
+                ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+                finalPic.compress(Bitmap.CompressFormat.JPEG,70 , outStream);
             }
+            _svcConnection.CreateNewAccount(email, password, mobile, city, nickname, lastname, givenname, gender, profilePicture, new WSResponseListener() {
+                @Override
+                public void onError(String message) {
+                    obj.CloseLoadingScreen();
+                    Common.DialogStatusAlert(context, message, getResources().getString(R.string.ORIGlobal_webServiceError), "Error");
+                }
 
-            @Override
-            public void onResponseObject(JSONArray jsonResponse) {
-                try {
-                    JSONObject response = jsonResponse.getJSONObject(0);
-                    String status = response.getString("Status");
-                    String UID = "";
-                    String GID = "";
-                    SharedPreferences pref = context.getSharedPreferences(getResources().getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE);
-                    Fragment fragment;
-                    Bundle bundle;
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    switch (status) {
-                        case "UserAdded":
-                            /*Recoger el UnityId y el GatewayId*/
-                            UID = response.getString("UID");
-                            GID = response.getString("GID");
-                            /*Guardarlos en las preferencias*/
-                            SharedPreferences.Editor edit = pref.edit();
-                            edit.putString("UID", UID);
-                            edit.putString("GID", GID);
-                            edit.apply();
-                            fragment = new Fragment_Wizard_NotificationAlert();
-                            bundle = new Bundle();
-                            bundle.putString("DisplayOpt","AccountCreated");
-                            bundle.putString("ori_createdname", givenname);
-                            bundle.putString("ori_createdemail", email);
-                            bundle.putString("ori_createdgender", gender);
-                            fragment.setArguments(bundle);
-                            transaction.setCustomAnimations(R.animator.anim_slide_inright, R.animator.anim_slide_outleft);
-                            obj.CloseLoadingScreen();
-                            transaction.replace(R.id.dialogframecontainer, fragment, "ori_notificationalert").commit();
-                            break;
-                        case "Error_InactiveAccount":
-                            obj.CloseLoadingScreen();
-                            Common.DialogStatusAlert(context, getResources().getString(R.string.WizardCreateAccount_InactiveAccountMsg), getResources().getString(R.string.WizardCreateAccount_InactiveAccountTitle), "Error");
-                            break;
-                        case "EXIST":
-                            obj.CloseLoadingScreen();
-                            Common.DialogStatusAlert(context, getResources().getString(R.string.WizardCreateAccount_ExistMsg), getResources().getString(R.string.WizardCreateAccount_ExistTitle), "Error");
-                            break;
-                        case "ERROR":
-                            obj.CloseLoadingScreen();
-                            Common.DialogStatusAlert(context,"Lo sentimos, pero ocurrió un error inesperado.","ORI Driver Services", "Error");
-                            break;
-                        case "ERROR_EmailTemplateNotFound":
-                            obj.CloseLoadingScreen();
-                            Common.DialogStatusAlert(context,"Lo sentimos, pero ocurrió un error inesperado.","ORI Driver Services", "Error");
-                            break;
-
-                        default:
-                            if (status.contains("EXIST_")){
-                                String results[] = status.split("_");
+                @Override
+                public void onResponseObject(JSONArray jsonResponse) {
+                    try {
+                        JSONObject response = jsonResponse.getJSONObject(0);
+                        String status = response.getString("Status");
+                        String UID;
+                        String GID;
+                        SharedPreferences pref = context.getSharedPreferences(getResources().getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE);
+                        Fragment fragment;
+                        Bundle bundle;
+                        switch (status) {
+                            case "UserAdded":
                                 /*Recoger el UnityId y el GatewayId*/
                                 UID = response.getString("UID");
                                 GID = response.getString("GID");
                                 /*Guardarlos en las preferencias*/
-                                SharedPreferences.Editor editExist = pref.edit();
-                                editExist.putString("UID", UID);
-                                editExist.putString("GID", GID);
-                                editExist.apply();
-                                AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-                                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                                View dialogView = inflater.inflate(R.layout.template_dialogstatusalert,null);
-                                TextView dialogTitle = dialogView.findViewById(R.id.alertDialogTitle);
-                                TextView dialogMsg = dialogView.findViewById(R.id.alertDialogMsg);
-                                ImageView dialogIcon = dialogView.findViewById(R.id.alertDialogIcon);
-                                dialogTitle.setText("¡Este usuario ya existe en alguno de nuestros servicios!");
-                                dialogMsg.setText("Utiliza la cuenta blabla preguntarle a Raul para el mensaje");
-                                dialogIcon.setImageResource(R.drawable.ic_error);
-                                dialog.setView(dialogView);
-                                dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent intent = new Intent(context, Wizard_Login.class);
-                                        context.startActivity(intent);
-                                    }
-                                });
-                                dialog.setCancelable(false);
-                                dialog.show();
-                            }
-                            break;
+                                SharedPreferences.Editor edit = pref.edit();
+                                edit.putString("UID", UID);
+                                edit.putString("GID", GID);
+                                edit.apply();
+                                fragment = new Fragment_Wizard_NotificationAlert();
+                                bundle = new Bundle();
+                                bundle.putString("DisplayOpt","AccountCreated");
+                                bundle.putString("ori_createdname", givenname);
+                                bundle.putString("ori_createdemail", email);
+                                bundle.putString("ori_createdgender", gender);
+                                fragment.setArguments(bundle);
+                                if (getFragmentManager() != null) {
+                                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                    transaction.setCustomAnimations(R.animator.anim_slide_inright, R.animator.anim_slide_outleft);
+                                    obj.CloseLoadingScreen();
+                                    transaction.replace(R.id.dialogframecontainer, fragment, "ori_notificationalert").commit();
+                                }
+                                break;
+                            case "Error_InactiveAccount":
+                                obj.CloseLoadingScreen();
+                                Common.DialogStatusAlert(context, getResources().getString(R.string.WizardCreateAccount_InactiveAccountMsg), getResources().getString(R.string.WizardCreateAccount_InactiveAccountTitle), "Error");
+                                break;
+                            case "EXIST":
+                                obj.CloseLoadingScreen();
+                                Common.DialogStatusAlert(context, getResources().getString(R.string.WizardCreateAccount_ExistMsg), getResources().getString(R.string.WizardCreateAccount_ExistTitle), "Error");
+                                break;
+                            case "ERROR":
+                                obj.CloseLoadingScreen();
+                                Common.DialogStatusAlert(context,context.getResources().getString(R.string.ORIUnexpectedError),context.getResources().getString(R.string.ORIGlobal_webServiceError), context.getResources().getString(R.string.ORIDialog_Error_IconName));
+                                break;
+                            case "ERROR_EmailTemplateNotFound":
+                                obj.CloseLoadingScreen();
+                                Common.DialogStatusAlert(context,context.getResources().getString(R.string.ORIUnexpectedError),context.getResources().getString(R.string.ORIGlobal_webServiceError), context.getResources().getString(R.string.ORIDialog_Error_IconName));
+                                break;
+                            default:
+                                if (status.contains("EXIST_")){
+//                                    String results[] = status.split("_");
+                                    /*Recoger el UnityId y el GatewayId*/
+                                    UID = response.getString("UID");
+                                    GID = response.getString("GID");
+                                    /*Guardarlos en las preferencias*/
+                                    SharedPreferences.Editor editExist = pref.edit();
+                                    editExist.putString("UID", UID);
+                                    editExist.putString("GID", GID);
+                                    editExist.apply();
+                                    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+//                                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                                    View dialogView = LayoutInflater.from(context).inflate(R.layout.template_dialogstatusalert,null);
+                                    TextView dialogTitle = dialogView.findViewById(R.id.alertDialogTitle);
+                                    TextView dialogMsg = dialogView.findViewById(R.id.alertDialogMsg);
+                                    ImageView dialogIcon = dialogView.findViewById(R.id.alertDialogIcon);
+                                    dialogTitle.setText(getResources().getString(R.string.WizardCreateAccount_ExistTitle));
+                                    dialogMsg.setText(getResources().getString(R.string.WizardCreateAccount_ExistMsg));
+                                    dialogIcon.setImageResource(R.drawable.ic_error);
+                                    dialog.setView(dialogView);
+                                    dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            if (getActivity() != null) {
+                                                ((Wizard_Login)getActivity()).CreateAccount_CloseWizardDialog();
+                                            }
+                                        }
+                                    });
+                                    dialog.setCancelable(false);
+                                    dialog.show();
+                                }
+                                break;
+                        }
+                    } catch (JSONException e) {
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(context, e.toString(), getResources().getString(R.string.ORIGlobal_webServiceError), "Error");
                     }
-                } catch (JSONException e) {
-                    obj.CloseLoadingScreen();
-                    Common.DialogStatusAlert(context, e.toString(), getResources().getString(R.string.ORIGlobal_webServiceError), "Error");
                 }
-            }
-        });
+            });
+        }
     }
     //endregion
 
@@ -311,65 +305,24 @@ public class Fragment_Wizard_CreateAccount extends Fragment {
         btnTermsInfo = view.findViewById(R.id.btnTermsInfo);
         swTermsAcceptedChecked = view.findViewById(R.id.swTermsAcceptedChecked);
         btnCreateAccountPressed = view.findViewById(R.id.btnCreateAccountPressed);
-        GetScreenInches();
-        SetBtnHeightByScreenInches();
     }
     private String AnyErrors(int city, String mobile, String email, String password, String confirmPassword, boolean terms) {
         String result = "";
-//        result += (mobile.trim().isEmpty()) ? getResources().getString(R.string.WizardCreateAccount_MobileEmpty) + "\n" : "";
-//        result += (mobile.length() < 10) ? getResources().getString(R.string.WizardCreateAccount_MobileNotValid) + "\n"  : "";
-//        result += (city < 1) ? getResources().getString(R.string.WizardCreateAccount_NoCitySelected) + "\n"  : "";
-//        result += (email.trim().isEmpty()) ? getResources().getString(R.string.WizardCreateAccount_EmailEmpty) + "\n"  : "";
-//        result += (!Common.IsEmail(email)) ? getResources().getString(R.string.WizardCreateAccount_EmailNotValid) + "\n"  : "";
-//        result += (password.trim().isEmpty()) ? getResources().getString(R.string.WizardCreateAccount_PasswordEmpty) + "\n"  : "";
-//        result += (!password.equals(confirmPassword)) ? getResources().getString(R.string.WizardCreateAccount_PasswordNotSame) + "\n"  : "";
-//        result += (!terms) ? getResources().getString(R.string.WizardCreateAccount_TermsNotAccepted) : "";
+        result += (mobile.trim().isEmpty()) ? getResources().getString(R.string.WizardCreateAccount_MobileEmpty) + "\n" : "";
+        try {
+            Long tmpMobile = Long.parseLong(mobile);
+        } catch (Exception ex) {
+            result += "Favor de revisar su número telefónico";
+        }
+        result += (mobile.length() < 10) ? getResources().getString(R.string.WizardCreateAccount_MobileNotValid) + "\n"  : "";
+        result += (city < 1) ? getResources().getString(R.string.WizardCreateAccount_NoCitySelected) + "\n"  : "";
+        result += (email.trim().isEmpty()) ? getResources().getString(R.string.WizardCreateAccount_EmailEmpty) + "\n"  : "";
+        result += (!Common.IsEmail(email)) ? getResources().getString(R.string.WizardCreateAccount_EmailNotValid) + "\n"  : "";
+        result += (password.trim().isEmpty()) ? getResources().getString(R.string.WizardCreateAccount_PasswordEmpty) + "\n"  : "";
+        result += (!password.equals(confirmPassword)) ? getResources().getString(R.string.WizardCreateAccount_PasswordNotSame) + "\n"  : "";
+        result += (!terms) ? getResources().getString(R.string.WizardCreateAccount_TermsNotAccepted) : "";
         return result;
     }
-    private void GetScreenInches() {
-        dm = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-        Double x = Math.pow(dm.widthPixels/dm.xdpi,2);
-        Double y = Math.pow(dm.heightPixels/dm.xdpi,2);
-        Double inches = Math.sqrt(x+y);
-        _screenSize = inches;
-    }
-    private void SetBtnHeightByScreenInches() {
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-        int size = 0;
-        if (width == 480 && height == 800) {
-            size = 6;
-        } else if (width < 720 && height < 1184) {
-            size = 8;
-        } else if (width == 720 && height == 1184) {
-            size = 15;
-        } else if ((width > 720 && height > 1184) && (width < 1081 && height < 1920)) {
-            size = 20;
-        }
-        if (size != 0) {
-            txtConfirmPassword.setPadding(size,size,size,size);
-            txtPassword.setPadding(size,size,size,size);
-            txtMail.setPadding(size,size,size,size);
-            txtMobile.setPadding(size,size,size,size);
-        }
-    }
-    private void SetPaddingToSpinner() {
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-        int size = 0;
-        if (width == 480 && height == 800) {
-            size = 5;
-        } else if (width < 720 && height < 1184) {
-            size = 8;
-        } else if (width == 720 && height == 1184) {
-            size = 15;
-        } else if ((width > 720 && height > 1184) && (width < 1081 && height < 1920)) {
-            size = 15;
-        }
-        if (size != 0) {
-            sprAvailableCities.setPadding(size,size,size,size);
-        }
-    }
+
     //endregion
 }

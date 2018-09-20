@@ -110,10 +110,8 @@
         <!-- Footer -->
         <android.support.v7.widget.LinearLayoutCompat
             android:id="@+id/RelativeFooter"
+            android:gravity="center_vertical"
             android:layout_weight="1"
-            android:layout_below="@id/RelativeMainContainer"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <android.support.v7.widget.AppCompatButton
@@ -122,9 +120,14 @@
                 android:textAllCaps="false"
                 android:textColor="@color/ORISkyBlue"
                 android:background="@android:color/transparent"
-                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v7.widget.LinearLayoutCompat>
+
+    <!--<include layout="@layout/map_driver_onmywaytodropoff" />-->
+    <!--<include layout="@layout/map_driver_onmywaytopickup" />-->
+    <!--<include layout="@layout/map_driver_ratepassenger" />-->
+    <!--<include layout="@layout/map_driver_starttravel" />-->
+    <!--<include layout="@layout/map_driver_tripdetails" />-->
 </android.support.design.widget.CoordinatorLayout>

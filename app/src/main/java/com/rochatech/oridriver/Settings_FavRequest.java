@@ -1,21 +1,18 @@
 package com.rochatech.oridriver;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.rochatech.webService.*;
 import com.rochatech.library.Common;
 import com.rochatech.Model.FavoriteDrivers;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-//import android.app.Fragment;
-//import android.app.FragmentManager;
-//import android.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.ListViewCompat;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,9 +24,12 @@ public class Settings_FavRequest extends AppCompatActivity {
 
     connectToService _svcConnection;
     Common obj;
-    int UID = 0;
+    Integer _UID = 0;
     int pendingRequest = 0;
     int totalaccepted = 0;
+    LinearLayoutCompat _NoAvailableRequest, _AvailableRequest;
+    ArrayList<FavoriteDrivers> favrequest;
+    ListViewCompat pendingReqList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +37,17 @@ public class Settings_FavRequest extends AppCompatActivity {
         setContentView(R.layout.settings_favrequest_activity);
         obj = new Common(Settings_FavRequest.this);
         _svcConnection = new connectToService(Settings_FavRequest.this, obj.GetSharedPreferencesValue(Settings_FavRequest.this, "SessionToken"));
-        UID = Integer.parseInt(obj.GetSharedPreferencesValue(Settings_FavRequest.this, "UID"));
-        GetTotalFavDriverPendingRequest(UID);
+        obj.ShowLoadingScreen(Settings_FavRequest.this,"Cargando información, por favor espere...");
+        _UID = Integer.parseInt(obj.GetSharedPreferencesValue(Settings_FavRequest.this, "UID"));
+        _NoAvailableRequest = findViewById(R.id.NoAvailableRequest);
+        _AvailableRequest = findViewById(R.id.AvailableFavRequest);
+        pendingReqList = findViewById(R.id.PassengersRequestList);
+        GetTotalFavDriverPendingRequest();
     }
 
-    private void GetTotalFavDriverPendingRequest(final int UID) {
-        obj.ShowLoadingScreen(Settings_FavRequest.this,"Cargando información, por favor espere...");
-        _svcConnection.GetMyFavoriteDriverRequest(UID, new WSResponseListener() {
+    //region WebService Call
+    private void GetTotalFavDriverPendingRequest() {
+        _svcConnection.GetMyFavoriteDriverRequest(_UID, new WSResponseListener() {
             @Override
             public void onError(String message) {
                 switch (message) {
@@ -61,15 +65,14 @@ public class Settings_FavRequest extends AppCompatActivity {
             @Override
             public void onResponseObject(JSONArray jsonResponse) {
                 try {
-                    ArrayList<FavoriteDrivers> favrequest = FavoriteDrivers.fromJson(jsonResponse);
-                    pendingRequest = favrequest.size();
-                    if (pendingRequest != 0 && pendingRequest > 0) {
-                        /*Mostrar fragmento de lista de req pendientes*/
-                        SelectNSetFragment(2);
-                    } else {
-                        /*Mostrar fragmento main*/
-                        TotalApprovedFavoriteDriverRequest(UID);
-//                        SelectNSetFragment(1);
+                    favrequest = FavoriteDrivers.fromJson(jsonResponse);
+                    if (favrequest != null) {
+                        pendingRequest = favrequest.size();
+                        if (pendingRequest > 0) {
+                            LoadAllPendingRequset();
+                        } else {
+                            TotalApprovedFavoriteDriverRequest();
+                        }
                     }
                 } catch (Exception e) {
                     obj.CloseLoadingScreen();
@@ -78,8 +81,8 @@ public class Settings_FavRequest extends AppCompatActivity {
             }
         });
     }
-    private void TotalApprovedFavoriteDriverRequest(int UID) {
-        _svcConnection.GetTotalApprovedFavoriteDriverRequest(UID, new WSResponseListener() {
+    private void TotalApprovedFavoriteDriverRequest() {
+        _svcConnection.GetTotalApprovedFavoriteDriverRequest(_UID, new WSResponseListener() {
             @Override
             public void onError(String message) {
                 switch (message) {
@@ -100,7 +103,19 @@ public class Settings_FavRequest extends AppCompatActivity {
                     JSONObject response = jsonResponse.getJSONObject(0);
                     String total = response.getString("Total");
                     totalaccepted = Integer.parseInt(total);
-                    SelectNSetFragment(1);
+                    TextView passengerCount = findViewById(R.id.FavPassengerCount);
+                    String msg = "";
+                    if (totalaccepted == 0) {
+                        msg = totalaccepted + "pasajeros";
+                    } else if (totalaccepted == 1) {
+                        msg = totalaccepted + "pasajero";
+                    } else if (totalaccepted > 1) {
+                        msg = totalaccepted + "pasajeros";
+                    }
+                    passengerCount.setText(msg);
+                    DismissAvailableRequest();
+                    ShowNoAvailableRequest();
+                    obj.CloseLoadingScreen();
                 } catch (JSONException e) {
                     obj.CloseLoadingScreen();
                     Common.DialogStatusAlert(Settings_FavRequest.this, e.toString(),getResources().getString(R.string.ORIGlobal_webServiceError),"Error");
@@ -109,32 +124,79 @@ public class Settings_FavRequest extends AppCompatActivity {
         });
 
     }
+    //endregion
 
     //region MISC
-    private void SelectNSetFragment(int option) {
-        switch (option) {
-            case 1:
-                /*Mostrar fragmento main*/
-                Fragment main = new Fragment_MainFavContent();
-                FragmentManager mainmanager = getSupportFragmentManager();
-                FragmentTransaction maintransaction = mainmanager.beginTransaction();
-                Bundle arg = new Bundle();
-                arg.putInt("totalapproved", totalaccepted);
-                main.setArguments(arg);
-                obj.CloseLoadingScreen();
-                maintransaction.replace(R.id.FragContent, main);
-                maintransaction.commit();
-                break;
-            case 2:
-                /*Mostrar fragmento de lista de req pendientes*/
-                Fragment pendigfav = new Fragment_PendingFavRequest();
-                FragmentManager pendingmanager = getSupportFragmentManager();
-                FragmentTransaction pendingtransaction = pendingmanager.beginTransaction();
-                obj.CloseLoadingScreen();
-                pendingtransaction.replace(R.id.FragContent, pendigfav);
-                pendingtransaction.commit();
-                break;
-        }
+    private void LoadAllPendingRequset() {
+        FavPendingRequest pending = new FavPendingRequest();
+        pendingReqList.setAdapter(pending);
+        DismissNoAvailableRequest();
+        ShowAvailableRequest();
+        obj.CloseLoadingScreen();
+    }
+    private void ShowAvailableRequest() {
+        _AvailableRequest.setVisibility(View.VISIBLE);
+    }
+    private void DismissAvailableRequest() {
+        _AvailableRequest.setVisibility(View.GONE);
+    }
+    private void ShowNoAvailableRequest() {
+        _NoAvailableRequest.setVisibility(View.VISIBLE);
+    }
+    private void DismissNoAvailableRequest() {
+        _NoAvailableRequest.setVisibility(View.GONE);
     }
     //endregion
+
+    public class FavPendingRequest extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return favrequest.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            View view;
+            if (convertView == null) {
+                view = getLayoutInflater().inflate(R.layout.template_favdriverpendingrequest, null);
+            } else {
+                view = convertView;
+            }
+            ImageView FavPassengerPicture = view.findViewById(R.id.FavPassengerPicture);
+            TextView PassengerName = view.findViewById(R.id.PassengerName);
+            TextView PassengerDateRequest = view.findViewById(R.id.PassengerDateRequest);
+            Button AcceptPassengerRequest = view.findViewById(R.id.AcceptPassengerRequest);
+            Button DeclinePassengerRequest = view.findViewById(R.id.DeclinePassengerRequest);
+
+            FavPassengerPicture.setImageBitmap(_svcConnection.GetProfilePictureFromUID(favrequest.get(position).GetPassengerUnityId()));
+            PassengerName.setText(favrequest.get(position).GetPassengerNickName());
+            String date = Common.getAppStringFullDateFromFullDate(favrequest.get(position).GetAddedOn());
+            PassengerDateRequest.setText(date);
+            AcceptPassengerRequest.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Integer passengerUID = favrequest.get(position).GetPassengerUnityId();
+                    int a = 0;
+                }
+            });
+            DeclinePassengerRequest.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            return view;
+        }
+    }
 }

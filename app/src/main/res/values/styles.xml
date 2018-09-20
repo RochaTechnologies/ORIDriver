@@ -40,7 +40,7 @@
     </style>
 
     <style name="ORISwitch">
-        <item name="colorControlActivated">@color/ORILightGreen</item>
+        <item name="colorControlActivated">@color/ORISkyBlue</item>
     </style>
 
     <style name="CustomCheckbox" parent="Widget.AppCompat.CompoundButton.CheckBox">

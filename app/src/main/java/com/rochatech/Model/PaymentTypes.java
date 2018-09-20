@@ -10,10 +10,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
-
+@SuppressWarnings({"WeakerAccess","unused"})
 public class PaymentTypes {
-    int PaymentTypeId;
-    String Name, ImageName;
+    private int PaymentTypeId;
+    private String Name, ImageName;
 
     public PaymentTypes() { super(); }
 

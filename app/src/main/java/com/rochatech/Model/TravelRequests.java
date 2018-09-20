@@ -6,16 +6,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
-
+@SuppressWarnings({"WeakerAccess","unused"})
 public class TravelRequests {
 
-    public TravelRequests() { super(); }
+    private TravelRequests() { super(); }
 
-    Integer TravelRequestId, ReqByUnityId, PassengerTotalCompleted, ReqPaymentTypeId, ReqServiceTypeId, AcceptedByDrvUnityId, DriverTotalCompleted;
-    String ReqGivenName, ReqLastName, ReqNickName, ReqCellPhone, ReqPhoto, PickUpLocationLatitud, PickUpLocationLongitud, PickupAddress, DropOffLatitud, DropOffLongitud, DropOffAddress, ReqPaymentTypeName, ReqServiceTypeName, DrvGivenName, DrvLastName, DrvNickName, DrvPhoto, DrvCellphone, LicensePlate, AutobileBrand, AutomobileModel, AutomobileColor, AutomobileYear;
-    Date PassengerSetupDate, CreationDate, DriverSetupDate, AttendedDate, EndedDate;
-    Double PassengerRate, DriverRate, EstimatedDistance, EstimatedTime, EstimatedFare, TotalDistance, TotalTime, TotalFare;
-    String ReqStatus;
+    private Integer TravelRequestId, ReqByUnityId, PassengerTotalCompleted, ReqPaymentTypeId, ReqServiceTypeId, AcceptedByDrvUnityId, DriverTotalCompleted;
+    private String ReqGivenName, ReqLastName, ReqNickName, ReqCellPhone, ReqPhoto, PickUpLocationLatitud, PickUpLocationLongitud, PickupAddress, DropOffLatitud, DropOffLongitud, DropOffAddress, ReqPaymentTypeName, ReqServiceTypeName, DrvGivenName, DrvLastName, DrvNickName, DrvPhoto, DrvCellphone, LicensePlate, AutobileBrand, AutomobileModel, AutomobileColor, AutomobileYear;
+    private Date PassengerSetupDate, CreationDate, DriverSetupDate, AttendedDate, EndedDate;
+    private Double PassengerRate, DriverRate, EstimatedDistance, EstimatedTime, EstimatedFare, TotalDistance, TotalTime, TotalFare;
+    private String ReqStatus;
 
     //region Set
     public void SetTravelRequestId(Integer TravelRequestId) {
@@ -342,15 +342,11 @@ public class TravelRequests {
                 jsonObject = jsonArray.getJSONObject(i);
                 try {
                     TravelRequests AC = new TravelRequests();
-                    AC.TravelRequestId = jsonObject.getString("TravelRequestId").equals("") ? null : Integer.parseInt(jsonObject.getString("TravelRequestId"));
-                    AC.ReqByUnityId = jsonObject.getString("ReqByUnityId").equals("") ? null : Integer.parseInt(jsonObject.getString("ReqByUnityId"));
                     AC.ReqGivenName = jsonObject.getString("ReqGivenName");
                     AC.ReqLastName = jsonObject.getString("ReqLastName");
                     AC.ReqNickName = jsonObject.getString("ReqNickName");
                     AC.ReqCellPhone = jsonObject.getString("ReqCellPhone");
                     AC.ReqPhoto = jsonObject.getString("ReqPhoto");
-                    AC.PassengerTotalCompleted = jsonObject.getString("PassengerTotalCompleted").equals("") ? null : Integer.parseInt(jsonObject.getString("PassengerTotalCompleted"));
-                    AC.PassengerRate = jsonObject.getString("PassengerRate").equals("") ? null : Double.parseDouble(jsonObject.getString("PassengerRate"));
                     AC.PassengerSetupDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("PassengerSetupDate"));
                     AC.PickUpLocationLatitud = jsonObject.getString("FromLatitud");
                     AC.PickUpLocationLongitud = jsonObject.getString("FromLongitud");
@@ -358,19 +354,14 @@ public class TravelRequests {
                     AC.DropOffLatitud = jsonObject.getString("ToLatitud");
                     AC.DropOffLongitud = jsonObject.getString("ToLongitud");
                     AC.DropOffAddress = jsonObject.getString("ToAddress");
-                    AC.ReqPaymentTypeId = jsonObject.getString("ReqPaymentTypeId").equals("") ? null : Integer.parseInt(jsonObject.getString("ReqPaymentTypeId"));
                     AC.ReqPaymentTypeName = jsonObject.getString("ReqPaymentTypeName");
-                    AC.ReqServiceTypeId = jsonObject.getString("ReqServiceTypeId").equals("") ? null : Integer.parseInt(jsonObject.getString("ReqServiceTypeId"));
                     AC.ReqServiceTypeName = jsonObject.getString("ReqServiceTypeName");
                     AC.CreationDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("CreationDate"));
                     AC.ReqStatus = jsonObject.getString("ReqStatus");
-                    AC.AcceptedByDrvUnityId = jsonObject.getString("AcceptedByUnityId").equals("") ? null : Integer.parseInt(jsonObject.getString("AcceptedByUnityId"));
                     AC.DrvGivenName = jsonObject.getString("DriverGivenName");
                     AC.DrvLastName = jsonObject.getString("DriverLastName");
                     AC.DrvNickName = jsonObject.getString("DriverNickName");
                     AC.DrvPhoto = jsonObject.getString("DriverPhoto");
-                    AC.DriverTotalCompleted = jsonObject.getString("DriverTotalCompleted").equals("") ? null : Integer.parseInt(jsonObject.getString("DriverTotalCompleted"));
-                    AC.DriverRate = jsonObject.getString("DriverRate").equals("") ? null : Double.parseDouble(jsonObject.getString("DriverRate"));
                     AC.DriverSetupDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("DriverSetupDate"));
                     AC.DrvCellphone = jsonObject.getString("DriverCellPhone");
                     AC.LicensePlate = jsonObject.getString("LicensePlateNumber");
@@ -380,10 +371,71 @@ public class TravelRequests {
                     AC.AutomobileYear = jsonObject.getString("VehicleYear");
                     AC.AttendedDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("AttendedDate"));
                     AC.EndedDate = Common.getAppFullDateFromAppStringFullDate(jsonObject.getString("EndedDate"));
-                    AC.EstimatedDistance = jsonObject.getString("EstimatedDistance").equals("") ? null : Double.parseDouble(jsonObject.getString("EstimatedDistance"));
-                    AC.EstimatedTime = jsonObject.getString("EstimatedTime").equals("") ? null : Double.parseDouble(jsonObject.getString("EstimatedTime"));
-                    AC.EstimatedFare = jsonObject.getString("EstimatedFare").equals("") ? null : Double.parseDouble(jsonObject.getString("EstimatedFare"));
-                    String algo = jsonObject.getString("TotalDistance");
+                    if (jsonObject.getString("TravelRequestId").trim().isEmpty() || jsonObject.getString("TravelRequestId").contains("null") || jsonObject.getString("TravelRequestId") == null) {
+                        AC.TravelRequestId = null;
+                    } else {
+                        AC.TravelRequestId = Integer.parseInt(jsonObject.getString("TravelRequestId"));
+                    }
+                    if (jsonObject.getString("ReqByUnityId").trim().isEmpty() || jsonObject.getString("ReqByUnityId").contains("null") || jsonObject.getString("ReqByUnityId") == null) {
+                        AC.ReqByUnityId = null;
+                    } else {
+                        AC.ReqByUnityId = Integer.parseInt(jsonObject.getString("ReqByUnityId"));
+                    }
+                    if (jsonObject.getString("PassengerTotalCompleted").trim().isEmpty() || jsonObject.getString("PassengerTotalCompleted").contains("null") || jsonObject.getString("PassengerTotalCompleted") == null) {
+                        AC.PassengerTotalCompleted = null;
+                    } else {
+                        AC.PassengerTotalCompleted = Integer.parseInt(jsonObject.getString("PassengerTotalCompleted"));
+                    }
+                    if (jsonObject.getString("PassengerRate").trim().isEmpty() || jsonObject.getString("PassengerRate").contains("null") || jsonObject.getString("PassengerRate") == null) {
+                        AC.PassengerRate = null;
+                    } else {
+                        AC.PassengerRate = Double.parseDouble(jsonObject.getString("PassengerRate"));
+                    }
+                    if (jsonObject.getString("ReqPaymentTypeId").trim().isEmpty() || jsonObject.getString("ReqPaymentTypeId").contains("null") || jsonObject.getString("ReqPaymentTypeId") == null) {
+                        AC.ReqPaymentTypeId = null;
+                    } else {
+                        AC.ReqPaymentTypeId = Integer.parseInt(jsonObject.getString("ReqPaymentTypeId"));
+                    }
+                    if (jsonObject.getString("ReqServiceTypeId").trim().isEmpty() || jsonObject.getString("ReqServiceTypeId").contains("null") || jsonObject.getString("ReqServiceTypeId") == null) {
+                        AC.ReqServiceTypeId = null;
+                    } else {
+                        AC.ReqServiceTypeId = Integer.parseInt(jsonObject.getString("ReqServiceTypeId"));
+                    }
+                    if (jsonObject.getString("DriverTotalCompleted").trim().isEmpty() || jsonObject.getString("DriverTotalCompleted").contains("null") || jsonObject.getString("DriverTotalCompleted") == null) {
+                        AC.DriverTotalCompleted = null;
+                    } else {
+                        AC.DriverTotalCompleted = Integer.parseInt(jsonObject.getString("DriverTotalCompleted"));
+                    }
+                    if (jsonObject.getString("DriverRate").trim().isEmpty() || jsonObject.getString("DriverRate").contains("null") || jsonObject.getString("DriverRate") == null) {
+                        AC.DriverRate = null;
+                    } else {
+                        AC.DriverRate = Double.parseDouble(jsonObject.getString("DriverRate"));
+                    }
+                    if (jsonObject.getString("EstimatedDistance").trim().isEmpty() || jsonObject.getString("EstimatedDistance").contains("null") || jsonObject.getString("EstimatedDistance") == null) {
+                        AC.EstimatedDistance = null;
+                    } else {
+                        AC.EstimatedDistance = Double.parseDouble(jsonObject.getString("EstimatedDistance"));
+                    }
+                    if (jsonObject.getString("EstimatedTime").trim().isEmpty() || jsonObject.getString("EstimatedTime").contains("null") || jsonObject.getString("EstimatedTime") == null) {
+                        AC.EstimatedTime = null;
+                    } else {
+                        AC.EstimatedTime = Double.parseDouble(jsonObject.getString("EstimatedTime"));
+                    }
+                    if (jsonObject.getString("EstimatedFare").trim().isEmpty() || jsonObject.getString("EstimatedFare").contains("null") || jsonObject.getString("EstimatedFare") == null) {
+                        AC.EstimatedFare = null;
+                    } else {
+                        AC.EstimatedFare = Double.parseDouble(jsonObject.getString("EstimatedFare"));
+                    }
+                    if (jsonObject.getString("DriverTotalCompleted").trim().isEmpty() || jsonObject.getString("DriverTotalCompleted").contains("null") || jsonObject.getString("DriverTotalCompleted") == null) {
+                        AC.DriverTotalCompleted = null;
+                    } else {
+                        AC.DriverTotalCompleted = Integer.parseInt(jsonObject.getString("DriverTotalCompleted"));
+                    }
+                    if (jsonObject.getString("AcceptedByUnityId").trim().isEmpty() || jsonObject.getString("AcceptedByUnityId").contains("null") || jsonObject.getString("AcceptedByUnityId") == null) {
+                        AC.AcceptedByDrvUnityId = null;
+                    } else {
+                        AC.AcceptedByDrvUnityId = Integer.parseInt(jsonObject.getString("AcceptedByUnityId"));
+                    }
                     if (jsonObject.getString("TotalDistance").trim().isEmpty() || jsonObject.getString("TotalDistance").contains("null") || jsonObject.getString("TotalDistance") == null) {
                         AC.TotalDistance = 0.0;
                     } else {
@@ -402,7 +454,6 @@ public class TravelRequests {
                     trvlReq.add(AC);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    continue;
                 }
             }
         } catch (JSONException e) {

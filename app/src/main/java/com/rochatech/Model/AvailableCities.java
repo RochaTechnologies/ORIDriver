@@ -4,10 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
-
+@SuppressWarnings({"WeakerAccess","unused"})
 public class AvailableCities {
-    int CityId, StateId, CountryId;
-    String CityName, StateName, CountryName;
+    private int CityId, StateId, CountryId;
+    private String CityName, StateName, CountryName;
 
     public AvailableCities() { super(); }
 

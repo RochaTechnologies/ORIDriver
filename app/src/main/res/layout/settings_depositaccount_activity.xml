@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/DepositActLinear"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Settings_DepositAccount">
-    <android.support.v7.widget.AppCompatTextView
-        android:text="@string/SettingsDepositAccount_Title"
-        android:textColor="@color/ORIBlack"
-        android:textAlignment="center"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
     <android.support.v7.widget.LinearLayoutCompat
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="15dip"
-        android:layout_marginEnd="15dip" >
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <android.support.v7.widget.AppCompatTextView
-            android:text="Nombre del titular"
+            android:text="@string/SettingsDepositAccount_Title"
+            android:textColor="@color/ORIBlack"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.AppCompatTextView
+            android:text="@string/SettingsDepositAct_OwnedBy"
             android:textColor="@color/ORIBlack"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="3dp" />
+            android:layout_marginStart="9dp" />
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/AccountHolderName"
-            android:hint="Titular de la cuenta"
+            android:hint="@string/SettingsDepositAct_OwnedByDesc"
             android:backgroundTint="@android:color/transparent"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:inputType="text"
@@ -51,7 +54,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp" />
         <android.support.v7.widget.AppCompatTextView
-            android:text="CLABE"
+            android:text="@string/SettingsDepositAct_CLABE"
             android:textColor="@color/ORIBlack"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
@@ -60,7 +63,7 @@
             android:layout_marginTop="3dp" />
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/AccountCLABE"
-            android:hint="Clave bancaria estandarizada"
+            android:hint="@string/SettingsDepositAct_CLABEByDesc"
             android:backgroundTint="@android:color/transparent"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:inputType="phone"
@@ -74,7 +77,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp" />
         <android.support.v7.widget.AppCompatTextView
-            android:text="Alias de la cuenta"
+            android:text="@string/SettingsDepositAct_Nickname"
             android:textColor="@color/ORIBlack"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
@@ -83,7 +86,7 @@
             android:layout_marginTop="3dp" />
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/AccountNickName"
-            android:hint="Nombre para identificar a la cuenta"
+            android:hint="@string/SettingsDepositAct_NicknameDesc"
             android:backgroundTint="@android:color/transparent"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:inputType="text"
@@ -92,7 +95,6 @@
             android:layout_marginStart="5dip"/>
     </android.support.v7.widget.LinearLayoutCompat>
 
-
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_weight="1"
         android:gravity="center_vertical"
@@ -100,46 +102,169 @@
         android:layout_height="match_parent">
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/UpdateDepositInfo"
-            android:layout_weight="0"
-            android:text="Guardar"
+            android:text="@string/ORISaveString"
             android:textColor="@color/ORIWhite"
             android:textAllCaps="false"
             android:background="@drawable/template_bluebutton"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="35dp" />
     </android.support.v7.widget.LinearLayoutCompat>
+
     <android.support.v7.widget.LinearLayoutCompat
-        android:layout_weight="1"
-        android:orientation="horizontal"
+        android:layout_weight="0"
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <android.support.v7.widget.LinearLayoutCompat
-            android:gravity="center_vertical"
             android:layout_weight="1"
-            android:layout_marginEnd="10dp"
+            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <android.support.v7.widget.AppCompatTextView
-                android:text="Tus datos se almacenan de forma segura con encriptación de 256 bits"
-                android:textColor="@color/ORIBlack"
-                android:textAlignment="textEnd"
+                android:text="@string/ORIGlobal_DataSecurityMsg"
+                android:textAlignment="viewEnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
         <android.support.v7.widget.LinearLayoutCompat
-            android:gravity="center_vertical"
             android:layout_weight="0"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/ic_shield"
-                android:layout_weight="0"
                 android:layout_width="50dp"
                 android:layout_height="50dp" />
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v7.widget.LinearLayoutCompat>
+
+
+
+
+
+
+
+    <!--<android.support.v7.widget.LinearLayoutCompat-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_marginStart="15dip"-->
+        <!--android:layout_marginEnd="15dip" >-->
+        <!--<android.support.v7.widget.AppCompatTextView-->
+            <!--android:text="Nombre del titular"-->
+            <!--android:textColor="@color/ORIBlack"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="9dp"-->
+            <!--android:layout_marginTop="3dp" />-->
+        <!--<android.support.v7.widget.AppCompatEditText-->
+            <!--android:id="@+id/AccountHolderName"-->
+            <!--android:hint="Titular de la cuenta"-->
+            <!--android:backgroundTint="@android:color/transparent"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:inputType="text"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="5dip"/>-->
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:background="@color/ORIGray"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:layout_marginBottom="2dp" />-->
+        <!--<android.support.v7.widget.AppCompatTextView-->
+            <!--android:text="CLABE"-->
+            <!--android:textColor="@color/ORIBlack"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="9dp"-->
+            <!--android:layout_marginTop="3dp" />-->
+        <!--<android.support.v7.widget.AppCompatEditText-->
+            <!--android:id="@+id/AccountCLABE"-->
+            <!--android:hint="Clave bancaria estandarizada"-->
+            <!--android:backgroundTint="@android:color/transparent"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:inputType="phone"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="5dip"/>-->
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:background="@color/ORIGray"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:layout_marginBottom="2dp" />-->
+        <!--<android.support.v7.widget.AppCompatTextView-->
+            <!--android:text="Alias de la cuenta"-->
+            <!--android:textColor="@color/ORIBlack"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="9dp"-->
+            <!--android:layout_marginTop="3dp" />-->
+        <!--<android.support.v7.widget.AppCompatEditText-->
+            <!--android:id="@+id/AccountNickName"-->
+            <!--android:hint="Nombre para identificar a la cuenta"-->
+            <!--android:backgroundTint="@android:color/transparent"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:inputType="text"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="5dip"/>-->
+    <!--</android.support.v7.widget.LinearLayoutCompat>-->
+
+
+    <!--<android.support.v7.widget.LinearLayoutCompat-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+        <!--<android.support.v7.widget.AppCompatButton-->
+            <!--android:id="@+id/UpdateDepositInfo"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="Guardar"-->
+            <!--android:textColor="@color/ORIWhite"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:background="@drawable/template_bluebutton"-->
+            <!--android:layout_marginStart="60dp"-->
+            <!--android:layout_marginEnd="60dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="35dp" />-->
+    <!--</android.support.v7.widget.LinearLayoutCompat>-->
+    <!--<android.support.v7.widget.LinearLayoutCompat-->
+        <!--android:layout_weight="0"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<android.support.v7.widget.LinearLayoutCompat-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_marginEnd="10dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+            <!--<android.support.v7.widget.AppCompatTextView-->
+                <!--android:text="Tus datos se almacenan de forma segura con encriptación de 256 bits"-->
+                <!--android:textColor="@color/ORIBlack"-->
+                <!--android:textAlignment="textEnd"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</android.support.v7.widget.LinearLayoutCompat>-->
+        <!--<android.support.v7.widget.LinearLayoutCompat-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_weight="0"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent">-->
+            <!--<android.support.v7.widget.AppCompatImageView-->
+                <!--android:src="@drawable/ic_shield"-->
+                <!--android:layout_weight="0"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp" />-->
+        <!--</android.support.v7.widget.LinearLayoutCompat>-->
+    <!--</android.support.v7.widget.LinearLayoutCompat>-->
 
 
 </android.support.v7.widget.LinearLayoutCompat>

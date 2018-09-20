@@ -6,22 +6,23 @@
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingBottom="16dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="16dp"
+    android:paddingStart="10dp"
+    android:paddingEnd="16dp"
     android:paddingTop="50dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
     <LinearLayout
         android:orientation="horizontal"
+        android:baselineAligned="false"
         android:layout_width="match_parent"
         android:layout_height="80dp">
         <LinearLayout
-            android:layout_weight="0"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/DriverProfilePic"
+                android:contentDescription="@string/ORI_DefaultValueString"
                 android:layout_gravity="center_vertical"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -35,14 +36,13 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/NavMenu_DriverName"
-                android:text="Default"
+                android:text="@string/ORI_DefaultValueString"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
             <RatingBar
                 android:id="@+id/NavMenu_DriverRate"
-                android:layout_weight="0"
                 android:numStars="5"
                 android:isIndicator="true"
                 android:layout_width="wrap_content"

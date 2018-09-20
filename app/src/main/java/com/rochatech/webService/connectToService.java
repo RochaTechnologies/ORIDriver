@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.util.Base64;
 import android.util.Log;
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -20,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.rochatech.library.Common;
 import com.rochatech.oridriver.R;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,22 +29,26 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
-
+@SuppressWarnings({"WeakerAccess","unused","FieldCanBeLocal"})
 public class connectToService {
 
     //region Global
     private Context context;
-    private String _mainURLString = "http://testws.rochatech.com";
+    private String _urlValidationSvc = "http://testws.rochatech.com/rtunity/ws/v1/aurlval.php";
+    private String _mainURLString;
+    private String _profilePicURL;
+    private String _profilePicUpdateURL;
+    private String _loginURL;
+    private String _unityURL;
+    private String _appURL;
+    private String _errorURL;
     private String _serviceName = "RochaTech";
     private String _servicePassword = "Rocha2018";
-    private String _loginURL = _mainURLString + "/rtunity/ws/v1/als.php";
-    private String _unityURL = _mainURLString + "/rtunity/ws/v1/aus.php";
-    private String _appURL = _mainURLString + "/rtorids/ws/v1/aos.php";
-    private String _profilePicURL = "http://testws.rochatech.com/ws/v1/wus.php";
     private Integer _unityServiceId = 3;
-    private String _deviceFCMId = "";
+    private String _deviceFCMId;
     private int _accessPointId = 3;
-    private String _sessionTokenId = "";
+    private String _sessionTokenId;
+    private Common obj = new Common();
     //endregion
 
     public connectToService(Context context, String token) {
@@ -52,7 +56,62 @@ public class connectToService {
         SharedPreferences preferences = context.getSharedPreferences(context.getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE);
         _sessionTokenId = preferences.getString("SessionToken", null);
         _deviceFCMId = preferences.getString("settings_FCMTokenId",null);
+        _mainURLString = preferences.getString("reqenv_mainsvcurl",null);
+        _profilePicURL = preferences.getString("reqenv_profilepictureurl",null);
+        _profilePicUpdateURL = preferences.getString("reqenv_profilepicupdateurl",null);
+        _loginURL = _mainURLString + "/rtunity/ws/v1/als.php";
+        _unityURL = _mainURLString + "/rtunity/ws/v1/aus.php";
+        _appURL = _mainURLString + "/rtorids/ws/v1/aos.php";
+        _errorURL = _mainURLString + "/rtunity/ws/v1/aes.php";
     }
+
+    //region WS Log Error
+    public void LogDeviceError (String AppName, String AppVersion, String AppMethod, String AppMethodsParams, String AppActivity,
+                                String DeviceModel, String DeviceBrand, String DeviceAPILevel, String DeviceOS, String DeviceScreenSize,
+                                Integer UnityId,
+                                String ErrorStackTrace, String ErrorMsg, String ErrorCode) {
+        JSONObject paramsObject = new JSONObject();
+        try {
+            /*  App Info    */
+            paramsObject.put("AppName", AppName);
+            paramsObject.put("AppVersion", AppVersion);
+            paramsObject.put("AppMethod", AppMethod);
+            paramsObject.put("AppMethodParams", AppMethodsParams);
+            paramsObject.put("AppActivity", AppActivity);
+            /*  Device Info */
+            paramsObject.put("DeviceModel", DeviceModel);
+            paramsObject.put("DeviceBrand", DeviceBrand);
+            paramsObject.put("DeviceAPILevel", DeviceAPILevel);
+            paramsObject.put("DeviceOS", DeviceOS);
+            paramsObject.put("DeviceScreenSize", DeviceScreenSize);
+            /*  User Info   */
+            paramsObject.put("UnityId", UnityId);
+            /*  Error Info  */
+            paramsObject.put("ErrorStackTrace", ErrorStackTrace);
+            paramsObject.put("ErrorMessage", ErrorMsg);
+            paramsObject.put("ErrorCode", ErrorCode);
+            /*  Common      */
+            paramsObject.put("AccessPointId", _accessPointId);
+            paramsObject.put("Request", "Log_DeviceError");
+            paramsObject.put("SessionToken", _sessionTokenId);
+            paramsObject.put("UnityServiceId", _unityServiceId);
+        } catch (JSONException e) {
+            //
+        }
+        WebServiceCall(paramsObject, _errorURL, new WSResponseListener() {
+            @Override
+            public void onError(String message) {
+
+            }
+            @Override
+            public void onResponseObject(JSONArray jsonResponse) {
+
+            }
+
+        });
+    }
+    //endregion
+
 
     /*Update SessionToken value*/
     public void SetSessionTokenId(String token) {
@@ -62,13 +121,40 @@ public class connectToService {
     /*Get profile picture*/
     public Bitmap GetProfilePictureFromUID(int UnityId){
         profilePictures task = new profilePictures();
+        task.SetContext(context);
         Bitmap result = null;
         try {
-            result = task.execute("http://testws.rochatech.com/ws/v1/pp.php?d=" + Integer.toString(UnityId)).get();
+            String tmp = _profilePicURL.replace("RochaTech:Rocha2018@","");
+            result = task.execute(tmp + "?d=" + Integer.toString(UnityId)).get();
         }  catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return result;
+    }
+
+    /*Request for environment*/
+    public void RequestEnvironment(final WSResponseListener listener) {
+        //Parametros
+        JSONObject paramsObject = new JSONObject();
+        try {
+            paramsObject.put("AccessPointId", _accessPointId);
+            paramsObject.put("Request", "Request_Env");
+            paramsObject.put("UnityServiceId", _unityServiceId);
+            paramsObject.put("DeviceFCMId", _deviceFCMId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        WebServiceCall(paramsObject, _urlValidationSvc, new WSResponseListener() {
+            @Override
+            public void onError(String message) {
+                listener.onError(message);
+            }
+
+            @Override
+            public void onResponseObject(JSONArray jsonResponse) {
+                listener.onResponseObject(jsonResponse);
+            }
+        });
     }
 
     //region Update Information
@@ -126,7 +212,7 @@ public class connectToService {
         JSONObject paramsObject = new JSONObject();
         try {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
-            ProfilePicture.compress(Bitmap.CompressFormat.PNG, 100, os);
+            ProfilePicture.compress(Bitmap.CompressFormat.PNG, 70, os);
             byte[] byteArray = os.toByteArray();
             base64StringOf_My_Image = Base64.encodeToString(byteArray, Base64.DEFAULT);
         } catch (Exception e) {
@@ -142,7 +228,7 @@ public class connectToService {
         } catch (JSONException e) {
             Log.d("ERROR", "Param: " + e.toString());
         }
-        WebServiceCall(paramsObject, _profilePicURL, new WSResponseListener() {
+        WebServiceCall(paramsObject, _profilePicUpdateURL, new WSResponseListener() {
             @Override
             public void onError(String message) {
                 listener.onError(message);
@@ -350,7 +436,6 @@ public class connectToService {
         });
     }
     public void ChangeDriverStatus(int UnityId, String Status, final WSResponseListener listener){
-//        A=Available, P=OnCourseToPickUp, B=Bussy, X=Offline
         JSONObject paramsObject = new JSONObject();
         try {
             paramsObject.put("AccessPointId", _accessPointId);
@@ -583,7 +668,7 @@ public class connectToService {
         JSONObject paramsObject = new JSONObject();
         try {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
-            UserProfilePic.compress(Bitmap.CompressFormat.PNG, 100, os);
+            UserProfilePic.compress(Bitmap.CompressFormat.PNG, 70, os);
             byte[] byteArray = os.toByteArray();
             base64StringOf_My_Image = Base64.encodeToString(byteArray, Base64.DEFAULT);
         } catch (Exception e) {
@@ -607,7 +692,7 @@ public class connectToService {
         } catch (JSONException e) {
             Log.d("ERROR", "Param: " + e.toString());
         }
-        WebServiceCall(paramsObject, _profilePicURL, new WSResponseListener() {
+        WebServiceCall(paramsObject, _profilePicUpdateURL, new WSResponseListener() {
             @Override
             public void onError(String message) {
                 listener.onError(message);
@@ -723,30 +808,6 @@ public class connectToService {
         try {
             paramsObject.put("AccessPointId", _accessPointId);
             paramsObject.put("Request", "Get_ServiceTypes");
-            paramsObject.put("SessionToken", _sessionTokenId);
-            paramsObject.put("UnityServiceId", _unityServiceId);
-            paramsObject.put("UnityId", UnityId);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        WebServiceCall(paramsObject, _appURL, new WSResponseListener() {
-            @Override
-            public void onError(String message) {
-                listener.onError(message);
-            }
-
-            @Override
-            public void onResponseObject(JSONArray jsonResponse) {
-                listener.onResponseObject(jsonResponse);
-            }
-
-        });
-    }
-    public void GetTripHistoryByPassengerId (int UnityId, final WSResponseListener listener) {
-        JSONObject paramsObject = new JSONObject();
-        try {
-            paramsObject.put("AccessPointId", _accessPointId);
-            paramsObject.put("Request", "Passenger_GetTripHistoryByPassengerId");
             paramsObject.put("SessionToken", _sessionTokenId);
             paramsObject.put("UnityServiceId", _unityServiceId);
             paramsObject.put("UnityId", UnityId);
@@ -1109,10 +1170,9 @@ public class connectToService {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("SvcConn", "Failed with error msg:\t" + error.getMessage());
-                Log.d("SvcConn", "Error StackTrace: \t" + error.getStackTrace());
+                Log.d("SvcConn", "Error StackTrace: \t" + error);
                 // edited here
                 try {
-                    String algo = error.networkResponse.data.toString();
                     byte[] htmlBodyBytes = error.networkResponse.data;
                     Log.e("SvcConn", new String(htmlBodyBytes), error);
                 } catch (NullPointerException e) {
@@ -1135,15 +1195,13 @@ public class connectToService {
                     String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
                     return Response.success(new JSONObject(jsonString),
                             HttpHeaderParser.parseCacheHeaders(response));
-                } catch (UnsupportedEncodingException e) {
+                } catch (UnsupportedEncodingException | JSONException e) {
                     return Response.error(new ParseError(e));
-                } catch (JSONException je) {
-                    return Response.error(new ParseError(je));
                 }
             }
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 String credentials = _serviceName + ":" + _servicePassword;
                 String auth = "Basic "

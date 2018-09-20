@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/ORIWhite"
     android:layout_width="match_parent"
@@ -12,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
         <android.support.v7.widget.AppCompatTextView
-            android:text="Cuenta"
+            android:text="@string/SettingsMain_ActTitle"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textAllCaps="true"
             android:textColor="@color/ORIBlack"
@@ -24,7 +23,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIGray" />
+            android:background="@color/ORIDisable" />
         <android.support.v7.widget.LinearLayoutCompat
             android:id="@+id/PersonalInfo"
             android:padding="5dp"
@@ -52,7 +51,7 @@
                 android:layout_marginStart="5dip" />
             <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/ic_rightarrow"
-                android:tint="@color/ORIGray"
+                android:tint="@color/ORIDisable"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
                 android:layout_width="wrap_content"
@@ -62,7 +61,7 @@
             android:layout_marginStart="7dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIGray" />
+            android:background="@color/ORIDisable" />
         <android.support.v7.widget.LinearLayoutCompat
             android:id="@+id/ChangePassword"
             android:orientation="horizontal"
@@ -90,7 +89,7 @@
                 android:layout_marginStart="5dip" />
             <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/ic_rightarrow"
-                android:tint="@color/ORIGray"
+                android:tint="@color/ORIDisable"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
                 android:layout_width="wrap_content"
@@ -99,10 +98,10 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIGray" />
+            android:background="@color/ORIDisable" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:text="Membresias y tarjetas"
+            android:text="@string/SettingsMain_OthersTitle"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textAllCaps="true"
             android:textColor="@color/ORIBlack"
@@ -114,7 +113,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIGray"/>
+            android:background="@color/ORIDisable"/>
         <android.support.v7.widget.LinearLayoutCompat
             android:id="@+id/DriversNPayments"
             android:padding="5dp"
@@ -142,7 +141,7 @@
                 android:layout_marginStart="5dip" />
             <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/ic_rightarrow"
-                android:tint="@color/ORIGray"
+                android:tint="@color/ORIDisable"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
                 android:layout_width="wrap_content"
@@ -152,7 +151,7 @@
             android:layout_marginStart="7dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIGray" />
+            android:background="@color/ORIDisable" />
 
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -182,7 +181,7 @@
                 android:layout_marginStart="5dip" />
             <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/ic_rightarrow"
-                android:tint="@color/ORIGray"
+                android:tint="@color/ORIDisable"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
                 android:layout_width="wrap_content"
@@ -192,7 +191,7 @@
             android:layout_marginStart="7dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIGray" />
+            android:background="@color/ORIDisable" />
         <android.support.v7.widget.LinearLayoutCompat
             android:id="@+id/DepositAct"
             android:orientation="horizontal"
@@ -201,7 +200,7 @@
             android:layout_height="wrap_content">
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/depositActIcon"
-                android:src="@drawable/ic_menu_cashcard_blue100"
+                android:src="@drawable/ic_menu_withdraw50x2"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
                 android:layout_width="wrap_content"
@@ -220,7 +219,7 @@
                 android:layout_marginStart="5dip" />
             <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/ic_rightarrow"
-                android:tint="@color/ORIGray"
+                android:tint="@color/ORIDisable"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
                 android:layout_width="wrap_content"
@@ -230,7 +229,7 @@
             android:layout_marginStart="7dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIGray" />
+            android:background="@color/ORIDisable" />
         <android.support.v7.widget.LinearLayoutCompat
             android:id="@+id/WithdrawAct"
             android:orientation="horizontal"
@@ -258,7 +257,7 @@
                 android:layout_marginStart="5dip" />
             <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/ic_rightarrow"
-                android:tint="@color/ORIGray"
+                android:tint="@color/ORIDisable"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
                 android:layout_width="wrap_content"
@@ -267,6 +266,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/ORIGray" />
+            android:background="@color/ORIDisable" />
     </android.support.v7.widget.LinearLayoutCompat>
 </android.support.v4.widget.DrawerLayout>

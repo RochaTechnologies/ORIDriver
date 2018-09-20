@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -23,7 +23,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp" />
             <android.support.v7.widget.AppCompatTextView
-                android:text="De momento no contamos con información de sus viajes"
+                android:text="@string/XML_TripHistoryNoInfo"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
@@ -45,16 +45,16 @@
             android:layout_height="wrap_content">
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/DriverPeriod"
-                android:text="Periodo ( -- - --)"
+                android:text="@string/XML_TripHistoryPeriod"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#000"
+                android:textColor="@color/ORIBlack"
                 android:textAlignment="center"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/DriverTotalEarned"
-                android:text="$--"
+                android:text="@string/XML_TripHistoryTotalEarned"
                 android:textSize="50sp"
                 android:textColor="@color/ORILightGreen"
                 android:textAlignment="center"
@@ -62,14 +62,14 @@
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/DriverTotalTrip"
-                android:text="-- viajes"
+                android:text="@string/XML_TripHistoryTotalTrips"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#000"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.AppCompatTextView
-                android:text="Total Acumulado"
+                android:text="@string/XML_TripHistoryGrandTotal"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#000"
                 android:textAlignment="center"
@@ -88,14 +88,14 @@
                     android:layout_height="wrap_content">
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/DriverGrandTotalEarned"
-                        android:text="$--"
+                        android:text="@string/XML_TripHistoryTotalEarned"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@color/ORILightGreen"
                         android:textAlignment="viewEnd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatTextView
-                        android:text="Ganado"
+                        android:text="@string/XML_TripHistoryEarnedString"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textAlignment="viewEnd"
                         android:layout_width="match_parent"
@@ -120,14 +120,14 @@
                     android:layout_height="wrap_content">
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/DriverGrandTotalTrip"
-                        android:text="--"
+                        android:text="@string/XML_doublestring"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@color/ORISkyBlue"
                         android:textAlignment="viewStart"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatTextView
-                        android:text="Viajes"
+                        android:text="@string/XML_TripsString"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textAlignment="viewStart"
                         android:layout_width="match_parent"
@@ -141,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <android.support.v7.widget.AppCompatTextView
-                android:text="Historial de Viajes"
+                android:text="@string/XML_TripHistoryTitle"
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="#000"

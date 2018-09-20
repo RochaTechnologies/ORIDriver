@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <android.support.v7.widget.AppCompatTextView
-            android:text="Terminos y condiciones"
+            android:text="@string/XML_FragmentTermsAndConditionsLabel"
             android:textAllCaps="true"
             android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceLarge"

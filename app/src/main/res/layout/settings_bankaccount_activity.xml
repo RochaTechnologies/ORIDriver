@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <android.support.v7.widget.AppCompatTextView
-                android:text="Cuenta de donde se cobra la membresia mensualmente"
+                android:text="@string/SettingsBankAccount_Msg"
                 android:textColor="@color/ORIBlack"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textAlignment="center"
@@ -27,7 +27,7 @@
         </android.support.v7.widget.LinearLayoutCompat>
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_weight="0"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <android.support.v7.widget.AppCompatTextView
-                            android:text="Banco"
+                            android:text="@string/XML_WizardCreditCard_BankString"
                             android:textColor="@color/ORIWhite"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:layout_gravity="center_vertical|start"
@@ -64,7 +64,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                         <android.support.v7.widget.AppCompatTextView
-                            android:text="Débito / Crédito"
+                            android:text="@string/XML_WizardCreditCard_CardTypeString"
                             android:textColor="@color/ORIWhite"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:layout_gravity="center_vertical|end"
@@ -81,7 +81,7 @@
                         android:layout_height="match_parent">
                         <android.support.v7.widget.AppCompatTextView
                             android:id="@+id/CreditCardNumber"
-                            android:text="xxxx-xxxx-xxxx-xxxx"
+                            android:text="@string/WizardCreditCard_DefaultCardValue"
                             android:textColor="@color/ORIWhite"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textAlignment="center"
@@ -89,7 +89,7 @@
                             android:layout_height="wrap_content" />
                         <android.support.v7.widget.AppCompatTextView
                             android:id="@+id/CreditCardHolder"
-                            android:text="Titular"
+                            android:text="@string/WizardCreditCard_DefaultCardHolder"
                             android:textColor="@color/ORIWhite"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textAlignment="center"
@@ -107,17 +107,19 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/CardButton"
                 android:layout_weight="0"
-                android:text="Agregar cuenta"
+                android:text="@string/WizardCreditCard_AddCard"
                 android:textColor="@color/ORIWhite"
                 android:textAllCaps="false"
                 android:background="@drawable/template_bluebutton"
-                android:layout_marginStart="100dp"
-                android:layout_marginEnd="100dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="35dp" />
         </android.support.v7.widget.LinearLayoutCompat>
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_weight="1"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -128,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <android.support.v7.widget.AppCompatTextView
-                    android:text="Tus datos se almacenan de forma segura con encriptación de 256 bits"
+                    android:text="@string/ORIGlobal_DataSecurityMsg"
                     android:textColor="@color/ORIBlack"
                     android:textAlignment="textEnd"
                     android:layout_width="match_parent"

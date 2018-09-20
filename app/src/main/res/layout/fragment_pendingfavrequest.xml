@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.AppCompatTextView
-            android:text="Nuevas solicitudes"
+            android:text="@string/ORI_DefaultValueString"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#000"
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             tools:listitem="@layout/template_favdriverpendingrequest"
             android:dividerHeight="3dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.ListViewCompat>
+            android:layout_height="match_parent" />
     </android.support.v7.widget.LinearLayoutCompat>
 
 </FrameLayout>

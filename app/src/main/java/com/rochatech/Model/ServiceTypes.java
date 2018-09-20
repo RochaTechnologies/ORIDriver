@@ -10,12 +10,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
-
+@SuppressWarnings({"WeakerAccess","unused"})
 public class ServiceTypes {
-    int ServiceTypeId;
-    String Name, ImageName, Description;
+    private int ServiceTypeId;
+    private String Name, ImageName, Description;
 
-    public ServiceTypes() { super();}
+    private ServiceTypes() { super();}
     public void setServiceTypeId(int ServiceTypeId) { this.ServiceTypeId = ServiceTypeId;}
     public void setName(String Name) { this.Name = Name;}
     public void setImageName(String ImageName) { this.ImageName = ImageName;}

@@ -14,12 +14,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
 import com.rochatech.library.Common;
-
+@SuppressWarnings({"WeakerAccess","unused"})
 public class FavoriteDrivers {
 
-    int FavoriteDriverId, PassengerUnityId, DriverUnityId;
-    String PassengerNickName, PassengerPhoto, RequestStatus;
-    Date AddedOn;
+    private int FavoriteDriverId, PassengerUnityId, DriverUnityId;
+    private String PassengerNickName, PassengerPhoto, RequestStatus;
+    private Date AddedOn;
 
     //region Set
     public void SetFavoriteDriverId (int FavoriteDriverId) {

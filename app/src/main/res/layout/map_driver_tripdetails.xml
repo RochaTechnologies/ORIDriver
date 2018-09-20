@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mapDriverTripDetails"
+    android:background="@color/ORIWhite"
     android:orientation="vertical"
     android:padding="10dp"
     android:layout_width="match_parent"
@@ -82,14 +83,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <android.support.v7.widget.AppCompatTextView
-                        android:text="Punto de partida"
+                        android:text="@string/XML_MapDriverTripDetails_OriginPoint"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/ORIBlack"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/passengerPickupAddressTripDetails"
-                        android:text="DireccionPartida"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textStyle="bold"
                         android:textColor="@color/ORIDisable"
@@ -134,14 +134,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <android.support.v7.widget.AppCompatTextView
-                        android:text="Punto de destino"
+                        android:text="@string/XML_MapDriverTripDetails_DestinyPoint"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/ORIBlack"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/passengerDropoffAddressTripDetails"
-                        android:text="DireccionDestino"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textStyle="bold"
                         android:textColor="@color/ORIDisable"
@@ -169,14 +168,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <android.support.v7.widget.AppCompatTextView
-                    android:text="Recorrido"
+                    android:text="@string/XML_MapDriverTripDetails_Km"
                     android:textColor="@color/ORIBlack"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/passengerEstimatedDistanceTripDetails"
-                    android:text="0.0 Km"
                     android:textColor="@color/ORISkyBlue"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
@@ -191,14 +189,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <android.support.v7.widget.AppCompatTextView
-                    android:text="Tiempo"
+                    android:text="@string/XML_MapDriverTripDetails_Time"
                     android:textColor="@color/ORIBlack"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/passengerEstimatedTimeTripDetails"
-                    android:text="0 mins"
                     android:textColor="@color/ORISkyBlue"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
@@ -213,14 +210,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <android.support.v7.widget.AppCompatTextView
-                    android:text="Tarifa"
+                    android:text="@string/XML_MapDriverTripDetails_Fare"
                     android:textColor="@color/ORIBlack"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/passengerEstimatedFareTripDetails"
-                    android:text="MX$00.00"
                     android:textColor="@color/ORISkyBlue"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
@@ -245,7 +241,7 @@
             android:layout_height="wrap_content">
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/bntAcceptedTravel"
-                android:text="Aceptar"
+                android:text="@string/ORIAcceptString"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textAllCaps="false"
                 android:textColor="@color/ORIWhite"
@@ -253,7 +249,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="35dp" />
         </android.support.v7.widget.LinearLayoutCompat>
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_weight="1"
@@ -261,7 +257,7 @@
             android:layout_height="wrap_content">
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btnRejectTravel"
-                android:text="Rechazar"
+                android:text="@string/ORIRejectString"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textAllCaps="false"
                 android:textColor="@color/ORIWhite"
@@ -269,7 +265,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="35dp" />
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v7.widget.LinearLayoutCompat>
 

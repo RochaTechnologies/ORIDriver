@@ -7,17 +7,15 @@
 package com.rochatech.webService;
 
 import android.content.Context;
-import android.content.Context;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+@SuppressWarnings({"WeakerAccess","unused","FieldCanBeLocal"})
 public class VolleySingleton {
 
     public RequestQueue requestQueue;
     public Context appContext;
-    /*WARNING FROM COMMIT = Do not place Android context classes in static fields (static reference to `VolleySingleton` which has field `appContext` pointing to `Context`); this is a memory leak (and also breaks Instant Run)*/
     public static VolleySingleton instanceVolley;
 
     public VolleySingleton(Context mContext) {

@@ -1,11 +1,15 @@
-<resources>
-    <string name="app_name">ORI Driver</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="Typos">
+    <string name="app_name" tools:ignore="PrivateResource">Ori Conductor</string>
+    <string name="appName">Ori Driver</string>
 
     <!-- Global strings -->
+    <string name="WelcomeToOriString">¡Bienvenido a Ori!</string>
     <string name="ORITravelWithORIMsg">Viaja con ori</string>
     <string name="ORIGlobal_NextStep">Continuar</string>
     <string name="ORIGlobal_AnyErrorsTitle">Revisar los siguientes errores:</string>
-    <string name="ORIGlobal_webServiceError">ORI Drive Services</string>
+    <string name="ORIGlobal_webServiceError">ORI Driver Services</string>
+    <string name="ORIUnexpectedError">Lo sentimos, pero ocurrió un error inesperado.</string>
+    <string name="ORIUnexpectedErrorNSendLogToServer">Lo sentimos, pero ocurrió un error inesperado. La información sobre el error ha sido enviada a nuestros servidores.</string>
     <string name="ORIGlobal_DataSecurityMsg">Tus datos se almacenan de forma segura con encriptación de 256 bits</string>
     <string name="ORIGlobal_SharedPreferences">ORI_Preferences</string>
     <string name="ORIGlobal_SharedPreferencesFailed_Title">Error al guardar preferencias</string>
@@ -14,6 +18,55 @@
     <string name="ORIDrawerClose">drawer_close</string>
     <string name="ORI_NoInternetConnection_Title">Sin conexión a internet</string>
     <string name="ORI_NoInternetConnection_Msg">Detectamos que no cuenta con conexión a internet, es importante que la aplicación este conectada en todo momento para ofrecerle un excelente servicio.</string>
+    <string name="ORI_DefaultValueString">Default</string>
+    <string name="ORIWaitingMsg">Por favor espere…</string>
+    <string name="ORISwipeDownString">Deslice hacia abajo para ver todas las opciones</string>
+    <string name="ORIToCancelSwipeDown">Para cancelar deslice hacia abajo</string>
+    <string name="ORIOkString">OK</string>
+    <string name="ORIYesString">Sí</string>
+    <string name="ORINoString">No</string>
+    <string name="ORIAcceptString">Aceptar</string>
+    <string name="ORIConfirmString">Confirmar</string>
+    <string name="ORIUnderstoodString">Entendido</string>
+    <string name="ORISendString">Enviar</string>
+    <string name="ORITurnOnString">Encender</string>
+    <string name="ORICancelString">Cancelar</string>
+    <string name="ORICloseString">Cerrar</string>
+    <string name="ORIEliminateString">Eliminar</string>
+    <string name="ORIRejectString">Rechazar</string>
+    <string name="ORISavingInfo">Guardando información</string>
+    <string name="ORISaveString">Guardar</string>
+    <string name="ORILoadingMsg">Cargando información…</string>
+    <string name="ORIEmergencyString">Emergencia</string>
+    <string name="ORILoadingPreferences">Estamos cargando tus preferencias…</string>
+    <string name="ORINoEmergencyContacts_Title">¡No cuentas con contactos de emergencia!</string>
+    <string name="ORINoEmergencyContacts_Message">En ORI cuidamos tu seguridad es por eso que te recomendamos añadir números telefónicos a tu lista de contactos de emergencia para que puedas contactar a alguien por medio de nuestro botón de Pánico.</string>
+    <string name="ORIPermissionsGranted_Msg">Los permisos necesarios han sido asignados</string>
+    <string name="ORIPermissionsGranted_Title">Permisos asignados</string>
+    <string name="ORIGPSDisable_Title">El GPS no esta encendido</string>
+    <string name="ORIGPSDisable_Msg">Encontramos que el GPS se encuentra apagado, es necesario que el GPS este encendido para que ORI pueda funcionar de manera correcta. Presione Encender para ayudarte a encenderlo.</string>
+    <string name="ORIAskingPermissions_Title">Necesitamos acceder a tu ubicación</string>
+    <string name="ORIAskingPermissions_Msg">Para una mejor experiencia, ORI necesita accesar a tu ubicación. Haga click en Conceder permisos y despues en Permitir.</string>
+    <string name="ORIBackPressed_Title">¿Estas seguro que deseas salir de la Ori?</string>
+    <string name="ORIBackPressed_Msg">Recuerda que para navegar por nuestra aplicación puedes utilizar nuestro menú y la flecha de navegación en la parte superior derecha.</string>
+
+    <string name="ORIWhatsAppDoingLabel_SearchingForRequest">Buscando pasajeros</string>
+    <string name="ORIWhatsAppDoingLabel_OfflineMode">Fuera de línea</string>
+
+
+    <string name="ORINeedLocationPermissions">Es necesario otorgar a Ori el uso del GPS en todo momento</string>
+    <string name="ORINoLocationPermissionsGrantedTitle">Es necesario otorgar a Ori permiso a tu ubicación</string>
+    <string name="ORINoLocationPermissionsGrantedMsg">Para el correcto funcionamiento de la aplicación es necesario otorgar los permisos de ubicación necesario. En el menu de Configuración de tu celular podrás otorgar los permisos.</string>
+
+    <string name="ORINoServiceAvailableInThisCityTitle">Ciudad no disponible para servicio</string>
+    <string name="ORINoServiceAvailableInThisCityMsg">Lo sentimos, pero la ciudad seleccionada no cuenta con nuestros servicios.</string>
+
+
+    <!--    Travel Request Status   -->
+    <string name="ORIReqStatus_Waiting">W</string>
+    <string name="ORIReqStatus_OnCourse">O</string>
+    <string name="ORIReqStatus_Attended">A</string>
+    <string name="ORIReqStatus_Ended">E</string>
 
     <!--    Driver Status   -->
     <string name="ORIDriverStatus_Available">A</string>
@@ -25,24 +78,97 @@
     <string name="ORIDriverStatus_Offline">X</string>
     <string name="ORIDriverStatus_Offline_Desc">Fuera de linea</string>
 
+    <!--    Icon Names      -->
+    <string name="ORIDialog_Error_IconName">Error</string>
+    <string name="ORIDialog_Success_IconName">Success</string>
+
+
+    <!--    Common class    -->
+    <string name="ORI_Common_SessionExpired_Title">Tu sesión ha expirado</string>
+    <string name="ORI_Common_SessionExpired_Msg">Cada sesión esta programada para expirar cada 7 días desde la última vez que abres el app o cuando se inicia desde otro dispositivo, si no es tu caso, es recomendable cambiar tu contraseña inmediatamente</string>
+
+    <!--    Support Bottom Dialog TravelRequest -->
+    <string name="ORI_CancelTravelRequest">¿Estás seguro que deseas cancelar la requisición de viaje?</string>
+
+    <!--    Fragment Wizard Notification Alert  -->
+    <string name="ORIFragment_NotificationAlert_EmailSend">¡Listo, tu correo se envió con éxito!</string>
+    <string name="ORIFragment_NotificationAlert_EmailInstructions">Las instrucciones para recuperar tu contraseña</string>
+    <string name="ORIFragment_NotificationAlert_ConfirmSend">Se envió un correo de confirmación al correo</string>
+    <string name="ORIFragment_NotificationAlert_AddCardNow">Agregar ahora</string>
+    <string name="ORIFragment_NotificationAlert_AddLater">Agregar después</string>
+    <string name="ORIFragment_NotificationAlert_CardSaved">¡Tarjeta guardada con éxito!</string>
+    <string name="ORIFragment_NotificationAlert_CardSavedSub">Su método de pago a sido guardado con éxito</string>
+    <string name="ORIFragment_NotificationAlert_CardSavedSub2">inicie sesión para comenzar a disfrutar de nuestro servicio</string>
+
+    <!--    Driver_Passenger   -->
+    <string name="XML_MapDriverEndTravel">Recuerda dar las gracias a</string>
+    <string name="XML_MapDriverEndTravel_FinishTravel">Finalizar viaje</string>
+    <string name="XML_MapDriverDropoff">En camino a</string>
+    <string name="XML_MapDriverDropoff_With">Con</string>
+    <string name="XML_MapDriverDropoff_Navigate">Navegar</string>
+    <string name="XML_MapDriverRatePassenger_RatePassenger">Califica a tu pasajero</string>
+    <string name="XML_MapDriverRatePassenger_RateString">Calificar</string>
+    <string name="XML_MapDriverRatePassenger_RateStringDesc">Califica a tu pasajero</string>
+    <string name="XML_MapDriverStartTravel_WelcomeTo">Recuerda dar la bienvenida a</string>
+    <string name="XML_MapDriverStartTravel_StartString">Iniciar viaje</string>
+    <string name="XML_MapDriverTripDetails_OriginPoint">Punto de partida</string>
+    <string name="XML_MapDriverTripDetails_DestinyPoint">Punto de destino</string>
+    <string name="XML_MapDriverTripDetails_Km">Recorrido</string>
+    <string name="XML_MapDriverTripDetails_Time">Tiempo</string>
+    <string name="XML_MapDriverTripDetails_Fare">Tarifa</string>
+    <!--<string name="MapPassenger_LookingForYourLocation">Buscando tu ubicación</string>-->
+    <!--<string name="MapPassenger_DeleteFavDriver_Title">¿Deseas eliminar al conductor favorito?</string>-->
+    <!--<string name="MapPassenger_DeleteFavDriver_Msg">Esto no eliminará al conductor de tu lista de favoritos.</string>-->
+    <!--<string name="MapPassenger_EmergencyTitleMsg">Sistema de notificación de emergencia</string>-->
+    <!--<string name="MapPassenger_NeedToRateDriver_Title">Necesitas evaluar a tu conductor</string>-->
+    <!--<string name="MapPassenger_NeedToRateDriver_Msg">Es importante que evalues a tu conductor.</string>-->
+    <!--<string name="MapPassenger_TalkWithDriver">¿Como desea contactar a su conductor?</string>-->
+    <!--<string name="MapPassenger_TalkWithDriver_Mobile">Llamada telefónica</string>-->
+    <!--<string name="MapPassenger_TalkWithDriver_SMS">Mensaje de texto</string>-->
+    <!--<string name="MapPassenger_TalkWithDriver_SMSTitle">¡Hola soy tu pasajero de ORI! </string>-->
+    <!--<string name="MapPassenger_ORIThanksForTravelingWithUs">¡Gracias por viajar con Ori!</string>-->
+    <!--<string name="MapPassenger_ORIThanksForTravelingWithUs_Msg">Esperamos volver a llevarte a tu destino con la mejor experiencia.</string>-->
+    <!--<string name="MapPassenger_ORISendRequestFavDriver_Title">¡Solicitud enviada!</string>-->
+    <!--<string name="MapPassenger_ORISendRequestFavDriver_Msg">Se ha enviado la solicitud al conductor(a), en cuanto sea aprobada lo verás en la sección de "Mis Conductores".</string>-->
+    <!--<string name="MapPassenger_ORICreateTravelRequest">Creando petición</string>-->
+    <!--<string name="MapPassenger_ORILookingForDrivers">Buscando conductores disponibles</string>-->
+    <!--<string name="MapPassenger_ORIWaitingForDriverRespond">Esperando respuesta del conductor</string>-->
+    <!--<string name="MapPassenger_ORICancelTravelRequestBtnMsg">Cancelar viaje</string>-->
+    <!--<string name="MapPassenger_ORINoDriverAvailables_Title">No conductores disponibles</string>-->
+    <!--<string name="MapPassenger_ORINoDriverAvailables_Msg">No se encuentran conductores disponibles por el momento.</string>-->
+    <!--<string name="MapPassenger_ORIMyActiveTravelRequestMsg">Consiguiendo información de su viaje pendiente</string>-->
+
 
     <!-- Wizard Login String -->
-    <!-- Labels -->
+    <!--    Labels      -->
     <string name="WizardLogin_WelcomeMsg">¡Bienvenido!</string>
     <string name="WizardLogin_LogInMsg">Iniciar Sesión</string>
     <string name="WizardLogin_ForgorPasswordMsg">Olvidé mi contraseña</string>
     <string name="WizardLogin_CreateUserMsg">¡Crea una cuenta!</string>
-    <!-- Errors -->
+    <!--    Messages    -->
+
+
+    <!--    Errors      -->
+    <string name="WizardLogin_Error_ActLockedMsg">La cuenta ha sido bloqueada por motivos de seguridad. Favor de llamar a nuestro Centro de Atención a Clientes para ayudarte a desbloquear tu cuenta.</string>
+    <string name="WizardLogin_Error_ActLockedTitle">Cuenta bloqueada</string>
     <string name="WizardLogin_Error_EmptyUnityEmail">El correo electrónico no puede ser vacío</string>
     <string name="WizardLogin_Error_InvalidUnityEmail">El correo electrónico no es válido</string>
     <string name="WizardLogin_Error_EmptyUnityPassword">La contraseña no puede ser vacía</string>
-    <string name="WizardLogin_Error_InvalidCredentials">El correo electrónico o la contraseña son incorrectas, recuerde que tras varios intentos su cuenta se bloqueara por motivos de seguridad</string>
+    <string name="WizardLogin_Error_InvalidCredentials">El correo electrónico o la contraseña son incorrectas, recuerde que tras varios intentos su cuenta se bloqueará por motivos de seguridad</string>
+
+
+    <!--    NavMenuStrings   -->
+    <string name="navmenu_map">Mapa</string>
+    <string name="navmenu_history">Historial</string>
+    <string name="navmenu_mydrivers">Mis conductores</string>
+    <string name="navmenu_settings">Configuración</string>
+    <string name="navmenu_logoff">Cerrar Sesión</string>
 
 
     <!-- Wizard ForgotPassword String -->
     <!-- Labels -->
     <string name="WizardForgotPassword_Instructions">Para crear una nueva contraseña escribe tu correo electrónico y sigue las instrucciones que te enviaremos a tu correo</string>
-    <string name="WizardForgotPassword_SendMsg">Enviar</string>
+
     <!-- Errors -->
     <string name="WizardForgotPassword_EmptyEmail">El correo electrónico no puede ser vació.</string>
     <string name="WizardForgotPassword_InvalidEmail">El correo electrónico no es válido.</string>
@@ -52,7 +178,7 @@
     <!-- Wizard Profile Picture String -->
     <!-- Labels -->
     <string name="WizardProfilePicture_SelectPhotoMsg">Seleccionar una fotografía</string>
-    <string name="WizardProfilePicture_Instructions">Agrega una foto de perfil (Esta imagen es la que veran tus pasajeros y escribe tu nombre tal cual se encuentran en tu identificación).</string>
+    <string name="WizardProfilePicture_Instructions">Agrega una foto de perfil (Esta imagen es la que verán tus pasajeros y escribe tu nombre tal cual se encuentra en tu identificación).</string>
     <string name="WizardProfilePicture_MaleGenderMsg">Hombre</string>
     <string name="WizardProfilePicture_FemaleGenderMsg">Mujer</string>
     <!-- Errors -->
@@ -64,7 +190,21 @@
 
     <!-- Wizard Create Account String -->
     <!-- Labels -->
-    <string name="WizardCreateAccount_TermsInfo">Este es un titulo \n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat augue nibh, id hendrerit mauris tristique et. Praesent rhoncus ipsum lacus, quis dictum massa accumsan quis. Duis ut ligula sit amet lectus bibendum porta commodo sed ex. Donec tincidunt sem et ipsum pulvinar feugiat. Donec pretium, mi vulputate venenatis posuere, magna elit finibus enim, ac dictum dolor leo sit amet sem. Vestibulum congue pharetra purus vitae tincidunt. In porttitor leo id risus posuere, a placerat enim congue. Curabitur vitae tempor tellus. Praesent egestas blandit urna et finibus. Proin pulvinar nisi vitae neque rutrum venenatis. Vivamus pulvinar viverra lectus, ac posuere diam cursus venenatis. Phasellus maximus mauris neque, id egestas leo vestibulum quis. Donec velit velit, sagittis nec lobortis vel, viverra ac dolor. Fusce dictum vitae magna nec molestie. Morbi finibus velit eu justo auctor, a pulvinar tortor viverra. Pellentesque vulputate felis nec hendrerit mattis. Mauris id augue eu dui dictum varius a congue lorem. Curabitur fringilla aliquam ipsum, in porta nunc maximus eget. Donec vel tortor a purus laoreet pharetra. Donec tincidunt convallis libero vitae sagittis. Nam placerat malesuada lorem ut ultricies. Donec malesuada rhoncus sem, quis accumsan turpis ultricies vel. Donec vel convallis lectus. Sed hendrerit justo quis ligula feugiat cursus. Vivamus in ornare magna. Sed viverra interdum odio, in fermentum purus volutpat ac. Cras eget lobortis ex, sed vulputate ex. Maecenas vitae malesuada mi, a elementum nisi. Integer eros dui, ullamcorper vel viverra sed, commodo non est. Nulla cursus sed neque ut vehicula. Etiam eu dolor consectetur, fermentum ex lacinia, tempus odio. Aliquam in massa eu tellus mattis consequat. Nullam mauris velit, commodo eget malesuada sit amet, convallis malesuada odio. Integer est tellus, molestie id sagittis in, rhoncus nec tellus. Suspendisse potenti. Nulla nec venenatis felis. Etiam consequat tristique gravida. Ut varius felis non est feugiat, ac hendrerit velit semper. Nulla mattis rutrum neque et congue. In egestas est lacus, vel rutrum justo fringilla id. Nam sit amet dignissim elit. Sed quis ipsum porta justo ultrices facilisis sit amet eget tellus. Phasellus lacinia purus vitae erat ultrices viverra in id purus. Aliquam erat volutpat. Etiam bibendum tincidunt nulla, blandit fermentum nunc rutrum eu. Vestibulum sagittis, ante vitae consectetur blandit, dolor nisl hendrerit erat, ut euismod felis lacus tincidunt erat. Integer nisi turpis, iaculis vel luctus vel, egestas vel augue. Pellentesque placerat varius massa, non molestie lorem consectetur eget. Integer ac hendrerit ante. Phasellus accumsan orci elit, eget lobortis odio pulvinar a. Maecenas posuere, mi vel feugiat iaculis, ex libero laoreet ex, sed vestibulum ipsum leo nec est. In luctus gravida venenatis. Suspendisse potenti. Curabitur ut volutpat nisl. Etiam auctor vestibulum ante. Fusce vel nibh cursus, convallis lectus ac, ornare metus. In hac habitasse platea dictumst. Phasellus lorem nisi, ullamcorper vel rhoncus blandit, dapibus id diam. Pellentesque iaculis, lectus sed euismod vehicula, nulla odio posuere orci, ac consequat tellus tortor non libero. Nullam efficitur, nibh nec volutpat malesuada, elit dui faucibus diam, quis malesuada turpis nibh sed leo. Nam eget turpis sapien. Sed mattis varius augue, cursus sollicitudin nunc laoreet eget. Proin turpis lectus, laoreet non dui in, fringilla egestas mauris. Etiam nibh nunc, mattis eu ornare ac, dapibus id dui. Maecenas lacinia tempus velit, in vehicula enim tincidunt vitae. Duis gravida urna sit amet arcu mollis consequat. Pellentesque non accumsan nunc. Quisque nulla tellus, aliquam mattis egestas vel, sagittis non eros. Duis posuere placerat est in vehicula. Duis eleifend metus quam, sed condimentum nulla viverra tempor. Nulla pulvinar egestas erat quis finibus. Etiam facilisis leo ut ipsum mattis dapibus. Phasellus tempor facilisis molestie. Maecenas ut diam sit amet nibh auctor laoreet. Vestibulum accumsan consequat fringilla. Vivamus id rutrum orci. Nullam et neque vestibulum nulla tincidunt interdum. Donec in ex elit. Proin non vestibulum magna. Sed hendrerit accumsan nisi, pulvinar feugiat mi fermentum non. Quisque mollis elementum velit, sed consequat dui malesuada et. Fusce pharetra laoreet est, ut aliquam mauris lobortis eu. Nulla dolor tortor, maximus sed metus vel, lacinia commodo nunc. Praesent eget condimentum dolor. Etiam aliquet lobortis ex, nec pharetra turpis consequat non. Cras vestibulum dignissim urna, rhoncus rutrum libero gravida non. Vivamus lorem neque, facilisis quis dolor nec, sodales iaculis magna. Vivamus molestie velit at ornare laoreet. Sed tempor aliquet pharetra. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sodales dolor vitae suscipit auctor. Aenean in velit et felis vehicula iaculis. Curabitur vel magna placerat, semper velit quis, dapibus augue. Nunc condimentum tincidunt lorem sed sollicitudin. Donec ut ultrices nisl, quis rhoncus massa. Nam consectetur tortor ac nisl vehicula facilisis. Ut sed vulputate neque. Duis fermentum, metus a semper mollis, eros ligula aliquet eros, nec accumsan mi nisl sit amet sem. Suspendisse in erat tempor purus aliquam commodo congue eget sem. Nunc finibus purus lacus, id ultrices mauris finibus vitae. Cras blandit magna lorem. Duis lobortis luctus neque, et luctus urna. Duis sodales lorem a tellus volutpat lobortis. Aliquam finibus, dui quis sodales euismod, tellus turpis congue quam, eu interdum felis metus rutrum mauris. Vivamus diam tortor, efficitur at volutpat a, suscipit sed est. In ac vulputate ligula, in blandit risus. Vestibulum porta ac ipsum eu imperdiet. Donec faucibus tincidunt metus, at mattis risus tempus eu. Praesent interdum arcu et porttitor semper. Ut posuere tellus neque. Aliquam aliquet eros vel tortor tincidunt tincidunt. Nulla et leo nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec tempor dolor ac diam ornare euismod. Curabitur vestibulum finibus placerat. Quisque molestie malesuada suscipit. Suspendisse volutpat pulvinar semper. Vivamus tempus neque lectus, semper tincidunt erat lacinia vitae. Praesent dictum sodales consequat. Vestibulum ut elit euismod felis viverra sodales. Aenean viverra in quam ac finibus. Maecenas et rhoncus lectus, ut finibus risus. Etiam sagittis nunc nec mauris lacinia venenatis. Cras nec varius nisl, non posuere ligula. Ut porttitor porta sapien nec commodo. Ut vitae ipsum arcu. Suspendisse auctor eu felis sed pellentesque. Pellentesque pretium tincidunt massa at porta. Donec non placerat lectus. Quisque accumsan nunc velit, ut vestibulum libero ultricies sit amet. Sed pulvinar lectus vel orci luctus facilisis. Curabitur bibendum porttitor risus, at blandit enim dictum non. Quisque at odio pretium, aliquet leo eget, posuere justo. Sed malesuada ut justo luctus interdum. Maecenas nec volutpat odio, sed ultricies dolor. Morbi volutpat elementum eleifend. Ut facilisis sapien at ornare efficitur. Aliquam eu vehicula magna, a porta lacus. Donec eget erat ut mi condimentum auctor sed sed diam. Nullam efficitur feugiat porta. Integer eu tortor diam. Proin commodo gravida vulputate. Mauris quis vehicula odio, non euismod lorem. Curabitur rhoncus, odio vel bibendum auctor, purus dolor luctus erat, id lobortis orci sapien quis ante. Fusce et mattis tortor. Nunc elit ex, mattis eget fringilla ut, sagittis id velit. Suspendisse aliquet rhoncus lacinia. Cras rutrum imperdiet sapien sit amet fermentum. Nulla nisl neque, pulvinar sed ipsum vitae, rhoncus accumsan nisl. Morbi dictum vehicula nunc, a tempus purus mattis ac. Aliquam maximus dolor ac odio interdum, ac pretium nibh bibendum. In purus ex, eleifend eu ipsum id, consectetur convallis ipsum. Cras nec faucibus purus. Fusce fermentum eu mi ut viverra. Nulla facilisi. In rhoncus nibh diam, quis vestibulum quam malesuada rhoncus. Duis sed ligula sed velit maximus fringilla. Morbi enim erat, vestibulum in ultrices eget, fermentum quis diam. Cras feugiat risus arcu, sed mattis augue luctus congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae tortor volutpat, malesuada turpis vitae, ultricies mi. Vivamus maximus maximus mollis. Fusce eu leo ac nibh cursus congue sit amet vitae mi. Morbi volutpat efficitur ante, eget fringilla urna consectetur ut. In faucibus et quam nec tristique. Mauris eget porttitor ipsum. Aenean non tempor nibh. Nulla facilisi. Sed eu tincidunt quam. Quisque erat massa, varius in euismod non, dictum consectetur risus. Vestibulum facilisis, arcu ut molestie dictum, tortor leo mollis tortor, in congue augue eros sed mi. Pellentesque id arcu tellus. Vestibulum tempus, ligula a lacinia tempus, sem massa ullamcorper risus, sit amet vehicula risus lectus iaculis leo. Sed gravida quam quis turpis aliquet, sit amet tincidunt mi placerat. Suspendisse semper finibus metus at mattis. Nulla varius ultrices arcu id feugiat. Etiam ac nisl pellentesque, dapibus mauris ut, interdum turpis. Fusce pellentesque velit quis fringilla feugiat. Praesent at elementum quam, scelerisque malesuada nunc. In sit amet tortor quis sem elementum ultrices et eget mauris. Curabitur venenatis tristique lobortis. Nam faucibus, ex eget tempor porta, nulla libero tristique nibh, in pulvinar tellus libero quis enim. Vivamus congue nec sapien in blandit. In hac habitasse platea dictumst. Curabitur ornare rutrum dolor, quis ullamcorper quam congue in. Nullam hendrerit sem mauris, quis laoreet velit porta nec. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pulvinar nulla a erat varius sagittis ac ac odio. Cras tincidunt facilisis diam, sed porttitor urna vestibulum quis. Donec vitae accumsan mi. Praesent condimentum lacus eu vehicula lacinia. Nam mi ligula, placerat in tortor sed, varius vehicula ipsum. Sed at neque tempus, aliquam lorem sed, auctor lacus. Sed vehicula ac diam vitae euismod. Donec sit amet viverra enim. Suspendisse sodales magna eros. Proin malesuada nisl nec enim egestas ultricies. Nullam a placerat sapien, nec mattis ligula. Suspendisse porta imperdiet ante eu viverra. Vestibulum ut lorem accumsan magna interdum blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac urna ex. Curabitur aliquet sodales leo, quis porttitor mi. Sed rutrum id dui non mollis. Pellentesque et ipsum id risus fermentum condimentum. Nulla facilisi. Aliquam blandit porta tellus, vitae porta lorem sodales eget. Sed ut massa nec augue mattis semper sed a risus. Fusce euismod faucibus tellus in viverra. Sed pulvinar lectus id ipsum dictum accumsan. Sed ut orci sit amet orci pellentesque commodo ac id eros. Etiam non quam rhoncus, blandit nunc in, volutpat libero.</string>
+    <string name="ORIWizard_CreateAccountMsg">Creando cuenta</string>
+    <string name="WizardCreateAccount_TermsInfo">USO DE LA PLATAFORMA O APLICACIÓN\n\nTodos los contenidos, textos, gráficas e imágenes, son propiedad intelectual de Rocha Technologies de México S.A. de C.V. y queda prohibida su reproducción parcial o total.
+Al hacer uso de la plataforma, usted acepta y reconoce que Rocha Technologies de México S.A. de C.V. no presta servicios de transporte en ninguna de sus modalidades.
+Al hacer uso de la plataforma, usted acepta que Rocha Technologies de México S.A. de C.V. no tiene responsabilidad alguna en caso de que se presente algún accidente de tránsito durante la prestación de servicios por parte del conductor o del uso del servicio por parte del usuario, quedando bajo la responsabilidad del conductor los procedimientos y trámites que corresponda tanto para la validación y aplicación de la cobertura del seguro del vehículo como para la cobertura de las responsabilidades señaladas por las autoridades locales de tránsito y vialidad, eximiendo por completo a Rocha Technologies de México S.A. de C.V. de cualquier responsabilidad civil o judicial, presente o futura, derivada de dicha eventualidad.
+Tanto los conductores como los usuarios del servicio acuerdan y aceptan que en caso de controversia legal las partes se sujetarán a la jurisdicción del domicilio fiscal de Rocha Technologies de México S.A. de C.V. en el estado de Querétaro.\n\nSOLICITANTES DE SERVICIO (PASAJEROS)\n\nAl hacer uso del servicio de traslado, el pasajero o solicitante del servicio manifiesta conocer y estar de acuerdo en su totalidad y sin excepción alguna con los términos y condiciones del servicio prestado aquí manifestados.
+El pasajero o solicitante del servicio debe ser mayor de 18 años de edad.
+El pasajero o solicitante del servicio manifiesta estar enterado de que su cuenta y la aplicación correspondiente como usuario en Rocha Technologies de México S.A. de C.V. es intransferible y no puede ser facilitada para su uso a ninguna persona que no sea el usuario mismo.
+El pasajero o solicitante del servicio manifiesta estar enterado de que el servicio de traslado es provisto por el conductor de la unidad que le es asignada para este fin en cada ocasión que lo solicite, que Rocha Technologies de México S.A. de C.V. solo provee la aplicación de enlace entre él y el conductor, que esta empresa no provee directamente servicios de traslado y que el conductor que le provee el servicio no trabaja para dicha empresa.
+El pasajero o solicitante del servicio manifiesta estar en conocimiento de que el servicio de traslado no puede ser prestado a menores de 18 años a no ser que sean acompañados por el usuario registrado.
+El pasajero o solicitante del servicio acepta expresamente y sin excepción alguna eximir a Rocha Technologies de México S.A. de C.V. de cualquier responsabilidad presente o futura derivada de cualquier accidente de tránsito que pudiera ocurrir durante su traslado, manifestando que acepta que es el conductor el responsable de solicitar los servicios del seguro del vehículo y de todos los trámites correspondientes.
+El pasajero o solicitante del servicio acepta las medidas que Rocha Technologies de México S.A. de C.V. considere pertinente tomar en función de evitar los contracargos improcedentes; asimismo el pasajero queda en conocimiento de que, en caso de que este genere un contracargo improcedente, su acceso a la aplicación será bloqueado de inmediato y de forma permanente, sin detrimento de las medidas legales que Rocha Technologies de México S.A. de C.V. decida tomar en su contra, en función del correspondiente resarcimiento de daños que el contracargo pudiera provocar.
+El pasajero queda enterado de que Rocha Technologies de México S.A. de C.V. podráa tomar medidas para garantizar que cada cargo a la tarjeta de crédito del pasajero es legítimo y de esta manera evitar contracargos improcedentes, por ejemplo solicitar al pasajero el código CVV2 de su tarjeta.
+El pasajero o solicitante del servicio acepta que los términos y condiciones listados en esta sección pueden ser modificados en cualquier momento y sin previo aviso por Rocha Technologies de México S.A. de C.V., obligándose este último únicamente a publicar dichas modificaciones, las cuales serán de aplicación inmediata.
+El pasajero o solicitante del servicio acepta que en caso de controversia legal, las partes se someten a la jurisdicción de domicilio de Rocha Technologies de México S.A. de C.V. en el estado de Querétaro, renunciando expresamente de este modo a cualquier otra, presente o futura, que pudiera corresponderle.
+    </string>
     <string name="WizardCreateAccount_CitiesHeader">Seleccione una ciudad</string>
     <string name="WizardCreateAccount_MobileMsg">Celular</string>
     <string name="WizardCreateAccount_EmailMsg">Correo electrónico</string>
@@ -75,7 +215,7 @@
     <string name="WizardCreateAccount_CreateAccountMsg">Crear cuenta</string>
     <!-- Errors -->
     <string name="WizardCreateAccount_LoadCitiesFailed">Ocurrió un problema al momento de cargar las ciudades disponibles</string>
-    <string name="WizardCreateAccount_MobileEmpty">Favor de escribir su numero telefónico.</string>
+    <string name="WizardCreateAccount_MobileEmpty">Favor de escribir su número telefónico.</string>
     <string name="WizardCreateAccount_MobileNotValid">Recuerda que la marcación correcta para teléfonos es de 10 dígitos.</string>
     <string name="WizardCreateAccount_NoCitySelected">Favor de seleccionar una ciudad de la lista disponible.</string>
     <string name="WizardCreateAccount_EmailEmpty">Favor de escribir un correo electrónico.</string>
@@ -94,18 +234,36 @@
 
     <!-- Wizard Credit Card String -->
     <!-- Label -->
+    <string name="XML_WizardCreditCard_MembershipActLabel">Cuenta de donde se cobra la membresía mensualmente</string>
+    <string name="XML_WizardCreditCard_BankString">Banco</string>
+    <string name="XML_WizardCreditCard_CardTypeString">Débito / Crédito</string>
+    <string name="XML_WizardCreditCard_EncryptionMsg">Tus datos se almacenan de forma segura con encriptación de 256 bits</string>
+
     <string name="WizardCreditCard_AcceptedCardsMsg">Tarjetas aceptadas</string>
     <string name="promptMonth">Mes</string>
     <string name="promptYear">Año</string>
+    <string name="WizardCreditCard_SavingCard">Guardando los datos de la tarjeta</string>
+    <string name="WizardCreditCard_DeleteCard">Eliminar tarjeta</string>
+    <string name="WizardCreditCard_AddCard">Agregar tarjeta</string>
+    <string name="WizardCreditCard_DefaultCardHolder">Titular</string>
+    <string name="WizardCreditCard_DefaultCardValue">XXXX-XXXX-XXXX-XXXX</string>
+
+    <string name="WizardCreditCard_DeletingCardSuccess">¡Tarjeta eliminada!</string>
+    <string name="WizardCreditCard_DeletingCard">Eliminando tarjeta…</string>
+    <string name="WizardCreditCard_DeleteCard_Title">Eliminar forma de pago</string>
+    <string name="WizardCreditCard_DeleteCard_Msg">¿Esta seguro que desea eliminar esta forma de pago?</string>
+
+
     <!-- Errors -->
+    <string name="WizardCreditCard_StartSavingCardError">Ocurrió un error al momento de iniciar el proceso para guardar su tarjeta</string>
     <string name="WizardCreditCard_CardHolderNameEmpty">El nombre del titular no puede ser vació</string>
-    <string name="WizardCreditCard_CardHolderNameLettersOnly">El nombre del titular no puede contener numeros o caracteres especiales</string>
+    <string name="WizardCreditCard_CardHolderNameLettersOnly">El nombre del titular no puede contener números o caracteres especiales</string>
     <string name="WizardCreditCard_CardNickNameEmpty">El alias de la cuenta no puede ser vació</string>
-    <string name="WizardCreditCard_CardNumberEmpty">El numero de tarjeta no puede ser vació</string>
-    <string name="WizardCreditCard_CardNumberNumbersOnly">El numero de tarjeta no puede contener letras o caracteres especiales</string>
-    <string name="WizardCreditCard_CardNumberInvalid">El numero de tarjeta no cuenta con los 16 digitos</string>
-    <string name="WizardCreditCard_CLABEEmpty">El numero de cuenta CLABE no puede ser vació</string>
-    <string name="WizardCreditCard_CLABEInvalid">El numero de cuenta CLABE es incorrecto, recuerde que son 18 digitos</string>
+    <string name="WizardCreditCard_CardNumberEmpty">El número de tarjeta no puede ser vació</string>
+    <string name="WizardCreditCard_CardNumberNumbersOnly">El número de tarjeta solo puede contener números</string>
+    <string name="WizardCreditCard_CardNumberInvalid">El número de tarjeta no cuenta con los 16 dígitos</string>
+    <string name="WizardCreditCard_CLABEEmpty">El número de cuenta CLABE no puede ser vació</string>
+    <string name="WizardCreditCard_CLABEInvalid">El número de cuenta CLABE es incorrecto, recuerde que son 18 dígitos</string>
     <string name="WizardCreditCard_ExpirationMonthEmpty">El mes de expiración no puede ser vació</string>
     <string name="WizardCreditCard_ExpirationMonthNumbersOnly">El mes de expiración no puede contener letras o caracteres especiales</string>
     <string name="WizardCreditCard_ExpirationMonthInvalidMonth">El mes de expiración debe estar en el rango del 1 al 12</string>
@@ -114,51 +272,73 @@
     <string name="WizardCreditCard_ExpirationYearInvalidYear">El año de expiración no debe ser inferior al año en curso</string>
     <string name="WizardCreditCard_CVVEmpty">El cvv2 no puede ser vació</string>
     <string name="WizardCreditCard_CVVNumbersOnly">El cvv2 no puede contener letras o caracteres especiales</string>
+    <string name="XML_WhereIsTheCVVTitle">¿Dónde se encuentra el CVV2?</string>
+    <string name="XML_WhereIsTheCVVMsg">El CVV ó CVV2 se encuentra en la parte trasera de su plástico y esta compuesto por 3 o 4 dígitos</string>
 
 
     <!-- Map Driver String -->
     <!-- Menu options -->
-    <string name="MapDriver_DriverStatusMsg">En Línea</string>
-    <string name="MapDriver_MapMsg">Mapa</string>
-    <string name="MapDriver_RequestMsg">Solicitudes</string>
-    <string name="MapDriver_HistoryMsg">Historial</string>
-    <string name="MapDriver_SettingsMsg">Configuración</string>
-    <string name="MapDriver_LogoffMsg">Cerrar Sesión</string>
+    <string name="MapPassenger_SettingOriginBtnLabel">Confirmar origen</string>
+    <string name="MapPassenger_SettingDestinationBtnLabel">Confirmar destino</string>
+    <string name="MapPassenger_SettingOriginLocation">Presiona en el mapa para colocar un punto de partida y después presiona el botón para confirmar</string>
+    <string name="MapPassenger_SettingDestinationLocation">Presiona en el mapa para colocar el punto de destino y después presiona el botón para confirmar</string>
+    <string name="MapPassenger_PickupLocationDistanceTooHighTitle">Punto de partida</string>
+    <string name="MapPassenger_PickupLocationDistanceTooHighMsg">La distancia de tu ubicación actual al punto de partida es mayor a 500m, favor de acercarse más a ese punto.</string>
 
     <!-- Settings Main String -->
     <!-- Label -->
+    <string name="SettingsMain_ActTitle">Cuenta</string>
+    <string name="SettingsMain_OthersTitle">Membresías y tarjetas</string>
     <string name="SettingsMain_PersonalInfo">Información personal</string>
     <string name="SettingsMain_PasswordMsg">Contraseña</string>
     <string name="SettingsMain_DriversNPaymentsMsg">Tipos de pago y pasajeros</string>
-    <string name="SettingsMain_MembershipStatusMsg">Estatus de membresía</string>
-    <string name="SettingsMain_DepositActMsg">Cuenta de depósito</string>
-    <string name="SettingsMain_WithdrawActMsg">Cuenta de cobro de membresía</string>
+    <string name="SettingsMain_EmergencyContactsMsg">Contactos de emergencia</string>
+    <string name="SettingsMain_BankActMsg">Cuenta de Banco</string>
 
     <!-- Settings Personal Info String -->
     <!-- Labels -->
+    <string name="SettingsPersonalInfo_EditPicTitle">Editar foto</string>
+    <string name="SettingsPersonalInfo_FullNameTitle">Nombre Completo</string>
+    <string name="SettingsPersonalInfo_NickNameTitle">Nombre Público</string>
+    <string name="SettingsPersonalInfo_MobileTitle">Celular</string>
+    <string name="SettingsPersonalInfo_UpdateMsg">Los datos se actualizarán la próxima vez que inicies el app</string>
+
+
     <string name="SettingsPersonalInfo_InstructionsMsg">Agrega una foto de perfil y el nombre con el que te reconocerán tus pasajeros</string>
-    <string name="SettingsPersonalInfo_NoteMsg">Los datos se actualizarán la proxima vez que inicies sesión en el app</string>
+    <string name="SettingsPersonalInfo_NoteMsg">Los datos se actualizarán la próxima vez que inicies sesión en el app</string>
     <!-- Errors -->
-    <string name="SettingsPersonalInfo_NewNickNameEmpty">Por favor escribe un nombre público con el cual tus pasajeros te conoceran.</string>
-    <string name="SettingsPersonalInfo_NewNickNameWithNumbers">Por favor no agregues numeros a tu nombre público.</string>
+    <string name="SettingsPersonalInfo_NewNickNameEmpty">Por favor escribe un nombre público con el cual tus pasajeros te conocerán.</string>
+    <string name="SettingsPersonalInfo_NewNickNameWithNumbers">Por favor no agregues números a tu nombre público.</string>
     <string name="SettingsPersonalInfo_NewNickNameWithSpecialChars">Por favor no agregues caracteres especiales a tu nombre publico.</string>
     <string name="SettingsPersonalInfo_NewMobileEmpty">Por favor escribe un número telefónico</string>
     <string name="SettingsPersonalInfo_NewMobileInvalid">Recuerda que la marcación correcta para teléfonos es de 10 dígitos.</string>
 
     <!-- Settings Change Password String -->
     <!-- Labels -->
+    <string name="XML_SettingsChangePassword_CurrentPassword">Contraseña actual</string>
+    <string name="XML_SettingsChangePassword_NewPassword">Nueva contraseña</string>
+    <string name="XML_SettingsChangePassword_ConfirmPassword">Confirmar contraseña</string>
+
+    <string name="SettingsChangePassword_UpdatingPassword">Actualizando contraseña…</string>
+    <string name="SettingsChangePassword_UpdatingPassword_Success">¡Contraseña actualizada!</string>
     <string name="SettingsChangePassword_InstructionsMsg">Para realizar el cambio de contraseña solo escribe tu contraseña actual y la nueva</string>
     <string name="SettingsChangePassword_NoteMsg">Recuerda que si tienes una cuenta de pasajero, esta también será actualizada</string>
     <!-- Errors -->
-    <string name="SettingsChangePassword_CurrentPasswordEmpty">Favor de escribir su actual contraseña.</string>
-    <string name="SettingsChangePassword_NewPasswordEmpty">Favor de escribir una contraseña nueva.</string>
-    <string name="SettingsChangePassword_ConfirmPasswordEmpty">Favor de confirmar su contraseña.</string>
-    <string name="SettingsChangePassword_CurrentPasswordNotSame">Favor de revisar que su contraseña actual coincida con la escrita.</string>
-    <string name="SettingsChanegPassword_PasswordNotSame">Favor de revisar que las contraseñas nuevas coincidan.</string>
+    <string name="SettingsChangePassword_CurrentPasswordEmpty">Favor de escribir su contraseña.\n</string>
+    <string name="SettingsChangePassword_NewPasswordEmpty">Favor de escribir una contraseña nueva.\n</string>
+    <string name="SettingsChangePassword_ConfirmPasswordEmpty">Favor de confirmar su contraseña.\n</string>
+    <string name="SettingsChangePassword_CurrentPasswordNotSame">Favor de revisar que su contraseña actual coincida con la escrita.\n</string>
+    <string name="SettingsChanegPassword_PasswordNotSame">Ambas contraseñas no coinciden por favor revíselas.\n</string>
 
 
     <!-- Settings Drivers N Payments String -->
     <!-- Labels -->
+    <string name="XML_DriversNPayments_DriversTitle">Pasajeros</string>
+    <string name="XML_DriversNPayments_PaymentTitle">Método de pago</string>
+    <string name="XML_DriversNPayments_CreditTitle">Tarjeta de crédito / débito</string>
+    <string name="XML_DriversNPayments_CashTitle">Efectivo</string>
+    <string name="XML_DriversNPayments_BothPaymentTitle">Ambos</string>
+
     <string name="SettingsDriversNPayments_MaleTitle">Hombres</string>
     <string name="SettingsDriversNPayments_MaleDescription">Aceptar solicitudes solo de usuarios que esten registrados como hombres</string>
     <string name="SettingsDriversNPayments_FemaleTitle">Mujeres</string>
@@ -168,12 +348,166 @@
     <string name="SettingsDriversNPayments_CreditCardTitle">Tarjeta de crédito / débito</string>
     <string name="SettingsDriversNPayments_CashTitle">Efectivo</string>
 
+    <string name="SettingsDriversNPayments_UpdatingOnlyMan">Actualizando solo a hombres…</string>
+    <string name="SettingsDriversNPayments_UpdatingOnlyWoman">Actualizando solo a mujeres…</string>
+    <string name="SettingsDriversNPayments_UpdatingBothGender">Actualizando solo a ambos…</string>
+
+    <string name="SettingsDriversNPayments_UpdatingOnlyCard">Actualizando solo a tarjeta…</string>
+    <string name="SettingsDriversNPayments_UpdatingOnlyCash">Actualizando solo a efectivo…</string>
+    <string name="SettingsDriversNPayments_UpdatingBothPayment">Actualizando solo a ambos…</string>
+
+    <string name="SettingsDriversNPayments_UpdatedGender_Success">¡Género de conductor preferido actualizado!</string>
+    <string name="SettingsDriversNPayments_UpdatedPayment_Success">¡Tipo de pago preferido actualizado!</string>
+
+
+    <!--    Settings Trip History -->
+    <string name="XML_TripHistoryNoInfo">De momento no contamos con información de sus viajes</string>
+    <string name="XML_TripHistoryPeriod">Periodo ( — - —)</string>
+    <string name="XML_TripHistoryTotalEarned">$--</string>
+    <string name="XML_TripHistoryTotalTrips">-- viajes</string>
+    <string name="XML_TripHistoryGrandTotal">Total Acumulado</string>
+    <string name="XML_TripHistoryEarnedString">Ganado</string>
+    <string name="XML_doublestring">--</string>
+    <string name="XML_TripsString">Viajes</string>
+    <string name="XML_TripHistoryTitle">Historial de Viajes</string>
+
+
+
+
+
+    <!--    Settings Favorite Driver    -->
+    <string name="XML_FavDrivers_NoFavDrivers">Por el momento no cuentas con conductores favoritos, cada que terminas un viaje, te aparecerá la opción de agregar tu conductor a esta lista.</string>
+    <string name="XML_FavDrivers_SelectADriver">Selecciona uno de los conductores para ver más detalles acerca de él</string>
+    <string name="SettingsFavDrivers_LoadDrivers">Cargando conductores…</string>
+    <string name="SettingsFavDrivers_LoadDriverInfo">Cargando información del conductor…</string>
+
+    <string name="XML_SettingsFavdrivers_Details_RateString">Calificación</string>
+    <string name="XML_SettingsFavdrivers_Details_ReqTripString">Pedir viaje</string>
+    <string name="XML_SettingsFavdrivers_Details_Last20Trips">Últimos 20 viajes</string>
+
+    <string name="FavDriver_Error_DriverNotAvailable_Msg">El conductor no se encuentra disponible para llevarlo en estos momentos.</string>
+    <string name="FavDriver_Error_DriverNotAvailable_Title">Conductor no disponible</string>
+
+
+    <!--    Settings Trip History   -->
+    <string name="XML_SettingsTripHistory_NoTripsAvailable">Por el momento no cuentas con viajes registrados</string>
+
+
     <!-- Settings Deposit Account String -->
     <!-- Labels -->
     <string name="SettingsDepositAccount_Title">Cuenta donde se depositan los viajes semanalmente</string>
+    <string name="SettingsDepositAct_OwnedBy">Titular</string>
+    <string name="SettingsDepositAct_OwnedByDesc">Titular de la cuenta</string>
+    <string name="SettingsDepositAct_CLABE">CLABE</string>
+    <string name="SettingsDepositAct_CLABEByDesc">Clave bancaria estandarizada</string>
+    <string name="SettingsDepositAct_Nickname">Alias de la cuenta</string>
+    <string name="SettingsDepositAct_NicknameDesc">Nombre para identificar a la cuenta</string>
+
+    <!--    Settings Memberhsip     -->
+    <string name="XML_SettingsMembershipDetails">Detalles</string>
+    <string name="XML_SettingsMembershipStatus">Estatus</string>
+    <string name="XML_SettingsMembershipSvcType">Tipo de servicio</string>
+    <string name="XML_SettingsMembershipSince">Miembro desde</string>
+    <string name="XML_SettingsMembershipLast">Vencimiento</string>
+    <string name="XML_SettingsMembershipVehicle">Vehículo</string>
+    <string name="XML_SettingsMembershipMaker">Marca</string>
+    <string name="XML_SettingsMembershipModel">Modelo</string>
+    <string name="XML_SettingsMembershipColor">Color</string>
+    <string name="XML_SettingsMembershipYear">Año</string>
+    <string name="XML_SettingsMembershipCarBadges">Placas</string>
+
+
+
+    <!---->
+    <string name="MapDriver_MapMsg">Mapa</string>
+    <string name="MapDriver_RequestMsg">Favoritos</string>
+    <string name="MapDriver_HistoryMsg">Historial</string>
+    <string name="MapDriver_SettingsMsg">Configuración</string>
+    <string name="MapDriver_LogoffMsg">Cerrar sesión</string>
+
+    <string name="SettingsMain_MembershipStatusMsg">Estado de la membresía</string>
+    <string name="SettingsMain_DepositActMsg">Cuenta de depósito</string>
+    <string name="SettingsMain_WithdrawActMsg">Cuenta de cobro de membresía</string>
+
+
+    <!--    Settings Bank Account   -->
+    <string name="SettingsBankAccount_Msg">Cuenta de donde se cobra la membresía mensualmente</string>
+
+
+    <!--    Settings Fav Request    -->
+    <string name="SettingsFavRequest_Title">Conductor preferido</string>
+    <string name="SettingsFavRequest_Msg">Cuando finalizas un viaje, el pasajero tiene la opción de agregarte a sus conductores preferidos. Al tú aceptar la solicitud, el pasajero puede requerirte un viaje o servicio directamente.</string>
+    <string name="SettingsFavRequest_AddBy">Agregado por</string>
+    <string name="SettingsFavRequest_NewReq">Nuevas solicitudes</string>
+
+
+
+    <!--    FRAGMENTS   -->
+
+    <!--    Fragment MapConfirmTrip -->
+    <string name="XML_FragmentConfirmTrip">¿Listo?</string>
+    <!--    Fragment MapCvvConfirm  -->
+    <string name="XML_FragmentConfirmCvv2">Confirma el código CVV2</string>
+    <string name="XML_FragmentCardNumberLastDigits">Tarjeta con terminación:</string>
+    <string name="XML_CVVLabel">CVV2</string>
+    <!--    Fragment MapSelectPayment   -->
+    <string name="XML_FragmentSelectPayment">¿Cómo pagamos?</string>
+    <string name="XML_FragmentCashLabel">Efectivo</string>
+    <string name="XML_FragmentCreditLabel">Tarjeta</string>
+    <!--    Fragment MapSelectService   -->
+    <string name="XML_FragmentSelectService">¿En qué nos vamos?</string>
+    <string name="XML_FragmentStandarSvc">Estándar</string>
+    <string name="XML_FragmentStandarQty">1–4</string>
+    <string name="XML_FragmentEliteSvc">Élite</string>
+    <string name="XML_FragmentEliteQty">1–4</string>
+    <string name="XML_FragmentCrewSvc">Plus</string>
+    <string name="XML_FragmentCrewQty">1–6</string>
+    <!--    Fragment Create Account -->
+    <string name="XML_FragmentCreateAccount">Registro de pasajeros</string>
+    <string name="XML_FragmentSelectCity">Seleccione una ciudad</string>
+    <string name="XML_FragmentMobileLabel">Celular</string>
+    <string name="XML_FragmentEmailLabel">Correo electrónico</string>
+    <string name="XML_FragmentPasswordLabel">Contraseña</string>
+    <string name="XML_FragmentConfirmPasswordLabel">Confirmar contraseña</string>
+    <string name="XML_FragmentAccepTermsAndConditionsLabel">Acepto los </string>
+    <string name="XML_FragmentTermsAndConditionsLabel">Términos y condiciones</string>
+    <string name="XML_FragmentCreateAccountLabel">Crear cuenta</string>
+    <!--    Fragment Credit Card    -->
+    <string name="XML_FragmentCreditCard">Agrega un método de pago</string>
+    <string name="XML_FragmentAvailableCard">Tarjetas Aceptadas</string>
+    <string name="XML_HolderName">Nombre</string>
+    <string name="XML_HolderNameDesc">Nombre como aparece en la tarjeta</string>
+    <string name="XML_CardNumber">Número</string>
+    <string name="XML_CardNumberDesc">Sin espacios</string>
+    <string name="XML_CardExpDate">Fecha de expiración</string>
+    <string name="XML_CVV">Código de seguridad</string>
+    <string name="XML_CVVDesc">CVV2</string>
+    <string name="XML_SlashChar">/</string>
+    <string name="XML_InfoIcon">i</string>
+    <string name="XML_SaveCard">Guardar tarjeta</string>
+    <!--    Fragment Forgot Password    -->
+    <string name="XML_ChangePassword">Cambio contraseña</string>
+    <string name="XML_AddNowCreditCard">Ahora solo falta que agregues tu tarjeta de crédito o débito</string>
+    <!--    Fragment Profile Pictures   -->
+    <string name="XML_TellUsAboutYou">Cuéntanos un poco sobre ti</string>
+    <string name="XML_Male">Hombre</string>
+    <string name="XML_Female">Mujer</string>
+    <string name="XML_FirstName">Nombre(s)</string>
+    <string name="XML_LastName">Apellidos</string>
+    <string name="XML_NickName">Nombre Público</string>
+    <!--    Map View Driver Info    -->
+    <string name="XML_MonthsCount">-- Meses</string>
+    <string name="XML_TripsCount">-- Viajes</string>
+    <string name="XML_DriverArrived">¡Su conductor a llegado!</string>
+    <string name="XML_DriverArrivedMsg">Por su seguridad, favor de revisar que su conductor sea el correcto.</string>
+    <!--    Map View Driver On the Way  -->
+    <string name="XML_DriverOnTheWayTo">En camino a</string>
+    <string name="XML_DriverOnTheWayWith">Con</string>
 
 
     <!-- Openpay Errors -->
+    <string name="Openpay_ComError">Ocurrió un error de comunicación al momento de procesar su tarjeta</string>
+    <string name="Openpay_ExeCardError">Ocurrió un error al momento de procesar su tarjeta</string>
     <string name="Openpay1000">Ocurrió un error interno en el servidor de Openpay</string>
     <string name="Openpay1001">Error en la tarjeta, favor de revisar los campos</string>
     <string name="Openpay1002">La llamada no esta autenticada o la autenticación es incorrecta</string>
@@ -209,9 +543,4 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string name="title_activity_ori__splash_screen">ORI</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-
 </resources>

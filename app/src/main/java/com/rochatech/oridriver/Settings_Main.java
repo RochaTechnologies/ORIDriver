@@ -103,7 +103,7 @@ public class Settings_Main extends AppCompatActivity {
     }
 
     private void SetIconsByScreenInches() {
-        if (_screenSize <= 4.4) {
+        if (_screenSize <= 4) {
             personalInfoIcon.setImageResource(R.drawable.ic_menu_male_blue50x1);
             passwordIcon.setImageResource(R.drawable.ic_menu_padlock_blue50x1);
             membershipIcon.setImageResource(R.drawable.ic_menu_cashcard_blue_50);

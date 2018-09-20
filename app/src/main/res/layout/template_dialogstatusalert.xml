@@ -26,7 +26,7 @@
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/alertDialogTitle"
             android:layout_weight="1"
-            android:text="AlertDialogTitle"
+            android:text="@string/ORI_DefaultValueString"
             android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/ORIBlack"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content" />
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/alertDialogMsg"
-            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply"
+            android:text="@string/ORI_DefaultValueString"
             android:textColor="@color/ORIBlack"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="10dp"

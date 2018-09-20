@@ -12,14 +12,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
-
+@SuppressWarnings({"WeakerAccess","unused"})
 public class TripHistory {
 
-    int ReceiptId, TravelRequestId, DriverUnityId, PassengerUnityId, PaymentTypeId, ServiceTypeId, BankAccountId;
-    String ReceiptNumber, PaymentTypeName, ServiceTypeName, GatewayReceiptId, GatewayReceiptStatus, ReceiptStatus, FromAddress, ToAddress, ReqStatus;
-    double SubTotal, Discounts, Taxes, Total, TotalTime, TotalDistance, TotalFare;
-    Date  ReceiptDate, CreationDate, AcceptedDate, AttendedDate, EndedDate;
-    Boolean PaidToDriver;
+    private Integer ReceiptId, TravelRequestId, DriverUnityId, PassengerUnityId, PaymentTypeId, ServiceTypeId, BankAccountId;
+    private String ReceiptNumber, PaymentTypeName, ServiceTypeName, GatewayReceiptId, GatewayReceiptStatus, ReceiptStatus, FromAddress, ToAddress, ReqStatus;
+    Double SubTotal, Discounts, Taxes, Total, TotalTime, TotalDistance, TotalFare;
+    private Date  ReceiptDate, CreationDate, AcceptedDate, AttendedDate, EndedDate;
+    private Boolean PaidToDriver;
 
     public TripHistory() { super(); }
 
@@ -122,7 +122,7 @@ public class TripHistory {
                 TH.GatewayReceiptId = jsonObject.getString("GatewayReceiptId");
                 TH.GatewayReceiptStatus = jsonObject.getString("GatewayReceiptStatus");
                 TH.ReceiptStatus = jsonObject.getString("ReceiptStatus");
-                TH.PaidToDriver = (jsonObject.getString("PaidToDriver") == "1") ? true : false;
+                TH.PaidToDriver = jsonObject.getString("PaidToDriver").contains("1");
                 TH.FromAddress = jsonObject.getString("FromAddress");
                 TH.ToAddress = jsonObject.getString("ToAddress");
                 TH.ServiceTypeId = Integer.parseInt(jsonObject.getString("ReqServiceTypeId"));

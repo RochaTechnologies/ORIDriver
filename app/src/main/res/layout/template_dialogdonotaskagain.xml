@@ -14,14 +14,14 @@
         android:layout_height="wrap_content">
         <android.support.v7.widget.AppCompatTextView
             android:layout_weight="1"
-            android:text="¿Estas seguro de cambiar su estado?"
+            android:text="@string/ORI_DefaultValueString"
             android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/ORIBlack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <android.support.v7.widget.AppCompatTextView
-            android:text="Estas a punto de cambiar su estado a Desconectado, cuando usted esta desconectado no puede recibir solicitudes de viaje."
+            android:text="@string/ORI_DefaultValueString"
             android:textColor="@color/ORIBlack"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="10dp"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content" />
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/DoNotAskAgain"
-            android:text="No volver a preguntar"
+            android:text="@string/ORI_DefaultValueString"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/ORIBlack"
             android:layout_margin="10dp"

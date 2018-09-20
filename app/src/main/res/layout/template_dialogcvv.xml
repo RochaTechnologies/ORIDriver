@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <android.support.v7.widget.AppCompatTextView
-            android:text="¿Dónde se encuentra el CVV2?"
+            android:text="@string/XML_WhereIsTheCVVTitle"
             android:textColor="@color/ORIBlack"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textAlignment="center"
@@ -24,7 +24,7 @@
             android:layout_width="300dp"
             android:layout_height="150dp" />
         <android.support.v7.widget.AppCompatTextView
-            android:text="El CVV ó CVV2 se encuentra en la parte trasera de su plástico y esta compuesto por 3 o 4 dígitos"
+            android:text="@string/XML_WhereIsTheCVVMsg"
             android:textColor="@color/ORIBlack"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textAlignment="center"

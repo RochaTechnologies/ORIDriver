@@ -28,8 +28,8 @@ public class Settings_PersonalInfo extends AppCompatActivity {
 
     //region Global
     ImageView _profilepic;
-    EditText _publicname, _mobile;
-    TextView _givenname;
+    EditText _publicname;
+    TextView _givenname, _mobile;
     Button _saveInformation;
     connectToService _svcConnection;
     Common obj;
@@ -67,9 +67,6 @@ public class Settings_PersonalInfo extends AppCompatActivity {
                 String Errors = CheckForErrors(nickName, mobile);
                 if (Errors.trim().isEmpty()){
                     UpdateNickNameNMobile(UID, nickName, mobile);
-                    if (IsProfilePicSet) {
-                        UpdateProfilePicture(imageSelected);
-                    }
                 } else {
                     obj.CloseLoadingScreen();
                     Common.DialogStatusAlert(Settings_PersonalInfo.this,Errors,getResources().getString(R.string.ORIGlobal_AnyErrorsTitle),"Error");
@@ -113,11 +110,14 @@ public class Settings_PersonalInfo extends AppCompatActivity {
             @Override
             public void onResponseObject(JSONArray jsonResponse) {
                 if (SaveSharedPreferences(nickName, mobile)) {
-                    obj.CloseLoadingScreen();
-                    LinearLayoutCompat MainLinear = findViewById(R.id.MainLinear);
-                    Snackbar snackbar = Snackbar.make(MainLinear,"¡Información actualizada!",Snackbar.LENGTH_SHORT);
-                    snackbar.show();
-//                    InitPersonalInfo();
+                    if (IsProfilePicSet) {
+                        UpdateProfilePicture(imageSelected);
+                    } else {
+                        obj.CloseLoadingScreen();
+                        LinearLayoutCompat MainLinear = findViewById(R.id.MainLinear);
+                        Snackbar snackbar = Snackbar.make(MainLinear,"¡Información actualizada!",Snackbar.LENGTH_SHORT);
+                        snackbar.show();
+                    }
                 } else {
                     obj.CloseLoadingScreen();
                     Common.DialogStatusAlert(Settings_PersonalInfo.this,getResources().getString(R.string.ORIGlobal_SharedPreferencesFailed_Msg),getResources().getString(R.string.ORIGlobal_SharedPreferencesFailed_Title),"Error");
@@ -127,8 +127,15 @@ public class Settings_PersonalInfo extends AppCompatActivity {
     }
     private void UpdateProfilePicture(Bitmap imageSelected) {
         int UID = Integer.parseInt(obj.GetSharedPreferencesValue(Settings_PersonalInfo.this,"UID"));
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        imageSelected.compress(Bitmap.CompressFormat.PNG,100, outputStream);
+        int origWidth = imageSelected.getWidth();
+        int origHeight = imageSelected.getHeight();
+        final int destWidth = 100;
+        int destHeight = origHeight/( origWidth / destWidth ) ;
+        Bitmap finalPic = Bitmap.createScaledBitmap(imageSelected, destWidth, destHeight, false);
+        if(origWidth > destWidth){
+            ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+            finalPic.compress(Bitmap.CompressFormat.JPEG,70 , outStream);
+        }
         _svcConnection.UpdateProfilePicture(UID, imageSelected, new WSResponseListener() {
             @Override
             public void onError(String message) {
@@ -146,7 +153,10 @@ public class Settings_PersonalInfo extends AppCompatActivity {
 
             @Override
             public void onResponseObject(JSONArray jsonResponse) {
-                int a = 0;
+                obj.CloseLoadingScreen();
+                LinearLayoutCompat MainLinear = findViewById(R.id.MainLinear);
+                Snackbar snackbar = Snackbar.make(MainLinear,"¡Información actualizada!",Snackbar.LENGTH_SHORT);
+                snackbar.show();
             }
         });
     }
@@ -201,7 +211,7 @@ public class Settings_PersonalInfo extends AppCompatActivity {
     private String CheckForErrors(String nickName, String mobile) {
         String result = "";
         result += (nickName.trim().isEmpty()) ? getResources().getString(R.string.SettingsPersonalInfo_NewNickNameEmpty) : "";
-        result += (!nickName.matches("^[ A-Za-z]+$")) ? "Favor de solo utilizar letras en tu nombre público" + "\n" : "";
+        result += (!nickName.matches("^[ A-Za-zéáíóúñÑüÁÉÍÓÚÜ]+$")) ? "Favor de solo utilizar letras en tu nombre público" + "\n" : "";
         result += (mobile.trim().isEmpty()) ? getResources().getString(R.string.SettingsPersonalInfo_NewMobileEmpty) + "\n" : "";
         return result;
     }

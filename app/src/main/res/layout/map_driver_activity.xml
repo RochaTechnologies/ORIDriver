@@ -22,36 +22,6 @@
             android:elevation="1dp"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
-            <RelativeLayout
-                android:gravity="end"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:id="@+id/lookingForRequest"
-                    android:orientation="horizontal"
-                    android:visibility="gone"
-                    android:background="@color/ORIBlack"
-                    android:alpha="0.60"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <!--<android.support.v7.widget.AppCompatTextView-->
-                        <!--android:text="Buscando solicitudes"-->
-                        <!--android:layout_gravity="center_vertical"-->
-                        <!--android:textAlignment="center"-->
-                        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
-                        <!--android:textColor="@color/ORIWhite"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:layout_marginStart="5dp"-->
-                        <!--android:layout_marginEnd="5dp"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content" />-->
-                    <!--<ProgressBar-->
-                        <!--android:progressTint="@color/ORIWhite"-->
-                        <!--android:layout_weight="0"-->
-                        <!--android:layout_width="30dp"-->
-                        <!--android:layout_height="30dp" />-->
-                </LinearLayout>
-            </RelativeLayout>
         </android.support.v7.widget.Toolbar>
 
 
@@ -73,16 +43,39 @@
                     mapbox:mapbox_cameraZoom="11" />
 
 
-
                 <android.support.v7.widget.LinearLayoutCompat
                     android:orientation="vertical"
                     android:background="@color/ORIDarkGray"
                     android:layout_marginTop="60dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/lookingForRequest"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/whatsAppDoingLabel"
+                            android:text="@string/ORIWhatsAppDoingLabel_SearchingForRequest"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/ORIWhite"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <!--<ProgressBar-->
+                            <!--android:progressTint="@color/ORIWhite"-->
+                            <!--android:layout_width="30dp"-->
+                            <!--android:layout_height="30dp" />-->
+                    </LinearLayout>
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/lastUpdate"
                         android:text="Ultima Actualizacion: "
+                        android:visibility="gone"
                         android:textColor="@color/ORIWhite"
                         android:textAlignment="center"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -91,6 +84,7 @@
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/lastUpdateReqStatus"
                         android:text="Ultimo Status: "
+                        android:visibility="gone"
                         android:textColor="@color/ORIWhite"
                         android:textAlignment="center"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -100,7 +94,8 @@
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/btnCenterMap"
-                    android:src="@drawable/ic_menu_card160"
+                    android:src="@drawable/ic_menu_gpsicon60x3"
+                    android:tint="@color/ORIWhite"
                     app:backgroundTint="@color/ORIBlack"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
@@ -130,6 +125,7 @@
     <include layout="@layout/map_driver_onmywaytopickup" />
     <include layout="@layout/map_driver_ratepassenger" />
     <include layout="@layout/map_driver_starttravel" />
+    <include layout="@layout/map_driver_endtravel" />
     <include layout="@layout/map_driver_tripdetails" />
 
 </android.support.design.widget.CoordinatorLayout>

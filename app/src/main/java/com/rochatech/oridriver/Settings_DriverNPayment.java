@@ -12,13 +12,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class Settings_DriverNPayment extends AppCompatActivity {
 
     LinearLayoutCompat maleDriver, femaleDriver, bothDriver, creditPayment, cashPayment, bothPayment, SettingsLinear;
-    ImageView maleIcon, femaleIcon, creditCardIcon, cashIcon, bothPaymentIcon;
+    ImageView maleIcon, femaleIcon, bothDriverIcon, creditCardIcon, cashIcon, bothPaymentIcon;
     ImageView malecheck, femalecheck, bothdrivercheck, cashCheck, creditCheck, bothPaymentCheck;
     TextView maleTitle, maleDescription, femaleTitle, femaleDescription, creditCardTitle, cashTitle, bothPaymentTitle;
     connectToService _svcConnection;
@@ -113,39 +111,30 @@ public class Settings_DriverNPayment extends AppCompatActivity {
 
             @Override
             public void onResponseObject(JSONArray jsonResponse) {
-                try {
-                    //response "[{"Agregado":0}]"
-                    JSONObject response = jsonResponse.getJSONObject(0);
-                    String result = response.getString("Agregado");
-                    if (Driver_SaveSharedPreferences(Gender)) {
-                        switch (Gender) {
-                            case "1":
-                                malecheck.setVisibility(View.VISIBLE);
-                                femalecheck.setVisibility(View.INVISIBLE);
-                                bothdrivercheck.setVisibility(View.INVISIBLE);
-                                break;
-                            case "2":
-                                malecheck.setVisibility(View.INVISIBLE);
-                                femalecheck.setVisibility(View.VISIBLE);
-                                bothdrivercheck.setVisibility(View.INVISIBLE);
-                                break;
-                            case "3":
-                                malecheck.setVisibility(View.INVISIBLE);
-                                femalecheck.setVisibility(View.INVISIBLE);
-                                bothdrivercheck.setVisibility(View.VISIBLE);
-                                break;
-                        }
-                        obj.CloseLoadingScreen();
-                        Snackbar snackbar = Snackbar.make(SettingsLinear,"¡Género de conductor preferido actualizado!",Snackbar.LENGTH_SHORT);
-                        snackbar.show();
-                    } else {
-                        obj.CloseLoadingScreen();
-                        Common.DialogStatusAlert(Settings_DriverNPayment.this,getResources().getString(R.string.ORIGlobal_SharedPreferencesFailed_Msg),getResources().getString(R.string.ORIGlobal_SharedPreferencesFailed_Title),"Error");
+                if (Driver_SaveSharedPreferences(Gender)) {
+                    switch (Gender) {
+                        case "1":
+                            malecheck.setVisibility(View.VISIBLE);
+                            femalecheck.setVisibility(View.INVISIBLE);
+                            bothdrivercheck.setVisibility(View.INVISIBLE);
+                            break;
+                        case "2":
+                            malecheck.setVisibility(View.INVISIBLE);
+                            femalecheck.setVisibility(View.VISIBLE);
+                            bothdrivercheck.setVisibility(View.INVISIBLE);
+                            break;
+                        case "3":
+                            malecheck.setVisibility(View.INVISIBLE);
+                            femalecheck.setVisibility(View.INVISIBLE);
+                            bothdrivercheck.setVisibility(View.VISIBLE);
+                            break;
                     }
-
-                } catch (JSONException e) {
                     obj.CloseLoadingScreen();
-                    Common.DialogStatusAlert(Settings_DriverNPayment.this,e.toString(),getResources().getString(R.string.ORIGlobal_webServiceError),"Error");
+                    Snackbar snackbar = Snackbar.make(SettingsLinear,"¡Género de conductor preferido actualizado!",Snackbar.LENGTH_SHORT);
+                    snackbar.show();
+                } else {
+                    obj.CloseLoadingScreen();
+                    Common.DialogStatusAlert(Settings_DriverNPayment.this,getResources().getString(R.string.ORIGlobal_SharedPreferencesFailed_Msg),getResources().getString(R.string.ORIGlobal_SharedPreferencesFailed_Title),"Error");
                 }
             }
         });
@@ -168,32 +157,24 @@ public class Settings_DriverNPayment extends AppCompatActivity {
 
             @Override
             public void onResponseObject(JSONArray jsonResponse) {
-                try {
-                    JSONObject response = jsonResponse.getJSONObject(0);
-                    //result contiene "0"
-                    String result = response.getString("Agregado");
-                    if (Payment_SaveSharedPreferences(Payment)) {
-                        switch (Payment) {
-                            case "1":
-                                CashPaymentSelected();
-                                break;
-                            case "2":
-                                CreditPaymentSelected();
-                                break;
-                            case "3":
-                                BothPaymentSelected();
-                                break;
-                        }
-                        obj.CloseLoadingScreen();
-                        Snackbar snackbar = Snackbar.make(SettingsLinear,"¡Tipo de pago preferido actualizado!",Snackbar.LENGTH_SHORT);
-                        snackbar.show();
-                    } else {
-                        obj.CloseLoadingScreen();
-                        Common.DialogStatusAlert(Settings_DriverNPayment.this,getResources().getString(R.string.ORIGlobal_SharedPreferencesFailed_Msg),getResources().getString(R.string.ORIGlobal_SharedPreferencesFailed_Title),"Error");
+                if (Payment_SaveSharedPreferences(Payment)) {
+                    switch (Payment) {
+                        case "1":
+                            CashPaymentSelected();
+                            break;
+                        case "2":
+                            CreditPaymentSelected();
+                            break;
+                        case "3":
+                            BothPaymentSelected();
+                            break;
                     }
-                } catch (JSONException e) {
                     obj.CloseLoadingScreen();
-                    Common.DialogStatusAlert(Settings_DriverNPayment.this,e.toString(),getResources().getString(R.string.ORIGlobal_webServiceError),"Error");
+                    Snackbar snackbar = Snackbar.make(SettingsLinear,"¡Tipo de pago preferido actualizado!",Snackbar.LENGTH_SHORT);
+                    snackbar.show();
+                } else {
+                    obj.CloseLoadingScreen();
+                    Common.DialogStatusAlert(Settings_DriverNPayment.this,getResources().getString(R.string.ORIGlobal_SharedPreferencesFailed_Msg),getResources().getString(R.string.ORIGlobal_SharedPreferencesFailed_Title),"Error");
                 }
             }
         });
@@ -269,7 +250,7 @@ public class Settings_DriverNPayment extends AppCompatActivity {
         String availablePayment = obj.GetSharedPreferencesValue(Settings_DriverNPayment.this,"settings_AvailablePayment");
         switch (availablePayment) {
             case "0":
-                //No tiene ninguna tarjeta puesta, quiere decir que solo puede pagar en efectivo
+                //No tiene ninguna tarjeta puesta, quiere decir que solo puede cobrar en efectivo
                 creditPayment.setEnabled(false);
                 bothPayment.setEnabled(false);
                 creditCardIcon.setColorFilter(getResources().getColor(R.color.ORILightGray));
@@ -287,7 +268,7 @@ public class Settings_DriverNPayment extends AppCompatActivity {
                 bothPaymentTitle.setTextColor(getResources().getColor(R.color.ORILightGray));
                 break;
             case "3":
-                //Es ambas, por lo tanto tiene una tarjeta agregada
+                //Es ambas, por lo tanto tiene una tarjeta agregada donde recibir el pago
                 creditPayment.setEnabled(true);
                 bothPayment.setEnabled(true);
                 creditCardIcon.setImageResource(R.drawable.ic_menu_card_blue50);
@@ -299,8 +280,6 @@ public class Settings_DriverNPayment extends AppCompatActivity {
     }
     private void SetPreferredPaymentType() {
         String prefPayment = obj.GetSharedPreferencesValue(Settings_DriverNPayment.this,"settings_Payment");
-        String availablePayment = obj.GetSharedPreferencesValue(Settings_DriverNPayment.this,"settings_AvailablePayment");
-        int UID = Integer.parseInt(obj.GetSharedPreferencesValue(Settings_DriverNPayment.this,"UID"));
         if (!prefPayment.trim().isEmpty()) {
             switch (prefPayment) {
                 case "1":
@@ -323,8 +302,6 @@ public class Settings_DriverNPayment extends AppCompatActivity {
                     break;
             }
             obj.CloseLoadingScreen();
-        } else {
-
         }
     }
     //endregion
@@ -340,6 +317,7 @@ public class Settings_DriverNPayment extends AppCompatActivity {
         femaleTitle = findViewById(R.id.femaleDriverTitle);
         femaleDescription = findViewById(R.id.femaleDriverDescription);
         bothDriver = findViewById(R.id.bothDriverLayout);
+        bothDriverIcon = findViewById(R.id.bothDriverIcon);
 
         malecheck = findViewById(R.id.maledrivercheck);
         femalecheck = findViewById(R.id.femaledrivercheck);

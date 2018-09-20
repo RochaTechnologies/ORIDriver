@@ -20,11 +20,9 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.rochatech.oridriver.R;
 import com.rochatech.oridriver.Wizard_Login;
 import java.security.MessageDigest;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -35,19 +33,20 @@ import mx.openpay.android.Openpay;
 
 public class Common {
 
-    ProgressDialog loading;
-    static String _opMerchantId = "ml6xm8ytukxrevjxic0b";
-    static String _publicKey = "pk_4a00567cf73a4532837597a8485f2093";
-    static boolean _opIsProductionMode = false;
+    private ProgressDialog loading;
 
+    public Common () {}
     public Common(Context context) {
         loading = new ProgressDialog(context);
     }
 
     public Boolean isInternetConnectionActive(Context context) {
-        Boolean result = false;
+        Boolean result;
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        NetworkInfo activeNetwork = null;
+        if (cm != null) {
+            activeNetwork = cm.getActiveNetworkInfo();
+        }
         result = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
         return result;
     }
@@ -58,8 +57,9 @@ public class Common {
      * @return El objeto para poder comenzar a crear las tarjetas
      */
     public Openpay getOpenPay() {
-        Openpay openpay = new Openpay(_opMerchantId, _publicKey, _opIsProductionMode);
-        return openpay;
+        String _opMerchantId = "ml6xm8ytukxrevjxic0b";
+        String _publicKey = "pk_4a00567cf73a4532837597a8485f2093";
+        return new Openpay(_opMerchantId, _publicKey, false);
     }
     //endregion
 
@@ -72,11 +72,11 @@ public class Common {
         TextView dialogTitle = dialogView.findViewById(R.id.alertDialogTitle);
         TextView dialogMsg = dialogView.findViewById(R.id.alertDialogMsg);
         ImageView dialogIcon = dialogView.findViewById(R.id.alertDialogIcon);
-        dialogTitle.setText("Tu sesión ha expirado");
-        dialogMsg.setText("Cada sesión esta programada para expirar cada 7 días desde la ultima vez que abres el app o cuando se inicia desde otro dispositivo, si no es tu caso, es recomendable cambiar tu contraseña inmediatamente");
+        dialogTitle.setText(context.getResources().getString(R.string.ORI_Common_SessionExpired_Title));
+        dialogMsg.setText(context.getResources().getString(R.string.ORI_Common_SessionExpired_Msg));
         dialogIcon.setImageResource(R.drawable.ic_error);
         dialog.setView(dialogView);
-        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton(context.getString(R.string.ORIOkString), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(context, Wizard_Login.class);
@@ -99,29 +99,31 @@ public class Common {
     public static void DialogStatusAlert(Context context, String msg, String title, String iconName) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(context);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View dialogView = inflater.inflate(R.layout.template_dialogstatusalert,null);
-        TextView dialogTitle = dialogView.findViewById(R.id.alertDialogTitle);
-        TextView dialogMsg = dialogView.findViewById(R.id.alertDialogMsg);
-        ImageView dialogIcon = dialogView.findViewById(R.id.alertDialogIcon);
-        dialogTitle.setText(title);
-        dialogMsg.setText(msg);
-        switch (iconName) {
-            case "Error":
-                dialogIcon.setImageResource(R.drawable.ic_error);
-                break;
-            case "Success":
-                dialogIcon.setImageResource(R.drawable.ic_success);
-                break;
-        }
-        dialog.setView(dialogView);
-        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
+        if (inflater != null) {
+            View dialogView = inflater.inflate(R.layout.template_dialogstatusalert,null);
+            TextView dialogTitle = dialogView.findViewById(R.id.alertDialogTitle);
+            TextView dialogMsg = dialogView.findViewById(R.id.alertDialogMsg);
+            ImageView dialogIcon = dialogView.findViewById(R.id.alertDialogIcon);
+            dialogTitle.setText(title);
+            dialogMsg.setText(msg);
+            switch (iconName) {
+                case "Error":
+                    dialogIcon.setImageResource(R.drawable.ic_error);
+                    break;
+                case "Success":
+                    dialogIcon.setImageResource(R.drawable.ic_success);
+                    break;
             }
-        });
-        dialog.setCancelable(false);
-        dialog.show();
+            dialog.setView(dialogView);
+            dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            dialog.setCancelable(false);
+            dialog.show();
+        }
     }
 
     /** Crea una pantallla estilo dialog que funciona como pantalla de espera
@@ -130,13 +132,15 @@ public class Common {
      */
     public void ShowLoadingScreen(Context context, String msg) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View loadingView = inflater.inflate(R.layout.template_dialogloading,null);
-        TextView loadingMsg = loadingView.findViewById(R.id.dialogLoadingMsg);
-        loadingMsg.setText(msg);
-        loading.setMessage(msg);
-        loading.setCancelable(false);
-        loading.show();
-        loading.setContentView(loadingView);
+        if (inflater != null) {
+            View loadingView = inflater.inflate(R.layout.template_dialogloading,null);
+            TextView loadingMsg = loadingView.findViewById(R.id.dialogLoadingMsg);
+            loadingMsg.setText(msg);
+            loading.setMessage(msg);
+            loading.setCancelable(false);
+            loading.show();
+            loading.setContentView(loadingView);
+        }
     }
 
 
@@ -192,13 +196,6 @@ public class Common {
         SharedPreferences preferences = context.getSharedPreferences(context.getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE);
         return preferences.getString(keyvalue, null);
     }
-
-    public boolean GetAskAgain(Context context) {
-        SharedPreferences preferences = context.getSharedPreferences(context.getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE);
-        boolean algo = preferences.getBoolean("app_askagain",true);
-        int a = 0;
-        return algo;
-    }
     //endregion
 
 
@@ -216,7 +213,7 @@ public class Common {
      * @param appNow Fecha actual
      * @return Fecha actual formateada
      */
-    public static Date formatNowToAppNow(Date appNow){
+    private static Date formatNowToAppNow(Date appNow){
         try{
             String format = "yyyy-MM-dd HH:mm:ss";
             SimpleDateFormat dateFormatter = new SimpleDateFormat(format, Locale.US);
@@ -246,8 +243,7 @@ public class Common {
         try{
             String format = "yyyy-MM-dd HH:mm:ss";
             SimpleDateFormat dateFormatter = new SimpleDateFormat(format, Locale.US);
-            Date dtDate = dateFormatter.parse(appNow);
-            return dtDate;
+            return dateFormatter.parse(appNow);
         }catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -284,8 +280,25 @@ public class Common {
                 dateFormatter = new SimpleDateFormat("yy", Locale.US);
                 break;
         }
-        return dateFormatter.format(FromDate);
+        if (dateFormatter != null) {
+            return dateFormatter.format(FromDate);
+        } else {
+            return null;
+        }
     }
+    //endregion
+
+
+    //region Log Errors
+    public String LogDeviceError (Exception error) {
+        StackTraceElement[] rawStackTrace = error.getStackTrace();
+        StringBuilder fullStackTrace = new StringBuilder();
+        for (int i = 0; i < rawStackTrace.length; i++) {
+            fullStackTrace.append(rawStackTrace[i]);
+        }
+        return fullStackTrace.toString();
+    }
+
     //endregion
 
 
@@ -295,7 +308,9 @@ public class Common {
      */
     public static void HideKeyboard(View view, Context context) {
         InputMethodManager inputMM = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMM.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        if (inputMM != null) {
+            inputMM.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
 
@@ -307,13 +322,18 @@ public class Common {
         try{
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(base.getBytes("UTF-8"));
-            StringBuffer hexString = new StringBuffer();
-
-            for (int i = 0; i < hash.length; i++) {
-                String hex = Integer.toHexString(0xff & hash[i]);
-                if(hex.length() == 1) hexString.append('0');
+            StringBuilder hexString = new StringBuilder();
+            for (byte n: hash) {
+                String hex = Integer.toHexString(0xff & n);
+                if (hex.length() == 1) hexString.append('0');
                 hexString.append(hex);
             }
+
+//            for (int i = 0; i < hash.length; i++) {
+//                String hex = Integer.toHexString(0xff & hash[i]);
+//                if(hex.length() == 1) hexString.append('0');
+//                hexString.append(hex);
+//            }
 
             return hexString.toString();
         } catch(Exception ex){

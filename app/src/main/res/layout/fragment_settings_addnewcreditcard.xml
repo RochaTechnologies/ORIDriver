@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
-    tools:context=".Fragment_Wizard_CreditCard">
+    android:layout_height="match_parent"
+    tools:context=".Fragment_Settings_AddNewCreditCard">
 
     <!-- Wrapper -->
     <android.support.v7.widget.LinearLayoutCompat
@@ -31,7 +32,7 @@
                 android:layout_height="wrap_content" />
             <View
                 android:layout_marginTop="10dp"
-                android:background="@color/ORIDisable"
+                android:background="@color/ORIGray"
                 android:layout_width="match_parent"
                 android:layout_height="1dp" />
         </android.support.v7.widget.LinearLayoutCompat>
@@ -57,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.v7.widget.AppCompatImageView
-                    android:src="@drawable/ic_acceptedcreditcards"
+                    android:src="@drawable/ic_menu_acceptedcards"
                     android:layout_marginTop="-16dp"
                     android:layout_width="100dp"
                     android:layout_height="50dp" />
@@ -82,7 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatEditText
-                        android:id="@+id/txtHolderName"
+                        android:id="@+id/newCard_HolderName"
                         android:hint="@string/XML_HolderNameDesc"
                         android:backgroundTint="@android:color/transparent"
                         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -91,7 +92,7 @@
                         android:layout_height="wrap_content" />
                 </android.support.v7.widget.LinearLayoutCompat>
                 <View
-                    android:background="@color/ORIDisable"
+                    android:background="@color/ORIGray"
                     android:layout_width="match_parent"
                     android:layout_height="1dp" />
                 <android.support.v7.widget.LinearLayoutCompat
@@ -108,8 +109,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatEditText
-                        android:id="@+id/txtCardNumber"
+                        android:id="@+id/newCard_CardNumber"
                         android:hint="@string/XML_CardNumberDesc"
+                        android:maxLength="16"
+                        android:inputType="phone"
                         android:backgroundTint="@android:color/transparent"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:layout_weight="1"
@@ -117,7 +120,7 @@
                         android:layout_height="wrap_content" />
                 </android.support.v7.widget.LinearLayoutCompat>
                 <View
-                    android:background="@color/ORIDisable"
+                    android:background="@color/ORIGray"
                     android:layout_width="match_parent"
                     android:layout_height="1dp" />
                 <android.support.v7.widget.LinearLayoutCompat
@@ -133,7 +136,7 @@
                         android:layout_height="wrap_content">
                         <android.support.v7.widget.AppCompatTextView
                             android:text="@string/XML_CardExpDate"
-                            android:textColor="#000"
+                            android:textColor="@color/ORIBlack"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:layout_marginStart="5dp"
                             android:layout_width="match_parent"
@@ -144,7 +147,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <android.support.v7.widget.AppCompatSpinner
-                            android:id="@+id/SprMonth"
+                            android:id="@+id/SprNewCardMonth"
                             android:prompt="@string/promptMonth"
                             android:spinnerMode="dialog"
                             android:layout_weight="1"
@@ -157,7 +160,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <android.support.v7.widget.AppCompatSpinner
-                            android:id="@+id/SprYear"
+                            android:id="@+id/SprNewCardYear"
                             android:prompt="@string/promptYear"
                             android:spinnerMode="dialog"
                             android:layout_weight="1"
@@ -166,7 +169,7 @@
                     </android.support.v7.widget.LinearLayoutCompat>
                 </android.support.v7.widget.LinearLayoutCompat>
                 <View
-                    android:background="@color/ORIDisable"
+                    android:background="@color/ORIGray"
                     android:layout_width="match_parent"
                     android:layout_height="1dp" />
                 <android.support.v7.widget.LinearLayoutCompat
@@ -190,23 +193,24 @@
                     </android.support.v7.widget.LinearLayoutCompat>
                     <android.support.v7.widget.LinearLayoutCompat
                         android:orientation="horizontal"
-                        android:gravity="end|center_vertical"
+                        android:gravity="end"
                         android:layout_weight="1"
                         android:layout_marginEnd="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <android.support.v7.widget.AppCompatEditText
-                            android:id="@+id/txtCvv"
+                            android:id="@+id/newCard_CVV2"
                             android:hint="@string/XML_CVVDesc"
+                            android:inputType="phone"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:backgroundTint="@android:color/transparent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <android.support.v7.widget.AppCompatButton
-                            android:id="@+id/btnCvvDialogPressed"
+                            android:id="@+id/btnNewCvvDialogPressed"
                             android:textAllCaps="false"
                             android:text="@string/XML_InfoIcon"
-                            android:tint="@color/ORISkyBlue"
+                            android:textColor="@color/ORISkyBlue"
                             android:background="@drawable/template_fullroundbutton"
                             android:backgroundTint="@color/ORIWhite"
                             android:layout_marginStart="5dp"
@@ -225,7 +229,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btnSaveCardPressed"
+                android:id="@+id/btnSaveNewCardPressed"
                 android:text="@string/XML_SaveCard"
                 android:textAllCaps="false"
                 android:textColor="@color/ORIWhite"
@@ -263,4 +267,5 @@
             </android.support.v7.widget.LinearLayoutCompat>
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v7.widget.LinearLayoutCompat>
+
 </FrameLayout>

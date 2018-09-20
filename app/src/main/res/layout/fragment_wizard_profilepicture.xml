@@ -5,16 +5,19 @@
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:layout_margin="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment_Wizard_ProfilePicture">
 
+    <!-- Wrapper -->
     <android.support.v7.widget.LinearLayoutCompat
+        android:layout_margin="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Header -->
+        <!-- Title & View -->
         <android.support.v7.widget.LinearLayoutCompat
             android:orientation="vertical"
             android:layout_weight="0"
@@ -25,41 +28,42 @@
                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textAlignment="center"
-                android:layout_marginBottom="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <View
-                android:background="@color/ORIBlack"
+                android:layout_marginTop="10dp"
+                android:background="@color/ORIGray"
                 android:layout_width="match_parent"
                 android:layout_height="1dp" />
-            <android.support.v7.widget.AppCompatTextView
-                android:text="Cuéntanos un poco sobre ti"
-                android:textStyle="bold"
-                android:textColor="@color/ORIBlack"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textAlignment="center"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
 
+        <!-- Main -->
+        <!-- Activity title, Controls -->
         <android.support.v7.widget.LinearLayoutCompat
             android:orientation="vertical"
-            android:layout_weight="0"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatTextView
+                android:text="@string/XML_TellUsAboutYou"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
             <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/btnProfilePicturePressed"
-                android:src="@drawable/ic_ori_whitetransisotype"
+                android:src="@drawable/ic_ori_whitetransisotype_100"
                 android:scaleType="centerInside"
                 android:layout_gravity="center"
-                android:layout_width="80dp"
-                android:layout_height="80dp" />
+                android:layout_marginTop="5dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
             <android.support.v7.widget.LinearLayoutCompat
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="35dp">
                 <RadioGroup
                     android:id="@+id/rdbContainer"
                     android:orientation="horizontal"
@@ -70,7 +74,7 @@
                         android:id="@+id/rdbMaleSelected"
                         android:button="@drawable/template_maleselection"
                         android:checked="true"
-                        android:text="Hombre"
+                        android:text="@string/XML_Male"
                         android:padding="6dp"
                         android:layout_marginEnd="10dp"
                         android:layout_width="wrap_content"
@@ -78,29 +82,21 @@
                     <android.support.v7.widget.AppCompatRadioButton
                         android:id="@+id/rdbFemaleSelected"
                         android:button="@drawable/template_femaleselection"
-                        android:text="Mujer"
+                        android:text="@string/XML_Female"
                         android:padding="6dp"
                         android:layout_marginStart="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RadioGroup>
             </android.support.v7.widget.LinearLayoutCompat>
-        </android.support.v7.widget.LinearLayoutCompat>
-
-
-        <android.support.v7.widget.LinearLayoutCompat
-            android:layout_weight="0"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <android.support.v7.widget.LinearLayoutCompat
                 android:orientation="horizontal"
+                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/txtUserGivenName"
-                    android:hint="Nombre(s)"
+                    android:hint="@string/XML_FirstName"
                     android:inputType="text"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:background="@drawable/template_frame_gray"
@@ -111,7 +107,7 @@
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/txtUserLastName"
-                    android:hint="Apellidos"
+                    android:hint="@string/XML_LastName"
                     android:inputType="text"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:background="@drawable/template_frame_gray"
@@ -121,40 +117,184 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.v7.widget.LinearLayoutCompat>
-            <android.support.v7.widget.LinearLayoutCompat
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/txtUserNickName"
+                android:hint="@string/XML_NickName"
+                android:inputType="text"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:background="@drawable/template_frame_gray"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/txtUserNickName"
-                    android:hint="Nombre Público"
-                    android:inputType="text"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:background="@drawable/template_frame_gray"
-                    android:padding="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </android.support.v7.widget.LinearLayoutCompat>
+                android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
 
-
         <android.support.v7.widget.LinearLayoutCompat
-            android:gravity="center"
+            android:orientation="vertical"
             android:layout_weight="1"
-            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btnCreateAccountPressed"
-                android:text="Continuar"
+                android:text="@string/ORIGlobal_NextStep"
                 android:textAllCaps="false"
                 android:textColor="@color/ORIWhite"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:background="@drawable/template_skybluebutton"
-                android:layout_width="130dp"
-                android:layout_height="35dp" />
+                android:background="@drawable/template_bluebutton"
+                android:layout_marginStart="65dp"
+                android:layout_marginEnd="65dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
 
-
     </android.support.v7.widget.LinearLayoutCompat>
+
+    <!--<android.support.v7.widget.LinearLayoutCompat-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<android.support.v7.widget.LinearLayoutCompat-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_weight="0"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<android.support.v7.widget.AppCompatTextView-->
+                <!--android:text="@string/ORITravelWithORIMsg"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+                <!--android:textAlignment="center"-->
+                <!--android:layout_marginBottom="3dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<View-->
+                <!--android:background="@color/ORIBlack"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp" />-->
+            <!--<android.support.v7.widget.AppCompatTextView-->
+                <!--android:text="Cuéntanos un poco sobre ti"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textColor="@color/ORIBlack"-->
+                <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+                <!--android:textAlignment="center"-->
+                <!--android:layout_marginTop="3dp"-->
+                <!--android:layout_marginBottom="3dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</android.support.v7.widget.LinearLayoutCompat>-->
+
+        <!--<android.support.v7.widget.LinearLayoutCompat-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_weight="0"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<android.support.v7.widget.AppCompatImageButton-->
+                <!--android:id="@+id/btnProfilePicturePressed"-->
+                <!--android:src="@drawable/ic_ori_whitetransisotype"-->
+                <!--android:scaleType="centerInside"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="80dp" />-->
+            <!--<android.support.v7.widget.LinearLayoutCompat-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<RadioGroup-->
+                    <!--android:id="@+id/rdbContainer"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+                    <!--<android.support.v7.widget.AppCompatRadioButton-->
+                        <!--android:id="@+id/rdbMaleSelected"-->
+                        <!--android:button="@drawable/template_maleselection"-->
+                        <!--android:checked="true"-->
+                        <!--android:text="Hombre"-->
+                        <!--android:padding="6dp"-->
+                        <!--android:layout_marginEnd="10dp"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content" />-->
+                    <!--<android.support.v7.widget.AppCompatRadioButton-->
+                        <!--android:id="@+id/rdbFemaleSelected"-->
+                        <!--android:button="@drawable/template_femaleselection"-->
+                        <!--android:text="Mujer"-->
+                        <!--android:padding="6dp"-->
+                        <!--android:layout_marginStart="10dp"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content" />-->
+                <!--</RadioGroup>-->
+            <!--</android.support.v7.widget.LinearLayoutCompat>-->
+        <!--</android.support.v7.widget.LinearLayoutCompat>-->
+
+
+        <!--<android.support.v7.widget.LinearLayoutCompat-->
+            <!--android:layout_weight="0"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<android.support.v7.widget.LinearLayoutCompat-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<android.support.v7.widget.AppCompatEditText-->
+                    <!--android:id="@+id/txtUserGivenName"-->
+                    <!--android:hint="Nombre(s)"-->
+                    <!--android:inputType="text"-->
+                    <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                    <!--android:background="@drawable/template_frame_gray"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:layout_marginEnd="5dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<android.support.v7.widget.AppCompatEditText-->
+                    <!--android:id="@+id/txtUserLastName"-->
+                    <!--android:hint="Apellidos"-->
+                    <!--android:inputType="text"-->
+                    <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                    <!--android:background="@drawable/template_frame_gray"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:layout_marginStart="5dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+            <!--</android.support.v7.widget.LinearLayoutCompat>-->
+            <!--<android.support.v7.widget.LinearLayoutCompat-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<android.support.v7.widget.AppCompatEditText-->
+                    <!--android:id="@+id/txtUserNickName"-->
+                    <!--android:hint="Nombre Público"-->
+                    <!--android:inputType="text"-->
+                    <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                    <!--android:background="@drawable/template_frame_gray"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+            <!--</android.support.v7.widget.LinearLayoutCompat>-->
+        <!--</android.support.v7.widget.LinearLayoutCompat>-->
+
+
+        <!--<android.support.v7.widget.LinearLayoutCompat-->
+            <!--android:gravity="center"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+            <!--<android.support.v7.widget.AppCompatButton-->
+                <!--android:id="@+id/btnCreateAccountPressed"-->
+                <!--android:text="Continuar"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textColor="@color/ORIWhite"-->
+                <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+                <!--android:background="@drawable/template_skybluebutton"-->
+                <!--android:layout_width="130dp"-->
+                <!--android:layout_height="35dp" />-->
+        <!--</android.support.v7.widget.LinearLayoutCompat>-->
+
+
+    <!--</android.support.v7.widget.LinearLayoutCompat>-->
 </FrameLayout>

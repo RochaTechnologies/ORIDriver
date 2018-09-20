@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/mapDriverStartTravel"
+    android:id="@+id/mapDriverEndTravel"
     android:background="@color/ORIWhite"
     android:orientation="vertical"
     android:padding="10dp"
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <android.support.v7.widget.AppCompatImageView
-                    android:id="@+id/passengerPictureStartTravel"
+                    android:id="@+id/passengerPictureEndTravel"
                     android:src="@drawable/ic_ori_blueround200"
                     android:layout_width="70dp"
                     android:layout_height="70dp" />
@@ -49,7 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <android.support.v7.widget.AppCompatTextView
-                        android:text="@string/XML_MapDriverStartTravel_WelcomeTo"
+                        android:text="@string/XML_MapDriverEndTravel"
                         android:textAlignment="textStart"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <android.support.v7.widget.AppCompatTextView
-                        android:id="@+id/passengerNameStartTravel"
+                        android:id="@+id/passengerNameEndTravel"
                         android:textAlignment="textStart"
                         android:textColor="@color/ORIBlack"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -82,7 +82,7 @@
         android:layout_height="match_parent">
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnStartTravel"
-            android:text="@string/XML_MapDriverStartTravel_StartString"
+            android:text="@string/XML_MapDriverEndTravel_FinishTravel"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textAllCaps="false"
             android:textColor="@color/ORIWhite"

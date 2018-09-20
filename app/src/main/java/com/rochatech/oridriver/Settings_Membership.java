@@ -5,7 +5,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.SwitchCompat;
+import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.TextView;
 import com.rochatech.library.Common;
 import com.rochatech.webService.*;
@@ -21,6 +24,7 @@ public class Settings_Membership extends AppCompatActivity {
 
     SwitchCompat Membershipstatus;
     TextView Servicetype, Membersince, Membershiplast, Vehiclebrand, Vehiclemodel, Vehiclecolor, Vehicleyear, Vehicleplates;
+    Double _screenSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +95,6 @@ public class Settings_Membership extends AppCompatActivity {
         Vehicleyear = findViewById(R.id.VehicleYear);
         Vehicleplates = findViewById(R.id.VehiclePlates);
     }
-
     private void StartSettingInfoOnActivity(String membershipStatus, String serviceType, String memberSince, String nextPaymentDate, String vehicleBrand, String vehicleModel, String vehicleYear, String vehicleColor, String vehiclePlates) {
         if (membershipStatus.trim().equals("IsValid")) {
             Membershipstatus.setChecked(true);
@@ -107,27 +110,6 @@ public class Settings_Membership extends AppCompatActivity {
         Vehicleyear.setText(vehicleYear);
         Vehicleplates.setText(vehiclePlates);
         obj.CloseLoadingScreen();
-    }
-
-    private void LogoffUser(Common obj) {
-        int UID = Integer.parseInt(obj.GetSharedPreferencesValue(Settings_Membership.this, "UID"));
-        String sessionToken = obj.GetSharedPreferencesValue(Settings_Membership.this, "SessionToken");
-        _svcConnection.LogOffUser(UID);
-        Common.DeleteAllSharedPreferences(Settings_Membership.this);
-        final Intent intent = new Intent(Settings_Membership.this, Wizard_Login.class);
-        AlertDialog.Builder dialog = new AlertDialog.Builder(Settings_Membership.this);
-        dialog.setTitle("Tu sesión ha expirado");
-        dialog.setMessage("Cada sesión esta programada para expirar cada 7 días desde la ultima vez que abres el app o cuando se inicia desde otro dispositivo, si no es tu caso, es recomendable cambiar tu contraseña inmediatamente");
-        dialog.setIcon(R.drawable.ic_logoff);
-        dialog.setCancelable(false);
-        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                startActivity(intent);
-            }
-        });
-        obj.CloseLoadingScreen();
-        dialog.show();
     }
     //endregion
 }

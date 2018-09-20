@@ -8,6 +8,7 @@ package com.rochatech.oridriver;
 
 //region rest
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,7 +18,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -27,13 +27,12 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -42,16 +41,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.rochatech.Model.TravelRequests;
-import com.rochatech.library.Support_BottomDialog;
 import com.rochatech.webService.*;
 import com.rochatech.library.Common;
 import org.json.JSONArray;
@@ -76,7 +72,6 @@ import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import android.location.Address;
 import android.location.Geocoder;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -84,10 +79,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.api.geocoding.v5.GeocodingCriteria;
-import com.mapbox.services.android.ui.geocoder.GeocoderAutoCompleteView;
-import com.mapbox.services.api.geocoding.v5.models.CarmenFeature;
-import com.mapbox.services.commons.models.Position;
 //endregion
 
 public class Map_Driver extends AppCompatActivity implements LocationListener {
@@ -100,6 +91,16 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
     Common obj;
     LinearLayout _searchingForRequestLabel;
     FloatingActionButton BtnCenterMapPressed;
+    TextView whatsAppDoingLabel;
+    String _dots;
+    Integer _dotsCount;
+    StringBuilder _loadingDots;
+
+    Integer _TRVL_ReqStep = 0;
+    Integer _TRVL_ReqId = null;
+    String fullStack;
+    Integer _UID;
+    Boolean hasLocPermissions;
 
     Integer _driverUID;
     Integer _cityId;
@@ -107,13 +108,17 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
     TextView lastUpdate;
     TextView lastUpdateReqStatus;
 
+    //region Driver Status
+    String _driverStatus;
+    //endregion
+
     //region Travel Request variable
     TravelRequests TReq;
     //endregion
 
     //region Setting variable
     Boolean _firstTimeSettingDriverLocation = false;
-    Integer _updateDriverLocWS = 30;
+    Integer _updateDriverLocWS = 10;
     Integer _driverCounter = 0;
     //endregion
 
@@ -130,11 +135,12 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
     private static final String TAG = "DirectionsActivity";
     private NavigationMapRoute _navigationMapRoute;
     private Marker _pickupLocationMarker;
-    private LatLng _pickupLocationCoord;
     private Marker _dropOffLocationMarker;
+    private LatLng _pickupLocationCoord;
     private LatLng _dropoffLocationCoord;
 
     Icon _driverLocationMarkerIcon;
+    private Point _driverLocationPosition;
     private LatLng _driverLocationCoord;
     private Marker _driverLocationMarker;
     private Location _driverCurrentLocation;
@@ -147,6 +153,7 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
 
     //region Progress Dialog
     ProgressDialog _searchingYourLocation;
+    ProgressDialog _searchingAgain;
     Boolean isSearchingYourLocationHidden = false;
     ProgressDialog _loadingTripDetails;
     //endregion
@@ -165,6 +172,10 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
     BottomSheetBehavior _botBehave_RatePassenger;
     BottomSheetBehavior _botBehave_StartTravel;
     BottomSheetBehavior _botBehave_TripDetails;
+    //endregion
+
+    //region BottomSheet Views Controls
+
     //endregion
 
     //region Passenger Profile Picture
@@ -191,126 +202,82 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
         setContentView(R.layout.map_driver_activity);
         obj = new Common(Map_Driver.this);
         _svcConnection = new connectToService(Map_Driver.this, obj.GetSharedPreferencesValue(Map_Driver.this, "SessionToken"));
-        lastUpdate = findViewById(R.id.lastUpdate);
-        _searchingForRequestLabel = findViewById(R.id.lookingForRequest);
-        _driverUID = Integer.parseInt(obj.GetSharedPreferencesValue(Map_Driver.this,"UID"));
-        BtnCenterMapPressed = findViewById(R.id.btnCenterMap);
-        BtnCenterMapPressed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setCameraPosition(_driverCurrentLocation);
-            }
-        });
-        Map_InitMap(savedInstanceState);
-
-
-
-
-
-
-
-
-        /*Preguntar por permisos para obtener la ubicacion del usuario*/
-        if (IsGPSEnabled()){
-            /*Preguntar por los permisos*/
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    NeedPermissions();
+        _UID = Integer.parseInt(obj.GetSharedPreferencesValue(Map_Driver.this,"UID"));
+        try {
+            hasLocPermissions = (ContextCompat.checkSelfPermission(Map_Driver.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED);
+            if (hasLocPermissions) {
+                lastUpdate = findViewById(R.id.lastUpdate);
+                _searchingForRequestLabel = findViewById(R.id.lookingForRequest);
+                whatsAppDoingLabel = findViewById(R.id.whatsAppDoingLabel);
+                _driverUID = Integer.parseInt(obj.GetSharedPreferencesValue(Map_Driver.this,"UID"));
+                BtnCenterMapPressed = findViewById(R.id.btnCenterMap);
+                BtnCenterMapPressed.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setCameraPosition(_driverCurrentLocation);
+                    }
+                });
+                Map_InitMap(savedInstanceState);
+                InitCustomToolbar();
+                InitNavMenuControls();
+                InitDriverHeader();
+                InitDriverStatus();
+                InitDriverRate();
+            } else {
+                InputMethodManager imm = (InputMethodManager) Map_Driver.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                View view = Map_Driver.this.getCurrentFocus();
+                if (view == null) {
+                    view = new View(Map_Driver.this);
                 }
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+                }
+                BlankMap(savedInstanceState);
+                InitCustomToolbar();
+                InitNavMenuControls();
+                InitDriverHeader();
+                InitDriverStatus();
+                InitDriverRate();
+                Common.DialogStatusAlert(Map_Driver.this,getResources().getString(R.string.ORINoLocationPermissionsGrantedMsg),getResources().getString(R.string.ORINoLocationPermissionsGrantedTitle),getResources().getString(R.string.ORIDialog_Error_IconName));
             }
-        } else {
-            /*Hay que habilitar el GPS*/
-            /*Mensaje para decirle al usuario porque necesita el GPS encendido*/
-            EnableGPS();
+        } catch (Exception e) {
+            SendLogDeviceErrorNGoBackLogin(e,"protected void onCreate");
         }
-        InitCustomToolbar();
-        InitDriverHeader();
-        InitDriverStatus();
-        InitDriverRate();
+
+//        /*Preguntar por permisos para obtener la ubicacion del usuario*/
+//        if (IsGPSEnabled()){
+//            /*Preguntar por los permisos*/
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                    NeedPermissions();
+//                }
+//            }
+//        } else {
+//            /*Hay que habilitar el GPS*/
+//            /*Mensaje para decirle al usuario porque necesita el GPS encendido*/
+//            EnableGPS();
+//        }
 //        CheckIfPaymentInfoIsAvailable();
-        String welcome = getIntent().getStringExtra("ORIWelcomeMsg");
-        if (welcome != null) {
-            Snackbar snackbar = Snackbar.make(mDrawerLayout,welcome,Snackbar.LENGTH_SHORT);
-            snackbar.show();
-        }
-        NavView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int size = NavView.getMenu().size();
-                for (int i = 0; i < size; i++) {
-                    NavView.getMenu().getItem(i).setChecked(false);
-                }
-                switch (item.getItemId()) {
-                    case R.id.DriverMap:
-                        item.setChecked(true);
-                        mDrawerLayout.closeDrawer(Gravity.START);
-                        break;
-                    case R.id.DriverRequest:
-                        Intent request = new Intent(Map_Driver.this, Settings_FavRequest.class);
-                        startActivity(request);
-                        break;
-                    case R.id.DriverHistory:
-                        Intent history = new Intent(Map_Driver.this, Settings_TripHistory.class);
-                        startActivity(history);
-                        break;
-                    case R.id.DriverSettings:
-                        item.setChecked(true);
-                        Intent settings = new Intent(Map_Driver.this, Settings_Main.class);
-                        startActivity(settings);
-                        break;
-                    case R.id.DriverLogoff:
-                        item.setChecked(true);
-                        AlertDialog.Builder dialog = new AlertDialog.Builder(Map_Driver.this);
-                        LayoutInflater inflater = getLayoutInflater();
-                        View dialogView = inflater.inflate(R.layout.template_dialogstatusalert,null);
-                        TextView dialogTitle = dialogView.findViewById(R.id.alertDialogTitle);
-                        TextView dialogMsg = dialogView.findViewById(R.id.alertDialogMsg);
-                        ImageView dialogIcon = dialogView.findViewById(R.id.alertDialogIcon);
-                        dialogTitle.setText("Cerrando sesión");
-                        dialogMsg.setText("¿Esta seguro que desea cerrar sesión?");
-                        dialogIcon.setImageResource(R.drawable.ic_logoff);
-                        dialog.setView(dialogView);
-                        dialog.setPositiveButton("Cerrar Sesión", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                int UID = Integer.parseInt(obj.GetSharedPreferencesValue(Map_Driver.this, "UID"));
-                                /*Recuperar la opcion de "Volver a preguntar" del dialog para el cambio de estado del conductor*/
-                                String askAgain = obj.GetSharedPreferencesValue(Map_Driver.this,"app_askagain");
-                                Common.DeleteAllSharedPreferences(Map_Driver.this);
-                                _svcConnection.LogOffUser(UID);
-                                /*Volver a poner en los shared el valor de "Volver a preguntar"*/
-                                SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences(getResources().getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE).edit();
-                                editor.putString("app_askagain",askAgain);
-                                editor.apply();
-                                Intent intent = new Intent(Map_Driver.this, Wizard_Login.class);
-                                startActivity(intent);
-                            }
-                        });
-                        dialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                mDrawerLayout.closeDrawer(Gravity.START);
-                            }
-                        });
-                        dialog.setCancelable(false);
-                        dialog.show();
-                        break;
-                }
-                return false;
-            }
-        });
+//        String welcome = getIntent().getStringExtra("ORIWelcomeMsg");
+//        if (welcome != null) {
+//            Snackbar snackbar = Snackbar.make(mDrawerLayout,welcome,Snackbar.LENGTH_SHORT);
+//            snackbar.show();
+//        }
     }
 
     //region Mapbox Map
     public void Map_InitMap(Bundle savedInstanceState) {
         if (obj.isInternetConnectionActive(Map_Driver.this)) {
+            _dots = "";
+            _dotsCount = 0;
+            _loadingDots = new StringBuilder();
             _searchingYourLocation = new ProgressDialog(Map_Driver.this);
             _searchingYourLocation.setMessage("Buscando tu ubicación");
             _searchingYourLocation.setCancelable(false);
             _searchingYourLocation.show();
-            _pickupLocationMarkerIcon = IconFactory.getInstance(Map_Driver.this).fromResource(R.drawable.ic_menu_startmark40);
+            _driverLocationMarkerIcon = IconFactory.getInstance(Map_Driver.this).fromResource(R.drawable.ic_menu_driverlocmarkerx2);
+            _pickupLocationMarkerIcon = IconFactory.getInstance(Map_Driver.this).fromResource(R.drawable.ic_menu_destination_30);
             _dropOffLocationMarkerIcon = IconFactory.getInstance(Map_Driver.this).fromResource(R.drawable.ic_menu_endmark100);
-
             Mapbox.getInstance(this, MAPBOX_ACCESSTOKEN);
             mapView = findViewById(R.id.mapView);
             mapView.onCreate(savedInstanceState);
@@ -330,30 +297,8 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
     }
     public void Map_ConfigureMap() {
         LOCATION_TIME = 1000;
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         StartUpdatingLocation(LOCATION_TIME,0);
-    }
-
-    private void SetNMarkDriverLocation() {
-        if (_searchingYourLocation != null && !isSearchingYourLocationHidden) {
-            isSearchingYourLocationHidden = true;
-            _searchingForRequestLabel.setVisibility(View.VISIBLE);
-            _searchingYourLocation.dismiss();
-        }
-        if (_driverLocationMarker != null) {
-            _driverLocationMarker.remove();
-        }
-        _driverCurrentLocation = GetDriverBestLastKnowLocation();
-        _driverLocationCoord = new LatLng(_driverCurrentLocation.getLatitude(),_driverCurrentLocation.getLongitude());
-        _driverLocationMarker = map.addMarker(new MarkerOptions()
-                .position(_driverLocationCoord)
-                .setIcon(_pickupLocationMarkerIcon)
-        );
-        if (!_firstTimeSettingDriverLocation) {
-            //Camera updates its position
-            setCameraPosition(_driverCurrentLocation);
-            _firstTimeSettingDriverLocation = true;
-        }
-        _driverCounter++;
     }
     private void setCameraPosition(Location location) {
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(
@@ -459,9 +404,33 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
     //endregion
 
 
+    //region Blank Map
+    public void BlankMap(Bundle savedInstanceState) {
+        try {
+            Mapbox.getInstance(this,MAPBOX_ACCESSTOKEN);
+            mapView = findViewById(R.id.mapView);
+            mapView.onCreate(savedInstanceState);
+            mapView.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(MapboxMap mapboxMap) {
+                    try {
+                        Map_Driver.this.map = mapboxMap;
+                        map.getUiSettings().setCompassEnabled(false);
+                        map.setZoom(0.0);
+                    } catch (Exception e) {
+                        SendLogDeviceErrorNGoBackLogin(e,"public void onMapReady");
+                    }
+                }
+            });
+        } catch (Exception e) {
+            SendLogDeviceErrorNGoBackLogin(e,"public void BlankMap");
+        }
+    }
+    //endregion
 
 
-    //region Init / Show / Dismiss Views
+
+    //region Init / Show / Load Info / Dismiss Views
     public void Init_OnMyWayToDropoff() {
         Button btnDriverDropoffNavigationPressed = findViewById(R.id.btnDriverDropoffNavigation);
         TextView passengerDropoffAddress = findViewById(R.id.passengerDropoffAddress);
@@ -493,6 +462,7 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
             @Override
             public void onClick(View v) {
                 /*      Open google maps or another "map" app       */
+
             }
         });
     }
@@ -548,18 +518,86 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
         passengerPickupAddressTripDetails.setText(TReq.GetPickupAddress());
         passengerDropoffAddressTripDetails.setText(TReq.GetDropOffAddress());
         passengerEstimatedDistanceTripDetails.setText(TReq.GetEstimatedDistance().toString());
-        passengerEstimatedTimeTripDetails.setText(TReq.GetEstimatedTime().toString());
+        String tmpEstimatedTime = String.format("%.0f", TReq.GetEstimatedTime());
+        passengerEstimatedTimeTripDetails.setText(tmpEstimatedTime);
         passengerEstimatedFareTripDetails.setText(TReq.GetEstimatedFare().toString());
         btnAcceptedTravel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                StopUpdatingLocation();
+                _svcConnection.AcceptTravelRequest(_UID, TReq.GetTravelRequestId(), new WSResponseListener() {
+                    @Override
+                    public void onError(String message) {
+                        switch (message) {
+                            case "Error_InvalidToken":
+                                Common.LogoffByInvalidToken(Map_Driver.this);
+                                break;
+                            case "NO_CONNECTION":
+                                obj.CloseLoadingScreen();
+                                Common.DialogStatusAlert(Map_Driver.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),getResources().getString(R.string.ORIDialog_Error_IconName));
+                                break;
+                        }
+                        TReq = null;
+                        _driverStatus = getResources().getString(R.string.ORIDriverStatus_Available);
+                        ChangeDriverStatus(_UID,_driverStatus,false);
+                    }
 
+                    @Override
+                    public void onResponseObject(JSONArray jsonResponse) {
+                        if (TReq != null) {
+                            _driverStatus = getResources().getString(R.string.ORIDriverStatus_OnCourseToPickup);
+                            UpdateDriverStatus(_UID,_driverStatus);
+                            Dismiss_TripDetails();
+                            LOCATION_TIME = 4000;
+                            locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+                            StartUpdatingLocation(LOCATION_TIME,0);
+                            //limpiar mapa de iconos
+                            //trazar ruta desde mi localizacion hasta el pickuplocaiont
+
+                            /*Driver Current Location*/
+                            _driverCurrentLocation = GetDriverBestLastKnowLocation();
+                            _driverLocationCoord = new LatLng(_driverCurrentLocation.getLatitude(),_driverCurrentLocation.getLongitude());
+
+                            /*PickupLocation*/
+                            Location pickupLocation = new Location("");
+                            pickupLocation.setLatitude(Double.parseDouble(TReq.GetPickUpLocationLatitud()));
+                            pickupLocation.setLongitude(Double.parseDouble(TReq.GetPickUpLocationLongitud()));
+                            _pickupLocationCoord = new LatLng(pickupLocation.getLatitude(),pickupLocation.getLongitude());
+
+                            _driverLocationPosition = Point.fromLngLat(_driverLocationCoord.getLongitude(),_driverLocationCoord.getLatitude());
+                            _pickupLocationPosition = Point.fromLngLat(_pickupLocationCoord.getLongitude(), _pickupLocationCoord.getLatitude());
+                            getRoute(_driverLocationPosition,_pickupLocationPosition);
+                            Show_OnMyWayToPickup();
+                        }
+                    }
+                });
             }
         });
         btnRejectTravel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                _svcConnection.RejectTravelRequest(_UID, TReq.GetTravelRequestId(), new WSResponseListener() {
+                    @Override
+                    public void onError(String message) {
+                        switch (message) {
+                            case "Error_InvalidToken":
+                                Common.LogoffByInvalidToken(Map_Driver.this);
+                                break;
+                            case "NO_CONNECTION":
+                                obj.CloseLoadingScreen();
+                                Common.DialogStatusAlert(Map_Driver.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),getResources().getString(R.string.ORIDialog_Error_IconName));
+                                break;
+                        }
+                    }
 
+                    @Override
+                    public void onResponseObject(JSONArray jsonResponse) {
+                        Dismiss_TripDetails();
+                        Map_ConfigureMap();
+                        _searchingForRequestLabel.setVisibility(View.VISIBLE);
+                        whatsAppDoingLabel.setText(getResources().getString(R.string.ORIWhatsAppDoingLabel_SearchingForRequest));
+                    }
+                });
             }
         });
     }
@@ -715,12 +753,17 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
 
     //region Location Listerner / Searching for Travel Request
     private void StartUpdatingLocation(long location_time, float location_distance) {
-        locationManager.removeUpdates(locationListener);
+        if (locationManager != null) {
+            locationManager.removeUpdates(locationListener);
+        }
         /*Habilitar lo de best provider*/
         if (ActivityCompat.checkSelfPermission(Map_Driver.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             SetLocationPermissions();
             /*Revisar que pasa si no se dan los permisos*/
 //          return;
+        }
+        if (_searchingAgain != null) {
+            _searchingAgain.dismiss();
         }
         locationManager.requestLocationUpdates("gps", LOCATION_TIME, 0, locationListener);
     }
@@ -819,15 +862,84 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
     @Override
     protected void onResume() {
         super.onResume();
-        if (!IsGPSEnabled()) {
-            EnableGPS();
-        }
+//        if (!IsGPSEnabled()) {
+//            EnableGPS();
+//        }
     }
 
     //endregion
 
 
     //region MISC
+    private void InitNavMenuControls() {
+        NavView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int size = NavView.getMenu().size();
+                for (int i = 0; i < size; i++) {
+                    NavView.getMenu().getItem(i).setChecked(false);
+                }
+                switch (item.getItemId()) {
+                    case R.id.DriverMap:
+                        item.setChecked(true);
+                        mDrawerLayout.closeDrawer(Gravity.START);
+                        break;
+                    case R.id.DriverRequest:
+                        Intent request = new Intent(Map_Driver.this, Settings_FavRequest.class);
+                        startActivity(request);
+                        break;
+                    case R.id.DriverHistory:
+                        Intent history = new Intent(Map_Driver.this, Settings_TripHistory.class);
+                        startActivity(history);
+                        break;
+                    case R.id.DriverSettings:
+                        item.setChecked(true);
+                        Intent settings = new Intent(Map_Driver.this, Settings_Main.class);
+                        startActivity(settings);
+                        break;
+                    case R.id.DriverLogoff:
+                        item.setChecked(true);
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(Map_Driver.this);
+                        LayoutInflater inflater = getLayoutInflater();
+                        View dialogView = inflater.inflate(R.layout.template_dialogstatusalert,null);
+                        TextView dialogTitle = dialogView.findViewById(R.id.alertDialogTitle);
+                        TextView dialogMsg = dialogView.findViewById(R.id.alertDialogMsg);
+                        ImageView dialogIcon = dialogView.findViewById(R.id.alertDialogIcon);
+                        dialogTitle.setText("Cerrando sesión");
+                        dialogMsg.setText("¿Esta seguro que desea cerrar sesión?");
+                        dialogIcon.setImageResource(R.drawable.ic_logoff);
+                        dialog.setView(dialogView);
+                        dialog.setPositiveButton("Cerrar Sesión", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                locationManager.removeUpdates(locationListener);
+                                locationManager = null;
+                                /*Recuperar la opcion de "Volver a preguntar" del dialog para el cambio de estado del conductor*/
+                                String oldMsg = obj.GetSharedPreferencesValue(Map_Driver.this,"reqenv_message_old");
+                                Common.DeleteAllSharedPreferences(Map_Driver.this);
+                                _svcConnection.LogOffUser(_UID);
+                                /*Volver a poner en los shared el valor de "Volver a preguntar"*/
+                                SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences(getResources().getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE).edit();
+                                editor.putString("reqenv_message_old",oldMsg);
+                                editor.apply();
+                                Intent intent = new Intent(Map_Driver.this, Wizard_Login.class);
+                                startActivity(intent);
+                            }
+                        });
+                        dialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mDrawerLayout.closeDrawer(Gravity.START);
+                            }
+                        });
+                        dialog.setCancelable(false);
+                        dialog.show();
+                        break;
+                }
+                return false;
+            }
+        });
+    }
     private void InitDriverHeader() {
         View view = NavView.getHeaderView(0);
         TextView DriverName = view.findViewById(R.id.NavMenu_DriverName);
@@ -847,10 +959,11 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
             public void onClick(View v) {
                 int UID = Integer.parseInt(obj.GetSharedPreferencesValue(Map_Driver.this, "UID"));
                 if (navmenu_status.isChecked()) {
-                    ChangeDriverStatus(UID, "X",false);
+                    ChangeDriverStatus(UID, "A",false);
                 } else {
-                    ChangeDriverStatus(UID, "A",true);
+                    ChangeDriverStatus(UID, "X",true);
                 }
+                mDrawerLayout.closeDrawer(Gravity.START);
             }
         });
 
@@ -959,6 +1072,43 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
             }
         });
     }
+    //endregion
+
+    //region Driver Events / Methods
+    private void CheckDriverOnlineStatus() {
+        if (_dotsCount > 3) {
+            _dots = "";
+            _dotsCount = 0;
+        }
+        _driverStatus = obj.GetSharedPreferencesValue(Map_Driver.this,"user_OnlineStatus");
+        if (_driverStatus.trim().contains(getResources().getString(R.string.ORIDriverStatus_Offline))) {
+            _dots = "";
+            _dotsCount = 0;
+            whatsAppDoingLabel.setText(getResources().getString(R.string.ORIWhatsAppDoingLabel_OfflineMode));
+//            _driverLocationMarkerIcon.getBitmap().eraseColor(ContextCompat.getColor(this, R.color.ORIGray));
+            locationManager.removeUpdates(locationListener);
+            locationManager = null;
+        } else {
+            if (_dotsCount == 0) {
+                _dots = "•  " + getResources().getString(R.string.ORIWhatsAppDoingLabel_SearchingForRequest) + "    •";
+            }
+            if (_dotsCount == 1) {
+                _dots = "••  " + getResources().getString(R.string.ORIWhatsAppDoingLabel_SearchingForRequest) + "    ••";
+            }
+            if (_dotsCount == 2) {
+                _dots = "•••  " + getResources().getString(R.string.ORIWhatsAppDoingLabel_SearchingForRequest) + "    •••";
+            }
+            if (_dotsCount == 3) {
+                _dots = "••••  " + getResources().getString(R.string.ORIWhatsAppDoingLabel_SearchingForRequest) + "    ••••";
+            }
+            whatsAppDoingLabel.setText(_dots);
+            _dotsCount++;
+//            _driverLocationMarkerIcon.getBitmap().eraseColor(ContextCompat.getColor(this, R.color.ORIBlack));
+        }
+    }
+    private void CheckForDestination() {
+
+    }
     private void ChangeDriverStatus(int UID, final String newStatus, final boolean showMsg) {
         _svcConnection.ChangeDriverStatus(UID, newStatus, new WSResponseListener() {
             @Override
@@ -967,48 +1117,107 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
                     case "Error_InvalidToken":
                         Common.LogoffByInvalidToken(Map_Driver.this);
                         break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Map_Driver.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),getResources().getString(R.string.ORIDialog_Error_IconName));
+                        break;
                 }
             }
 
             @Override
             public void onResponseObject(JSONArray jsonResponse) {
-                try {
-                    String response = jsonResponse.getString(0);
-                    SharedPreferences preferences = Map_Driver.this.getSharedPreferences(getResources().getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE);
-                    final SharedPreferences.Editor edit = preferences.edit();
-                    edit.putString("user_OnlineStatus", newStatus);
-                    String askAgain = obj.GetSharedPreferencesValue(Map_Driver.this,"app_askagain");
-                    LayoutInflater inflater = (LayoutInflater) Map_Driver.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    View dialogView = inflater.inflate(R.layout.template_dialogdonotaskagain,null);
-                    final CheckBox donotaskagain = dialogView.findViewById(R.id.DoNotAskAgain);
-                    if (showMsg) {
-                        if (askAgain.contains("Y")) {
-                            AlertDialog.Builder dialog = new AlertDialog.Builder(Map_Driver.this);
-                            Typeface font = Typeface.createFromAsset(getResources().getAssets(),"montserrat_regular.ttf");
-                            donotaskagain.setTypeface(font);
-                            dialog.setView(dialogView);
-                            dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    if (donotaskagain.isChecked()) {
-                                        edit.putString("app_askagain","N");
-                                        edit.apply();
-                                    }
-                                }
-                            });
-                            dialog.setCancelable(false);
-                            dialog.show();
-                        } else {
-
-                        }
-                    } else {
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                SharedPreferences pref = getSharedPreferences(getResources().getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("user_OnlineStatus",newStatus).apply();
+                if (obj.GetSharedPreferencesValue(Map_Driver.this,"user_OnlineStatus").trim().contains(getResources().getString(R.string.ORIDriverStatus_Available))) {
+                    _searchingAgain = new ProgressDialog(Map_Driver.this);
+                    _searchingAgain.setMessage("Buscando tu ubicación");
+                    _searchingAgain.setCancelable(false);
+                    _searchingAgain.show();
+                    Map_ConfigureMap();
                 }
+//                try {
+//                    String response = jsonResponse.getString(0);
+//                    SharedPreferences preferences = Map_Driver.this.getSharedPreferences(getResources().getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE);
+//                    final SharedPreferences.Editor edit = preferences.edit();
+//                    edit.putString("user_OnlineStatus", newStatus);
+//                    String askAgain = obj.GetSharedPreferencesValue(Map_Driver.this,"app_askagain");
+//                    LayoutInflater inflater = (LayoutInflater) Map_Driver.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                    View dialogView = inflater.inflate(R.layout.template_dialogdonotaskagain,null);
+//                    final CheckBox donotaskagain = dialogView.findViewById(R.id.DoNotAskAgain);
+//                    if (showMsg) {
+//                        if (askAgain.contains("Y")) {
+//                            AlertDialog.Builder dialog = new AlertDialog.Builder(Map_Driver.this);
+//                            Typeface font = Typeface.createFromAsset(getResources().getAssets(),"montserrat_regular.ttf");
+//                            donotaskagain.setTypeface(font);
+//                            dialog.setView(dialogView);
+//                            dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    if (donotaskagain.isChecked()) {
+//                                        edit.putString("app_askagain","N");
+//                                        edit.apply();
+//                                    }
+//                                }
+//                            });
+//                            dialog.setCancelable(false);
+//                            dialog.show();
+//                        } else {
+//
+//                        }
+//                    } else {
+//
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
             }
         });
+    }
+    private void UpdateDriverStatus(int UID, final String newStatus){
+        _svcConnection.ChangeDriverStatus(UID, newStatus, new WSResponseListener() {
+            @Override
+            public void onError(String message) {
+                switch (message) {
+                    case "Error_InvalidToken":
+                        Common.LogoffByInvalidToken(Map_Driver.this);
+                        break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Map_Driver.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),getResources().getString(R.string.ORIDialog_Error_IconName));
+                        break;
+                }
+            }
+
+            @Override
+            public void onResponseObject(JSONArray jsonResponse) {
+                SharedPreferences pref = getSharedPreferences(getResources().getString(R.string.ORIGlobal_SharedPreferences), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("user_OnlineStatus",newStatus).apply();
+            }
+        });
+    }
+    private void SetNMarkDriverLocation() {
+        if (_searchingYourLocation != null && !isSearchingYourLocationHidden) {
+            isSearchingYourLocationHidden = true;
+            _searchingForRequestLabel.setVisibility(View.VISIBLE);
+            _searchingYourLocation.dismiss();
+        }
+        if (_driverLocationMarker != null) {
+            _driverLocationMarker.remove();
+        }
+        _driverCurrentLocation = GetDriverBestLastKnowLocation();
+        _driverLocationCoord = new LatLng(_driverCurrentLocation.getLatitude(),_driverCurrentLocation.getLongitude());
+        _driverLocationMarker = map.addMarker(new MarkerOptions()
+                .position(_driverLocationCoord)
+                .setIcon(_driverLocationMarkerIcon)
+        );
+        if (!_firstTimeSettingDriverLocation) {
+            //Camera updates its position
+            setCameraPosition(_driverCurrentLocation);
+            _firstTimeSettingDriverLocation = true;
+        }
+        _driverCounter++;
     }
     //endregion
 
@@ -1022,8 +1231,8 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
         TextView dialogTitle = dialogView.findViewById(R.id.alertDialogTitle);
         TextView dialogMsg = dialogView.findViewById(R.id.alertDialogMsg);
         ImageView dialogIcon = dialogView.findViewById(R.id.alertDialogIcon);
-        dialogTitle.setText("¿Estas seguro que deseas salir de la aplicación?");
-        dialogMsg.setText("Recuerda que para navegar por nuestra aplicación puedes utilizar nuestro menu y la flecha de navegación en la parte superior derecha.");
+        dialogTitle.setText(getResources().getString(R.string.ORIBackPressed_Title));
+        dialogMsg.setText(getResources().getString(R.string.ORIBackPressed_Msg));
         dialogIcon.setImageResource(R.drawable.ic_logoff);
         dialog.setView(dialogView);
         dialog.setPositiveButton("Salir", new DialogInterface.OnClickListener() {
@@ -1049,20 +1258,64 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
     }
     //endregion
 
+    //region onDestroy
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (_searchingYourLocation != null) {
+            _searchingYourLocation.dismiss();
+        }
+    }
 
-
-
+    //endregion
 
 
     //region WebService Calls
     public void wsUpdateDriverLocation() {
-        /*      Este culero es el que devuelve el objeto Travel Request     */
+        Double driverLatitude = _driverCurrentLocation.getLatitude();
+        Double driverLongitude = _driverCurrentLocation.getLongitude();
         if (TReq != null) {
-
-        } else if (TReq == null) {
-
+            _TRVL_ReqId = TReq.GetTravelRequestId();
         }
+        _svcConnection.UpdateDriverLocation(_UID, driverLatitude.toString(), driverLongitude.toString(), _driverStatus, _TRVL_ReqId, _TRVL_ReqStep, new WSResponseListener() {
+            @Override
+            public void onError(String message) {
+                switch (message) {
+                    case "Error_InvalidToken":
+                        Common.LogoffByInvalidToken(Map_Driver.this);
+                        break;
+                    case "NO_CONNECTION":
+                        obj.CloseLoadingScreen();
+                        Common.DialogStatusAlert(Map_Driver.this,getResources().getString(R.string.ORI_NoInternetConnection_Msg),getResources().getString(R.string.ORI_NoInternetConnection_Title),getResources().getString(R.string.ORIDialog_Error_IconName));
+                        break;
+                }
+            }
+
+            @Override
+            public void onResponseObject(JSONArray jsonResponse) {
+                switch (_driverStatus) {
+                    case "A":
+                        if (TReq == null) {
+                            if (jsonResponse.length() > 0) {
+                                TReq = TravelRequests.fromJson(jsonResponse).get(0);
+                                _searchingForRequestLabel.setVisibility(View.GONE);
+//                                whatsAppDoingLabel.setVisibility(View.GONE);
+                                Show_TripDetails();
+                            }
+                        }
+                        break;
+                    case "P":
+                        CheckForDestination();
+                        break;
+                    case "B":
+                        LOCATION_TIME = 10000;
+                        _TRVL_ReqStep++;
+                        CheckForDestination();
+                        break;
+                }
+            }
+        });
     }
     public void wsAcceptedTravelRequest() {
         if (TReq != null) {
@@ -1115,11 +1368,14 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
 
 
 
-
-
+    //region Location Listener
     @Override
     public void onLocationChanged(Location location) {
         lastUpdate.setText("Ultima actualizacion: " + Common.getAppStringFullDateFromFullDate(Common.getNow()));
+        CheckDriverOnlineStatus();
+        if (_driverStatus.trim().contains(getResources().getString(R.string.ORIDriverStatus_Offline))) {
+            return;
+        }
         if (_updateDriverLocWS == _driverCounter) {
             //llamar al web service
             wsUpdateDriverLocation();
@@ -1143,4 +1399,79 @@ public class Map_Driver extends AppCompatActivity implements LocationListener {
     public void onProviderDisabled(String provider) {
 
     }
+    //endregion
+
+
+    //region Log Send Errors
+    private void SendLogDeviceError(Exception error, String method, boolean showDialog) {
+        fullStack = obj.LogDeviceError(error);
+        _svcConnection.LogDeviceError(getResources().getString(R.string.appName), BuildConfig.VERSION_NAME, method, "", "Map_Passenger", Build.MODEL, Build.MANUFACTURER, Integer.toString(Build.VERSION.SDK_INT), Build.VERSION.RELEASE, "", _UID, fullStack, error.getMessage(), Integer.toString(error.hashCode()));
+        if (showDialog) {
+            Common.DialogStatusAlert(Map_Driver.this,getResources().getString(R.string.ORIUnexpectedErrorNSendLogToServer),getResources().getString(R.string.ORIUnexpectedError),"Error");
+        }
+    }
+    private void SendLogDeviceErrorNGoBackLogin(Exception error, String method) {
+        fullStack = obj.LogDeviceError(error);
+        _svcConnection.LogDeviceError(getResources().getString(R.string.appName), BuildConfig.VERSION_NAME, method, "", "Map_Passenger", Build.MODEL, Build.MANUFACTURER, Integer.toString(Build.VERSION.SDK_INT), Build.VERSION.RELEASE, "", _UID, fullStack, error.getMessage(), Integer.toString(error.hashCode()));
+        AlertDialog.Builder dialog = new AlertDialog.Builder(Map_Driver.this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.template_dialogstatusalert, null);
+        TextView dialogTitle = dialogView.findViewById(R.id.alertDialogTitle);
+        TextView dialogMsg = dialogView.findViewById(R.id.alertDialogMsg);
+        ImageView dialogIcon = dialogView.findViewById(R.id.alertDialogIcon);
+        dialogTitle.setText(getResources().getString(R.string.ORIUnexpectedError));
+        dialogMsg.setText(getResources().getString(R.string.ORIUnexpectedErrorNSendLogToServer));
+        dialogIcon.setImageResource(R.drawable.ic_logoff);
+        dialog.setView(dialogView);
+        dialog.setPositiveButton(getResources().getString(R.string.ORIOkString), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                backToLogin();
+            }
+        });
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+    private void backToLogin () {
+        Intent backToLogin = new Intent(Map_Driver.this,Wizard_Login.class);
+        startActivity(backToLogin);
+    }
+    //endregion
+
+    //region Logoff by unavailable service in city
+    private void Logoff_ByUnavailableServiceInCitySelected() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(Map_Driver.this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.template_dialogstatusalert, null);
+        TextView dialogTitle = dialogView.findViewById(R.id.alertDialogTitle);
+        TextView dialogMsg = dialogView.findViewById(R.id.alertDialogMsg);
+        ImageView dialogIcon = dialogView.findViewById(R.id.alertDialogIcon);
+        dialogTitle.setText(getResources().getString(R.string.ORINoServiceAvailableInThisCityTitle));
+        dialogMsg.setText(getResources().getString(R.string.ORINoServiceAvailableInThisCityMsg));
+        dialogIcon.setImageResource(R.drawable.ic_logoff);
+        dialog.setView(dialogView);
+        dialog.setPositiveButton("Regresar a inicio de sesión", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                try {
+                    String oldMsg = obj.GetSharedPreferencesValue(Map_Driver.this,"reqenv_message_old");
+                    String currentMail = obj.GetSharedPreferencesValue(Map_Driver.this,"UnityEmail");
+                    Common.DeleteAllSharedPreferences(Map_Driver.this);
+                    SharedPreferences pref = getSharedPreferences(getResources().getString(R.string.ORIGlobal_SharedPreferences),Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("reqenv_message_old",oldMsg).apply();
+                    editor.putString("UnityEmail",currentMail).apply();
+                    Integer UID = Integer.parseInt(obj.GetSharedPreferencesValue(Map_Driver.this,"UID"));
+                    _svcConnection.LogOffUser(UID);
+                    Intent intent = new Intent(Map_Driver.this, Wizard_Login.class);
+                    startActivity(intent);
+                    finish();
+                } catch (Exception e) {
+                    SendLogDeviceErrorNGoBackLogin(e,"public void onClick");
+                }
+            }
+        });
+        dialog.show();
+    }
+    //endregion
 }

@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mapDriverOnMyWayToPickup"
+    android:background="@color/ORIWhite"
     android:orientation="vertical"
     android:padding="10dp"
     android:layout_width="match_parent"
@@ -27,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.v7.widget.AppCompatTextView
-                    android:text="En camino a"
+                    android:text="@string/XML_MapDriverDropoff"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -39,9 +40,8 @@
                 android:layout_height="wrap_content">
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/passengerPickupAddress"
-                    android:text="Direccion1"
                     android:textColor="@color/ORIBlack"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -65,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <android.support.v7.widget.AppCompatTextView
-                        android:text="Con"
+                        android:text="@string/XML_MapDriverDropoff_With"
                         android:textAlignment="textEnd"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_width="match_parent"
@@ -78,7 +78,6 @@
                     android:layout_height="wrap_content">
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/passengerNamePickup"
-                        android:text="Maria Elena"
                         android:textAlignment="textEnd"
                         android:textColor="@color/ORIBlack"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -96,9 +95,9 @@
                 android:layout_height="wrap_content">
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/passengerPicturePickup"
-                    android:src="@drawable/ic_ori_blueround300"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:src="@drawable/ic_menu_emptyuser90"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp" />
             </android.support.v7.widget.LinearLayoutCompat>
 
         </android.support.v7.widget.LinearLayoutCompat>
@@ -112,7 +111,7 @@
         android:layout_height="match_parent">
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnDriverPickupNavigation"
-            android:text="Navegar"
+            android:text="@string/XML_MapDriverDropoff_Navigate"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textAllCaps="false"
             android:textColor="@color/ORIWhite"
@@ -120,7 +119,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="35dp" />
     </android.support.v7.widget.LinearLayoutCompat>
 
 

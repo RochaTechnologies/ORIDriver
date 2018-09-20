@@ -2,16 +2,13 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginTop="3dp"
-    android:layout_marginBottom="5dp"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment_Wizard_NotificationAlert">
 
     <!-- Wrapper -->
     <android.support.v7.widget.LinearLayoutCompat
+        android:layout_margin="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -31,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <View
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/ORIGray"
                 android:layout_width="match_parent"
                 android:layout_height="1dp" />
@@ -48,42 +45,42 @@
             <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/ic_ori_blue300"
                 android:layout_gravity="center"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:layout_width="70dp"
+                android:layout_height="70dp" />
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txtTitleMsg"
-                android:text="--"
+                android:text="@string/ORI_DefaultValueString"
                 android:textStyle="bold"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="30sp"
                 android:textColor="@color/ORIBlack"
                 android:textAlignment="center"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txtSubtitle1Msg"
-                android:text="--"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/ORI_DefaultValueString"
+                android:textSize="20sp"
                 android:textColor="@color/ORIBlack"
                 android:textAlignment="center"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txtSubtitle2Msg"
-                android:text="--"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/ORI_DefaultValueString"
+                android:textSize="20sp"
                 android:textColor="@color/ORIBlack"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txtNoteMsg"
-                android:text="--"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/ORI_DefaultValueString"
+                android:textSize="13sp"
                 android:textColor="@color/ORIBlack"
                 android:textAlignment="center"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </android.support.v7.widget.LinearLayoutCompat>
@@ -98,15 +95,15 @@
             android:layout_height="match_parent">
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btnPrimaryAction"
-                android:text="¡Entendido!"
+                android:text="@string/ORIUnderstoodString"
                 android:textAllCaps="false"
                 android:textColor="@color/ORIWhite"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:background="@drawable/template_skybluebutton"
+                android:background="@drawable/template_bluebutton"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:layout_width="match_parent"
-                android:layout_height="35dp" />
+                android:layout_height="40dp" />
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v7.widget.LinearLayoutCompat>
 </FrameLayout>

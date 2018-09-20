@@ -1,52 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Settings_FavRequest">
-    <android.support.v7.widget.AppCompatTextView
-        android:text="Conductor preferido"
-        android:textAlignment="center"
-        android:textColor="@color/ORISkyBlue"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <android.support.v7.widget.AppCompatTextView
-        android:text="Cuando finalizas un viaje, el pasajero tiene la opción de agregarte a sus conductores preferidos. Al tú aceptar la solicitud, el pasajero puede requerirte un viaje o servicio directamente."
-        android:textColor="@color/ORIBlack"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <FrameLayout
-        android:id="@+id/FragContent"
-        android:name="com.rochatech.oridriver.Fragment_MainFavContent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:orientation="vertical"
+        android:layout_weight="0"
         android:layout_marginBottom="5dp"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatTextView
+            android:text="@string/SettingsFavRequest_Title"
+            android:textAlignment="center"
+            android:textColor="@color/ORISkyBlue"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.AppCompatTextView
+            android:text="@string/SettingsFavRequest_Msg"
+            android:textColor="@color/ORIBlack"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.LinearLayoutCompat>
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <!--<fragment-->
-            <!--android:id="@+id/FragContent"-->
-            <!--android:name="com.rochatech.oridriver.Fragment_MainFavContent"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent" />-->
-    </FrameLayout>
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/NoAvailableRequest"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.AppCompatTextView
+                android:text="@string/SettingsFavRequest_AddBy"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/colorPrimary"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.AppCompatImageView
+                android:src="@drawable/ic_mainfavdriver"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/FavPassengerCount"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/ORISkyBlue"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/AvailableFavRequest"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.AppCompatTextView
+                android:text="@string/SettingsFavRequest_NewReq"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/ORIBlack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/ORIDisable" />
+            <android.support.v7.widget.ListViewCompat
+                android:id="@+id/PassengersRequestList"
+                android:choiceMode="singleChoice"
+                tools:listitem="@layout/template_favdriverpendingrequest"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.v7.widget.LinearLayoutCompat>
+    </android.support.v7.widget.LinearLayoutCompat>
 
     <!--<FrameLayout-->
+        <!--android:id="@+id/FragContent"-->
+        <!--android:name="com.rochatech.oridriver.Fragment_MainFavContent"-->
         <!--android:layout_marginTop="10dp"-->
         <!--android:layout_marginStart="10dp"-->
         <!--android:layout_marginEnd="10dp"-->
         <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_weight="1"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent">-->
     <!--</FrameLayout>-->
-    <!--class ="com.rochatech.oridriver.Fragment_MainFavContent"-->
 </android.support.v7.widget.LinearLayoutCompat>
